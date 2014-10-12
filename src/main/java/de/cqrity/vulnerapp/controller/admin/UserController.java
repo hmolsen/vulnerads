@@ -1,5 +1,6 @@
 package de.cqrity.vulnerapp.controller.admin;
 
+import de.cqrity.vulnerapp.domain.Authority;
 import de.cqrity.vulnerapp.domain.User;
 import de.cqrity.vulnerapp.domain.UserCreationRequest;
 import de.cqrity.vulnerapp.service.UserService;
@@ -37,7 +38,7 @@ public class UserController {
             return "create";
         }
         try {
-            userService.save(new User(form.getUsername(), form.getPassword()));
+            userService.save(new User(form.getUsername(), form.getPassword(), new Authority("USER")));
         } catch (UnsupportedOperationException e) {
             result.reject("user.error.exists");
             return "create";

@@ -5,6 +5,7 @@ import com.google.common.base.MoreObjects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -17,13 +18,17 @@ public class User {
 
     private String password;
 
+    @OneToOne
+    private Authority authority;
+
     @SuppressWarnings("unused")
     User() {
     }
 
-    public User(String username, String password) {
+    public User(String username, String password, Authority authority) {
         this.username = username;
         this.password = password;
+        this.authority = authority;
     }
 
     public long getId() {
@@ -44,6 +49,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
 
     @Override
