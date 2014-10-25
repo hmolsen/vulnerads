@@ -12,10 +12,7 @@ public class JspController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView hello() {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("test");
-
-        String str = "I am so here.";
-        mav.addObject("message", str);
+        mav.setViewName("index");
 
         return mav;
     }

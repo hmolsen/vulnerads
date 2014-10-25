@@ -18,7 +18,10 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/resources/**").permitAll()
+                .anyRequest().authenticated();
         http
             .formLogin()
                 .permitAll().and()
