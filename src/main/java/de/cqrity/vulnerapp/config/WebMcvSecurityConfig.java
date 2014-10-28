@@ -24,6 +24,9 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
         http
             .formLogin()
+                .loginPage("/login").failureUrl("/login?error")
+                .usernameParameter("username").passwordParameter("password")
+                .defaultSuccessUrl("/")
                 .permitAll().and()
             .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
