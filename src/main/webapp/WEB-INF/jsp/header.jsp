@@ -22,6 +22,7 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="register">Register</a></li>
                 <li><a href="login">Login</a></li>
             </ul>
         </div>
