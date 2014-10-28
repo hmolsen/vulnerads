@@ -13,30 +13,25 @@
 <c:if test="${not empty error}">
     <div class="alert alert-danger" role="alert">Wrong username and/or password.</div>
 </c:if>
-<div class="col-md-2"></div>
-<div class="col-md-8">
-    <form name='loginForm'
-          action="<c:url value='login'/>" method='POST'>
+<div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-2">
+        <h1>Sign in.</h1>
+        <form name='loginForm'
+              action="<c:url value='login'/>" method='POST'>
 
-        <table>
-            <tr>
-                <td>User:</td>
-                <td><input type='text' name='username' value=''></td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td><input type='password' name='password'/></td>
-            </tr>
-            <tr>
-                <td colspan='2'>
-                    <input name="submit" type="submit" value="submit"/>
-                </td>
-            </tr>
-        </table>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-    </form>
+            <div class="clearfix">
+                <input type='text' class="form-control" name='username' placeholder="Username">
+            </div>
+            <div class="clearfix">
+                <input type='password' class="form-control" name='password' placeholder="Password"/>
+            </div>
+            <input name="submit" class="btn btn-primary" type="submit" value="Sign in"/>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+    </div>
+    <div class="col-md-5"></div>
 </div>
-<div class="col-md-2"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="resources/js/bootstrap.min.js" type="application/javascript"></script>
 </body>
