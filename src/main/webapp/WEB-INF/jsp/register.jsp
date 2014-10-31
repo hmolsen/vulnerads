@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,25 +11,34 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
+<c:if test="${success}">
+    <div class="alert alert-success" role="alert">
+        ${username}, your registration was successful! You can now <a href="/login">sign in</a>.
+    </div>
+</c:if>
 <c:if test="${not empty error}">
-    <div class="alert alert-danger" role="alert">Wrong username and/or password.</div>
+    <div class="alert alert-error" role="alert">
+            ${username}, your registration was unsuccessful! ${error}.
+    </div>
 </c:if>
 <div class="row">
     <div class="col-md-5"></div>
     <div class="col-md-2">
-        <h1><spring:message code="login.heading"/></h1>
-        <form name='loginForm'
-              action="<c:url value='login'/>" method='POST'>
+        <h1><spring:message code="register.heading"/></h1>
+        <form:form action="register" method="POST">
 
             <div class="clearfix">
-                <input type='text' class="form-control" name='username' placeholder="Username">
+                <form:input path="username" class="form-control" placeholder="Username" />
             </div>
             <div class="clearfix">
-                <input type='password' class="form-control" name='password' placeholder="Password"/>
+                <form:password path="password" class="form-control" placeholder="Password"/>
             </div>
-            <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="login.heading"/>"/>
+            <div class="clearfix">
+                <form:password path="password" class="form-control" placeholder="Repeat password"/>
+            </div>
+            <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="register.heading"/>"/>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
+        </form:form>
     </div>
     <div class="col-md-5"></div>
 </div>

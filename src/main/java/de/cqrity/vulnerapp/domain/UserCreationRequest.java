@@ -8,7 +8,7 @@ public class UserCreationRequest {
 
     private String password;
 
-    private String passwordRetyped;
+    private String password2;
 
     public String getUsername() {
         return username;
@@ -26,12 +26,12 @@ public class UserCreationRequest {
         this.password = password;
     }
 
-    public String getPasswordRetyped() {
-        return passwordRetyped;
+    public String getPassword2() {
+        return password2;
     }
 
-    public void setPasswordRetyped(String passwordRetyped) {
-        this.passwordRetyped = passwordRetyped;
+    public void setPassword2(String password2) {
+        this.password2 = password2;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class UserCreationRequest {
         return MoreObjects.toStringHelper(this)
                 .add("username", username)
                 .add("password", password)
-                .add("passwordRetyped", passwordRetyped)
+                .add("password2", password2)
                 .toString();
     }
 }

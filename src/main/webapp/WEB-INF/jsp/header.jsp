@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -9,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Vulnerapp Kleinanzeigen</a>
+            <a class="navbar-brand" href="/"><spring:message code="index.title"/></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -19,11 +20,11 @@
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default"><spring:message code="submit"/></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="register">Register</a></li>
-                <li><a href="login">Login</a></li>
+                <li><a href="register"><spring:message code="header.register"/></a></li>
+                <li><a href="login"><spring:message code="header.login"/></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

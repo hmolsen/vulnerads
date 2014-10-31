@@ -34,7 +34,7 @@ public class UserService {
     }
 
     public User save(final User user) {
-        if (userRepository.exists(user.getId())) {
+        if (userRepository.findByUsername(user.getUsername()) != null) {
             throw new UnsupportedOperationException("User already exists");
         }
         return userRepository.save(user);

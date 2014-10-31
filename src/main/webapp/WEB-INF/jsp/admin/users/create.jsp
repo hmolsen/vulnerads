@@ -18,9 +18,9 @@
         <form:errors path="password"/>
     </div>
     <div>
-        <form:label path="passwordRetyped"><spring:message code="user.passwordretype"/></form:label>
-        <form:password path="passwordRetyped"/>
-        <form:errors path="passwordRetyped"/>
+        <form:label path="password2"><spring:message code="user.passwordretype"/></form:label>
+        <form:password path="password2"/>
+        <form:errors path="password2"/>
     </div>
     <div>
         <input type="submit"/>
