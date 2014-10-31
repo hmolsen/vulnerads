@@ -17,16 +17,16 @@
 </sec:authorize>
 <div class="col-md-2"></div>
 <div class="col-md-8">
-    <div class="input-group">
+    <c:forEach var="ad" items="${latestAds}">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Hausboot</h3>
+                <h3 class="panel-title">${ad.title}</h3>
             </div>
             <div class="panel-body">
-                Habe ein Hausboot zu verkaufen
+                    ${ad.description}
             </div>
         </div>
-    </div>
+    </c:forEach>
 </div>
 <div class="col-md-2"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
