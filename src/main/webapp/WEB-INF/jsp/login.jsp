@@ -20,10 +20,10 @@
         <form name='loginForm'
               action="<c:url value='login'/>" method='POST'>
 
-            <div class="clearfix">
+            <div class="form-group">
                 <input type='text' class="form-control" name='username' placeholder="Username">
             </div>
-            <div class="clearfix">
+            <div class="form-group">
                 <input type='password' class="form-control" name='password' placeholder="Password"/>
             </div>
             <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="login.heading"/>"/>
