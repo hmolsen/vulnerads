@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
@@ -24,7 +26,7 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ModelAndView registerNewUser(@ModelAttribute("command") UserCreationRequest request, BindingResult result) {
+    public ModelAndView registerNewUser(@ModelAttribute("command") @Valid UserCreationRequest request, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView("register");
         modelAndView.addObject("username", request.getUsername());
         if (result.hasErrors()) {

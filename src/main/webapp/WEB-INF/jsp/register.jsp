@@ -27,14 +27,17 @@
         <h1><spring:message code="register.heading"/></h1>
         <form:form action="register" method="POST">
 
-            <div class="clearfix">
+            <div class="form-group">
                 <form:input path="username" class="form-control" placeholder="Username" />
+                <form:errors path="username" cssClass="has-error" />
             </div>
-            <div class="clearfix">
+            <div class="form-group">
                 <form:password path="password" class="form-control" placeholder="Password"/>
+                <form:errors path="password" cssClass="has-error" />
             </div>
-            <div class="clearfix">
+            <div class="form-group">
                 <form:password path="password2" class="form-control" placeholder="Repeat password"/>
+                <form:errors path="password2" cssClass="has-error" />
             </div>
             <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="register.heading"/>"/>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

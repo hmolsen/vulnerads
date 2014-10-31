@@ -1,13 +1,17 @@
 package de.cqrity.vulnerapp.domain;
 
 import com.google.common.base.MoreObjects;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class UserCreationRequest {
 
+    @NotEmpty
     private String username;
 
+    @NotEmpty
     private String password;
 
+    @NotEmpty
     private String password2;
 
     public String getUsername() {
