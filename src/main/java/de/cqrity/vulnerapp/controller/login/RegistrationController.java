@@ -30,10 +30,13 @@ public class RegistrationController {
         if (result.hasErrors()) {
             return modelAndView;
         }
+        if (!request.getPassword().equals(request.getPassword2())) {
+            modelAndView.addObject("error", "Passwords do not match");
+            return modelAndView;
+        }
         try {
             userService.save(new User(request.getUsername(), request.getPassword(), userService.findAuthority("USER")));
         } catch (UnsupportedOperationException e) {
-            result.reject("user.error.exists");
             modelAndView.addObject("error", "User already exists");
             return modelAndView;
         }

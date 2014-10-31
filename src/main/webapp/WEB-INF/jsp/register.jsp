@@ -17,7 +17,7 @@
     </div>
 </c:if>
 <c:if test="${not empty error}">
-    <div class="alert alert-error" role="alert">
+    <div class="alert alert-danger" role="alert">
             ${username}, your registration was unsuccessful! ${error}.
     </div>
 </c:if>
@@ -34,7 +34,7 @@
                 <form:password path="password" class="form-control" placeholder="Password"/>
             </div>
             <div class="clearfix">
-                <form:password path="password" class="form-control" placeholder="Repeat password"/>
+                <form:password path="password2" class="form-control" placeholder="Repeat password"/>
             </div>
             <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="register.heading"/>"/>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
