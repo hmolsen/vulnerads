@@ -1,4 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -10,7 +11,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Vulnerapp Kleinanzeigen</a>
+            <a class="navbar-brand" href="/"><spring:message code="index.title"/></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,7 +36,7 @@
                         <li><a href="#">Create Ad</a></li>
                         <li><a href="#">Your Ads</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Show User List</a></li>
+                        <li><a href="profile">Edit Profile</a></li>
                     </ul>
                 </li>
                 <li><a href="logout">Logout</a></li>

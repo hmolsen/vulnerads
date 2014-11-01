@@ -1,7 +1,7 @@
 package de.cqrity.vulnerapp.controller.login;
 
 import de.cqrity.vulnerapp.domain.User;
-import de.cqrity.vulnerapp.domain.UserCreationRequest;
+import de.cqrity.vulnerapp.domain.UserResource;
 import de.cqrity.vulnerapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,11 +22,11 @@ public class RegistrationController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView showRegistrationPage() {
-        return new ModelAndView("register", "command", new UserCreationRequest());
+        return new ModelAndView("register", "command", new UserResource());
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ModelAndView registerNewUser(@ModelAttribute("command") @Valid UserCreationRequest request, BindingResult result) {
+    public ModelAndView registerNewUser(@ModelAttribute("command") @Valid UserResource request, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView("register");
         modelAndView.addObject("username", request.getUsername());
         if (result.hasErrors()) {

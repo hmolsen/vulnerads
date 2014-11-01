@@ -1,40 +1,40 @@
 package de.cqrity.vulnerapp.domain;
 
 import com.google.common.base.MoreObjects;
+import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+public class UserResource {
 
-@Entity
-public class User {
-
-    @Id
-    @GeneratedValue
-    private long id;
-
+    private long userid;
+    @NotEmpty
     private String username;
-
-    private String password;
-
     private String firstname;
-
     private String lastname;
-
     private String creditcardnumber;
+    @NotEmpty
+    private String password;
+    @NotEmpty
+    private String password2;
 
-    @OneToOne
-    private Authority authority;
-
-    @SuppressWarnings("unused")
-    User() {
+    public UserResource() {
     }
 
-    public User(String username, String password, Authority authority) {
-        this.username = username;
-        this.password = password;
-        this.authority = authority;
+    public UserResource(User user) {
+        this.userid = user.getId();
+        this.username = user.getUsername();
+        this.firstname = user.getFirstname();
+        this.lastname = user.getLastname();
+        this.creditcardnumber = user.getCreditcardnumber();
+        this.password = user.getPassword();
+        this.password2 = user.getPassword();
+    }
+
+    public long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(long userid) {
+        this.userid = userid;
     }
 
     public String getFirstname() {
@@ -61,8 +61,12 @@ public class User {
         this.creditcardnumber = creditcardnumber;
     }
 
-    public long getId() {
-        return id;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -73,30 +77,23 @@ public class User {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPassword2() {
+        return password2;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Authority getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(Authority authority) {
-        this.authority = authority;
+    public void setPassword2(String password2) {
+        this.password2 = password2;
     }
 
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("username", username)
-                .add("password", password)
                 .add("firstname", firstname)
                 .add("lastname", lastname)
                 .add("creditcardnumber", creditcardnumber)
+                .add("password", password)
+                .add("password2", password2)
                 .toString();
     }
 }
