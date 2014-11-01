@@ -13,7 +13,7 @@ public class ClassifiedAd {
     @GeneratedValue
     private long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private User owner;
 
     @Enumerated(EnumType.STRING)
