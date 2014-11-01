@@ -20,7 +20,7 @@
     <c:forEach var="ad" items="${latestAds}">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">${ad.owner.username} - ${ad.title}</h3>
+                <h3 class="panel-title">${ad.owner.firstname} ${ad.owner.lastname} - ${ad.title}</h3>
             </div>
             <div class="panel-body">
                     ${ad.description}
