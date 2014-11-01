@@ -11,6 +11,16 @@
 </head>
 <body>
 <jsp:include page="header_user.jsp"/>
+<c:if test="${success}">
+    <div class="alert alert-success" role="alert">
+            Your profile has been updated.
+    </div>
+</c:if>
+<c:if test="${not empty error}">
+    <div class="alert alert-danger" role="alert">
+            Could not update user profile! ${error}.
+    </div>
+</c:if>
 <div class="row">
     <div class="col-md-5"></div>
     <div class="col-md-2">
@@ -40,7 +50,7 @@
                 <form:password path="password2" class="form-control" placeholder="Repeat password"/>
                 <form:errors path="password2" cssClass="has-error" />
             </div>
-            <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="register.heading"/>"/>
+            <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="save"/>"/>
             <form:hidden path="userid"/>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form:form>

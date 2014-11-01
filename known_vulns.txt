@@ -1,1 +1,3 @@
 XSS: Register Username
+
+Any user can update any user's profile by spoofing the post request.

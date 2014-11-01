@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,12 +40,14 @@ public class UserController {
         }
         if (!request.getPassword().equals(request.getPassword2())) {
             modelAndView.addObject("error", "Passwords do not match");
+            result.addError(new FieldError("password", "password2", "Passwords do not match"));
             return modelAndView;
         }
         try {
             userService.save(new User(request.getUsername(), request.getPassword(), userService.findAuthority("USER")));
         } catch (UnsupportedOperationException e) {
             modelAndView.addObject("error", "User already exists");
+            result.addError(new FieldError("username", "username", "User already exists"));
             return modelAndView;
         }
         modelAndView.addObject("success", true);
@@ -56,6 +59,28 @@ public class UserController {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username);
         return new ModelAndView("profile", "command", new UserResource(user));
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public ModelAndView editUserProfile(@ModelAttribute("command") @Valid UserResource request, BindingResult result) {
+        ModelAndView modelAndView = new ModelAndView("profile");
+        if (result.hasErrors()) {
+            return modelAndView;
+        }
+        if (!request.getPassword().equals(request.getPassword2())) {
+            modelAndView.addObject("error", "Passwords do not match");
+            result.addError(new FieldError("password", "password2", "Passwords do not match"));
+            return modelAndView;
+        }
+        try {
+            userService.update(request);
+        } catch (UnsupportedOperationException e) {
+            modelAndView.addObject("error", e.getMessage());
+            result.addError(new FieldError("username", "username", e.getMessage()));
+            return modelAndView;
+        }
+        modelAndView.addObject("success", true);
+        return modelAndView;
     }
 
     @RequestMapping("/admin/users/list")
