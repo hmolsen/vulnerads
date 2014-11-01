@@ -20,7 +20,7 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/register").permitAll()
+                .antMatchers("/register").anonymous()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
