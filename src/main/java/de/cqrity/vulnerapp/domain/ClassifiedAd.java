@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 public class ClassifiedAd {
@@ -30,6 +31,9 @@ public class ClassifiedAd {
     String description;
 
     int price;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdtimestamp;
 
     @SuppressWarnings("unused")
     ClassifiedAd() { }
@@ -92,6 +96,14 @@ public class ClassifiedAd {
 
     public String getShortDescription() {
         return description.substring(0, SHORT_DESCRIPTION_LENGTH) + " ...";
+    }
+
+    public Date getCreatedtimestamp() {
+        return createdtimestamp;
+    }
+
+    public void setCreatedtimestamp(Date createdtimestamp) {
+        this.createdtimestamp = createdtimestamp;
     }
 
     @Override
