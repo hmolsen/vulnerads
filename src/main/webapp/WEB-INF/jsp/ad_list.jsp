@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="container-fluid" style="background-color:#e8e8e8">
+<div class="container-fluid" id="body-container">
 <div class="container container-pad" id="ad-listing">
 
 <div class="row">

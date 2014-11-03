@@ -1,9 +1,11 @@
+#body-container {
+    background-color: #e8e8e8;
+    padding-top: 51px;
+}
+
 /**** LAYOUT ****/
 .list-inline>li {
     padding: 0 10px 0 0;
-}
-.container-pad {
-    padding: 30px 15px;
 }
 
 
