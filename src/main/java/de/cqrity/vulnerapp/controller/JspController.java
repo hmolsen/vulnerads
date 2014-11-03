@@ -60,6 +60,7 @@ public class JspController {
         });
 
         mav.addObject("latestAds", ads);
+        mav.addObject("s", s);
 
         return mav;
     }

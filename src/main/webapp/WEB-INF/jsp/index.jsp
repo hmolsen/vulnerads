@@ -7,6 +7,7 @@
 <head>
     <title><spring:message code="index.title"/></title>
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/css/vulnerapp.css" rel="stylesheet">
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">
@@ -15,7 +16,7 @@
 <sec:authorize access="isAnonymous()">
     <jsp:include page="header.jsp"/>
 </sec:authorize>
-<div class="col-md-2"></div>
+<%--<div class="col-md-2"></div>
 <div class="col-md-8">
     <c:forEach var="ad" items="${latestAds}">
         <div class="panel panel-default">
@@ -28,7 +29,8 @@
         </div>
     </c:forEach>
 </div>
-<div class="col-md-2"></div>
+<div class="col-md-2"></div>--%>
+<jsp:include page="ad_list.jsp" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="resources/js/bootstrap.min.js" type="application/javascript"></script>
 </body>
