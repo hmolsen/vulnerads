@@ -3,6 +3,7 @@ package de.cqrity.vulnerapp.domain;
 import com.google.common.base.MoreObjects;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -21,6 +22,11 @@ public class User {
     private String lastname;
 
     private String creditcardnumber;
+
+    @Size(min = 5, max = 5)
+    private String zip;
+
+    private String town;
 
     @OneToOne
     private Authority authority;
@@ -85,6 +91,22 @@ public class User {
 
     public void setAuthority(Authority authority) {
         this.authority = authority;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
     }
 
     @Override

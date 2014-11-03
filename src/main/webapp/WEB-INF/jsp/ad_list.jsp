@@ -42,11 +42,19 @@
 
                         <li style="list-style: none">|</li>
 
-                        <li>${ad.owner.firstname} ${ad.owner.lastname}</li>
+                        <c:choose>
+                            <c:when test="${(not empty ad.owner.firstname) and (not empty ad.owner.lastname)}">
+                                <li>${ad.owner.firstname} ${ad.owner.lastname}</li>
+                            </c:when>
+                            <c:otherwise>
+                                <li>${ad.owner.username}</li>
+                            </c:otherwise>
+                        </c:choose>
 
-                        <li style="list-style: none">|</li>
-
-                        <li>23568 L&uuml;beck</li>
+                        <c:if test="${(not empty ad.owner.zip) and (not empty ad.owner.town)}">
+                            <li style="list-style: none">|</li>
+                            <li>${ad.owner.zip} ${ad.owner.town}</li>
+                        </c:if>
                     </ul>
 
                     <p class="hidden-xs">${ad.getShortDescription()}</p>
