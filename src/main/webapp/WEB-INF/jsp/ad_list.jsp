@@ -49,9 +49,8 @@
                         <li>23568 L&uuml;beck</li>
                     </ul>
 
-                    <p class="hidden-xs">${ad.description}
-                    </p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
-                    Evergreen</span>
+                    <p class="hidden-xs">${ad.getShortDescription()}</p>
+                    <span class="fnt-smaller fnt-lighter fnt-arial">[more...]</span>
                 </div>
             </div>
         </div>

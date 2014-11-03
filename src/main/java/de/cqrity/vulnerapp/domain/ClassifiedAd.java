@@ -9,6 +9,8 @@ import javax.validation.constraints.Size;
 @Entity
 public class ClassifiedAd {
 
+    public static final int SHORT_DESCRIPTION_LENGTH = 250;
+
     @Id
     @GeneratedValue
     private long id;
@@ -86,6 +88,10 @@ public class ClassifiedAd {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getShortDescription() {
+        return description.substring(0, SHORT_DESCRIPTION_LENGTH) + " ...";
     }
 
     @Override
