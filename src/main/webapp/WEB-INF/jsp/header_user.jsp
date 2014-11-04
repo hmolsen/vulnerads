@@ -5,7 +5,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
+                    data-target="#searchbar">
                 <span class="sr-only">Navigation wechseln</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -38,10 +38,10 @@
                         <li><a href="#">Anzeige aufgeben</a></li>
                         <li><a href="#">Meine Anzeigen</a></li>
                         <li class="divider"></li>
-                        <li><a href="profile">Profil bearbeiten</a></li>
+                        <li><a href="/profile">Profil bearbeiten</a></li>
                     </ul>
                 </li>
-                <li><a href="logout">Abmelden</a></li>
+                <li><a href="/logout">Abmelden</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
