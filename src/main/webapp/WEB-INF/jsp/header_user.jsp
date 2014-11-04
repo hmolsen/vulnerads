@@ -15,13 +15,15 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="searchbar">
 
             <form method="get" action="/ads" class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input name="s" type="text" class="form-control" placeholder="Suchen">
+                    <div class="input-group">
+                        <input name="s" type="text" class="form-control" autofocus="autofocus" placeholder="Suchen" value="${s}">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-default"><spring:message code="submit"/></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li>

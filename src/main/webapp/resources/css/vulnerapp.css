@@ -80,3 +80,36 @@ h4.media-heading>a>small {
         max-width: 180px;
     }
 }
+
+@media (max-width: 767px) {
+    #searchbar > .navbar-form {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    #searchbar > .navbar-form {
+        width: 205px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    #searchbar > .navbar-form {
+        width: 425px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #searchbar > .navbar-form {
+        width: 625px;
+    }
+}
+
+
+#searchbar > .navbar-form > .form-group, #searchbar > .navbar-form > .form-group > .input-group {
+    width: 100%;
+}
+
+#searchbar > .navbar-form > .form-group > .input-group > .input-group-addon {
+    width: 1%;
+}
