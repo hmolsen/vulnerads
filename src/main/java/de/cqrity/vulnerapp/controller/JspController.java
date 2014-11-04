@@ -70,6 +70,19 @@ public class JspController {
         return mav;
     }
 
+    @RequestMapping(value = "/ads/{username}", method = RequestMethod.GET)
+    public ModelAndView showAdsByUser(@PathVariable String username) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("index");
+
+        List<ClassifiedAd> ads = classifiedAdRepository.findAllByUsername(username);
+
+        mav.addObject("latestAds", ads);
+        mav.addObject("s", username);
+
+        return mav;
+    }
+
     @RequestMapping(value = "/ad/{id}", method = RequestMethod.GET)
     public ModelAndView showFilteredAds(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView();
