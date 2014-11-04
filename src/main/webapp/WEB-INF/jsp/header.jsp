@@ -18,7 +18,7 @@
 
             <form method="get" action="/ads" class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input name="s" type="text" class="form-control" placeholder="Search">
+                    <input name="s" type="text" class="form-control" placeholder="Search" value="${s}">
                 </div>
                 <button type="submit" class="btn btn-default"><spring:message code="submit"/></button>
             </form>

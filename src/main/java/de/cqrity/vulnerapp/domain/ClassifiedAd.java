@@ -35,7 +35,7 @@ public class ClassifiedAd {
     int price;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdtimestamp;
+    private Date createdtimestamp = new Date();
 
     @SuppressWarnings("unused")
     ClassifiedAd() { }
@@ -105,7 +105,7 @@ public class ClassifiedAd {
     }
 
     public void setCreatedtimestamp(Date createdtimestamp) {
-        this.createdtimestamp = createdtimestamp;
+        this.createdtimestamp.setTime(createdtimestamp.getTime());
     }
 
     public String printCreatedTimestamp() {
