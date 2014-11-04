@@ -1,9 +1,9 @@
 INSERT INTO authority (name) VALUES ('USER');
 INSERT INTO authority (name) VALUES ('ADMIN');
 INSERT INTO user (username, password, authority_id) VALUES ('admin', 'admin', 2);
-INSERT INTO user (username, password, firstname, lastname, zip, town, authority_id) VALUES ('g', 'g', 'Gustav', 'Gans', '23568', 'Lübeck', 1);
-INSERT INTO user (username, password, firstname, lastname, zip, town, authority_id) VALUES ('h', 'h', 'Herbert', 'Hansen', '21073', 'Hamburg', 1);
-INSERT INTO user (username, password, firstname, lastname, zip, town, authority_id) VALUES ('j', 'j', 'Jens', 'Junker', '21635', 'Jork', 1);
+INSERT INTO user (username, password, firstname, lastname, zip, town, phonenumber, authority_id) VALUES ('g', 'g', 'Gustav', 'Gans', '23568', 'Lübeck', '+49 (451) 20955152', 1);
+INSERT INTO user (username, password, firstname, lastname, zip, town, phonenumber, authority_id) VALUES ('h', 'h', 'Herbert', 'Hansen', '21073', 'Hamburg', '040 - 97167263', 1);
+INSERT INTO user (username, password, firstname, lastname, zip, town, phonenumber, authority_id) VALUES ('j', 'j', 'Jens', 'Junker', '21635', 'Jork', '04162 / 94 23 14', 1);
 INSERT INTO user (username, password, authority_id) VALUES ('herbert', 'pass1', 1);
 INSERT INTO user (username, password, authority_id) VALUES ('joachim', 'pass1', 1);
 INSERT INTO user (username, password, authority_id) VALUES ('sybille', 'pass1', 1);

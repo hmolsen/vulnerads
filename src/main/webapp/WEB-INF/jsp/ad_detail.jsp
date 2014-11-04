@@ -24,7 +24,7 @@
                         <p><span class="glyphicon glyphicon-envelope"></span> ${ad.owner.zip} ${ad.owner.town}</p>
                     </div>
                     <div class="col-md-6">
-                        <p><span class="glyphicon glyphicon-earphone"></span> 0451 / 209 55 152</p>
+                        <p><span class="glyphicon glyphicon-earphone"></span> ${ad.owner.phonenumber}</p>
                         <p><span class="glyphicon glyphicon-calendar"></span> ${ad.printCreatedTimestamp()}</p>
                     </div>
                     <div class="col-md-2">

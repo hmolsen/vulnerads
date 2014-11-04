@@ -3,6 +3,7 @@ package de.cqrity.vulnerapp.domain;
 import com.google.common.base.MoreObjects;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -22,6 +23,9 @@ public class User {
     private String lastname;
 
     private String creditcardnumber;
+
+    @Pattern(regexp = "<^((\\+|00)[1-9]\\d{0,3}|0 ?[1-9]|\\(00? ?[1-9][\\d ]*\\))[\\d\\-/ ]*$>")
+    private String phonenumber;
 
     @Size(min = 5, max = 5)
     private String zip;
@@ -109,6 +113,14 @@ public class User {
         this.town = town;
     }
 
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -117,6 +129,7 @@ public class User {
                 .add("firstname", firstname)
                 .add("lastname", lastname)
                 .add("creditcardnumber", creditcardnumber)
+                .add("phonenumber", phonenumber)
                 .toString();
     }
 }
