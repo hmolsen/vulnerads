@@ -22,17 +22,17 @@
     <c:forEach var="ad" items="${latestAds}">
         <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 ad-listing">
             <div class="media">
-                <a class="pull-left" href="#" target="_parent">
+                <a class="pull-left" href="/ad/${ad.id}" target="_parent">
                     <img alt="image" class="img-responsive"
                          src="http://images.prd.mris.com/image/V2/1/Yu59d899Ocpyr_RnF0-8qNJX1oYibjwp9TiLy-bZvU9vRJ2iC1zSQgFwW-fTCs6tVkKrj99s7FFm5Ygwl88xIA.jpg"></a>
 
                 <div class="clearfix visible-sm"></div>
 
                 <div class="media-body fnt-smaller">
-                    <a href="#" target="_parent"></a>
+                    <a href="/ad/${ad.id}" target="_parent"></a>
 
                     <h4 class="media-heading">
-                        <a href="#" target="_parent">${ad.title}
+                        <a href="/ad/${ad.id}" target="_parent">${ad.title}
                             <small class="pull-right">${ad.printCreatedTimestamp()}</small>
                         </a>
                     </h4>
@@ -58,7 +58,7 @@
                     </ul>
 
                     <p class="hidden-xs">${ad.getShortDescription()}</p>
-                    <span class="fnt-smaller fnt-lighter fnt-arial">[more...]</span>
+                    <a href="/ad/${ad.id}"><span class="fnt-smaller fnt-lighter fnt-arial">[more...]</span></a>
                 </div>
             </div>
         </div>

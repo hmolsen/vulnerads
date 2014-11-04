@@ -40,12 +40,13 @@ public class ClassifiedAd {
     @SuppressWarnings("unused")
     ClassifiedAd() { }
 
-    public ClassifiedAd(User owner, Category category, String title, String description, int price) {
+    public ClassifiedAd(User owner, Category category, String title, String description, int price, Date creationDate) {
         this.owner = owner;
         this.category = category;
         this.title = title;
         this.description = description;
         this.price = price;
+        this.createdtimestamp.setTime(creationDate.getTime());
     }
 
     public long getId() {

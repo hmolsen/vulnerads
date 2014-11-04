@@ -50,12 +50,15 @@ public class JspController {
             @Override
             public ClassifiedAd mapRow(ResultSet rs, int rowNum) throws SQLException {
                 User owner = userRepository.findOne(rs.getLong("OWNER_ID"));
-                return new ClassifiedAd(
+                ClassifiedAd ad = new ClassifiedAd(
                         owner,
                         Category.valueOf(rs.getString("CATEGORY")),
                         rs.getString("TITLE"),
                         rs.getString("DESCRIPTION"),
-                        rs.getInt("PRICE"));
+                        rs.getInt("PRICE"),
+                        rs.getTimestamp("CREATEDTIMESTAMP"));
+                ad.setId(rs.getLong("ID"));
+                return ad;
             }
         });
 
