@@ -5,7 +5,7 @@
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only">Navigation wechseln</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -18,9 +18,11 @@
 
             <form method="get" action="/ads" class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input name="s" type="text" class="form-control" placeholder="Search" value="${s}">
+                    <div class="input-group">
+                        <input name="s" type="text" class="form-control" autofocus="autofocus" placeholder="Suchen" value="${s}">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-default"><spring:message code="submit"/></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="register"><spring:message code="header.register"/></a></li>

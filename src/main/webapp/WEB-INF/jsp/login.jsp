@@ -12,7 +12,7 @@
 <body>
 <jsp:include page="header.jsp"/>
 <c:if test="${not empty error}">
-    <div class="alert alert-danger" role="alert">Wrong username and/or password.</div>
+    <div class="alert alert-danger" role="alert">Benutzername oder Passwort falsch.</div>
 </c:if>
 <div class="row">
     <div class="col-md-5"></div>
@@ -22,10 +22,10 @@
               action="<c:url value='login'/>" method='POST'>
 
             <div class="form-group">
-                <input type='text' class="form-control" name='username' placeholder="Username">
+                <input type='text' class="form-control" name='username' placeholder="Benutzername">
             </div>
             <div class="form-group">
-                <input type='password' class="form-control" name='password' placeholder="Password"/>
+                <input type='password' class="form-control" name='password' placeholder="Passwort"/>
             </div>
             <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="login.heading"/>"/>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

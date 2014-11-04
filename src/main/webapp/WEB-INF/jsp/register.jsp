@@ -14,12 +14,12 @@
 <jsp:include page="header.jsp"/>
 <c:if test="${success}">
     <div class="alert alert-success" role="alert">
-        ${username}, your registration was successful! You can now <a href="/login">sign in</a>.
+        ${username}, Registrierung erfolgreich! Sie k&ouml;nnen sich nun <a href="/login">einloggen</a>.
     </div>
 </c:if>
 <c:if test="${not empty error}">
     <div class="alert alert-danger" role="alert">
-            ${username}, your registration was unsuccessful! ${error}.
+            ${username}, Registrierung fehlgeschlagen! ${error}.
     </div>
 </c:if>
 <div class="row">

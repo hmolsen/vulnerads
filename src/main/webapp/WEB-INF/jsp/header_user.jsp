@@ -6,7 +6,7 @@
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only">Navigation wechseln</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -19,7 +19,7 @@
 
             <form method="get" action="/ads" class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input name="s" type="text" class="form-control" placeholder="Search">
+                    <input name="s" type="text" class="form-control" placeholder="Suchen">
                 </div>
                 <button type="submit" class="btn btn-default"><spring:message code="submit"/></button>
             </form>
@@ -31,15 +31,15 @@
                     </p>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Aktionen<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Create Ad</a></li>
-                        <li><a href="#">Your Ads</a></li>
+                        <li><a href="#">Anzeige aufgeben</a></li>
+                        <li><a href="#">Meine Anzeigen</a></li>
                         <li class="divider"></li>
-                        <li><a href="profile">Edit Profile</a></li>
+                        <li><a href="profile">Profil bearbeiten</a></li>
                     </ul>
                 </li>
-                <li><a href="logout">Logout</a></li>
+                <li><a href="logout">Abmelden</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

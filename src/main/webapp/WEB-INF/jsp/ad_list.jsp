@@ -6,12 +6,12 @@
     <div class="col-md-8 col-md-offset-2">
         <c:choose>
             <c:when test="${not empty s}">
-                <h1>Search Results</h1>
+                <h1>Suchergebnisse</h1>
 
-                <p>You searched for: ${s}</p>
+                <p>Suche nach: ${s}</p>
             </c:when>
             <c:otherwise>
-                <h1>Latest Ads</h1>
+                <h1>Neueste Anzeigen</h1>
             </c:otherwise>
         </c:choose>
     </div>

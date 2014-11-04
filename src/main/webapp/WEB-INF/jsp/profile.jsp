@@ -14,12 +14,12 @@
 <jsp:include page="header_user.jsp"/>
 <c:if test="${success}">
     <div class="alert alert-success" role="alert">
-            Your profile has been updated.
+            Profil&auml;nderungen gespeichert.
     </div>
 </c:if>
 <c:if test="${not empty error}">
     <div class="alert alert-danger" role="alert">
-            Could not update user profile! ${error}.
+            Benutzerprofil konnte nicht gespeichert werden! ${error}.
     </div>
 </c:if>
 <div class="row">

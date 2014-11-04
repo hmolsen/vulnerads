@@ -110,10 +110,10 @@ public class ClassifiedAd {
 
     public String printCreatedTimestamp() {
         if (DateUtils.isToday(createdtimestamp)) {
-            return "Today, " + new SimpleDateFormat("HH:mm").format(createdtimestamp);
+            return "Heute, " + new SimpleDateFormat("HH:mm").format(createdtimestamp);
         }
         else if (DateUtils.isYesterday(createdtimestamp)) {
-            return "Yesterday, " + new SimpleDateFormat("HH:mm").format(createdtimestamp);
+            return "Gestern, " + new SimpleDateFormat("HH:mm").format(createdtimestamp);
         }
         else {
             return new SimpleDateFormat("dd.MM.yyyy").format(createdtimestamp);

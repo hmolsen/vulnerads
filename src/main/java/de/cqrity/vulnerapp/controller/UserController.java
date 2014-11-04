@@ -39,15 +39,15 @@ public class UserController {
             return modelAndView;
         }
         if (!request.getPassword().equals(request.getPassword2())) {
-            modelAndView.addObject("error", "Passwords do not match");
-            result.addError(new FieldError("password", "password2", "Passwords do not match"));
+            modelAndView.addObject("error", "Passwörter stimmen nicht überein");
+            result.addError(new FieldError("password", "password2", "Passwörter stimmen nicht überein"));
             return modelAndView;
         }
         try {
             userService.save(new User(request.getUsername(), request.getPassword(), userService.findAuthority("USER")));
         } catch (UnsupportedOperationException e) {
-            modelAndView.addObject("error", "User already exists");
-            result.addError(new FieldError("username", "username", "User already exists"));
+            modelAndView.addObject("error", "Benutzer existiert bereits");
+            result.addError(new FieldError("username", "username", "Benutzer existiert bereits"));
             return modelAndView;
         }
         modelAndView.addObject("success", true);
@@ -68,8 +68,8 @@ public class UserController {
             return modelAndView;
         }
         if (!request.getPassword().equals(request.getPassword2())) {
-            modelAndView.addObject("error", "Passwords do not match");
-            result.addError(new FieldError("password", "password2", "Passwords do not match"));
+            modelAndView.addObject("error", "Passwörter stimmen nicht überein");
+            result.addError(new FieldError("password", "password2", "Passwörter stimmen nicht überein"));
             return modelAndView;
         }
         try {
