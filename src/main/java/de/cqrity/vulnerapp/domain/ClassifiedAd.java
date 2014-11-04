@@ -1,10 +1,12 @@
 package de.cqrity.vulnerapp.domain;
 
 import com.google.common.base.MoreObjects;
+import de.cqrity.vulnerapp.util.DateUtils;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -104,6 +106,18 @@ public class ClassifiedAd {
 
     public void setCreatedtimestamp(Date createdtimestamp) {
         this.createdtimestamp = createdtimestamp;
+    }
+
+    public String printCreatedTimestamp() {
+        if (DateUtils.isToday(createdtimestamp)) {
+            return "Today, " + new SimpleDateFormat("HH:mm").format(createdtimestamp);
+        }
+        else if (DateUtils.isYesterday(createdtimestamp)) {
+            return "Yesterday, " + new SimpleDateFormat("HH:mm").format(createdtimestamp);
+        }
+        else {
+            return new SimpleDateFormat("dd.MM.yyyy").format(createdtimestamp);
+        }
     }
 
     @Override

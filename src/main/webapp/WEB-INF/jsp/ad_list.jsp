@@ -33,7 +33,7 @@
 
                     <h4 class="media-heading">
                         <a href="#" target="_parent">${ad.title}
-                            <small class="pull-right">${ad.createdtimestamp}</small>
+                            <small class="pull-right">${ad.printCreatedTimestamp()}</small>
                         </a>
                     </h4>
 
