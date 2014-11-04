@@ -4,12 +4,14 @@ package de.cqrity.vulnerapp.controller;
 import de.cqrity.vulnerapp.domain.Category;
 import de.cqrity.vulnerapp.domain.ClassifiedAd;
 import de.cqrity.vulnerapp.domain.User;
+import de.cqrity.vulnerapp.exception.NotFound;
 import de.cqrity.vulnerapp.repository.ClassifiedAdRepository;
 import de.cqrity.vulnerapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,6 +66,20 @@ public class JspController {
 
         mav.addObject("latestAds", ads);
         mav.addObject("s", s);
+
+        return mav;
+    }
+
+    @RequestMapping(value = "/ad/{id}", method = RequestMethod.GET)
+    public ModelAndView showFilteredAds(@PathVariable Long id) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("ad_detail");
+
+        ClassifiedAd ad = classifiedAdRepository.findOne(id);
+        if (ad == null) {
+            throw new NotFound("Anzeige existiert nicht.");
+        }
+        mav.addObject("ad", ad);
 
         return mav;
     }
