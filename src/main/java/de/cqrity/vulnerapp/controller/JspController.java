@@ -3,6 +3,7 @@ package de.cqrity.vulnerapp.controller;
 
 import de.cqrity.vulnerapp.domain.Category;
 import de.cqrity.vulnerapp.domain.ClassifiedAd;
+import de.cqrity.vulnerapp.domain.ClassifiedAdResource;
 import de.cqrity.vulnerapp.domain.User;
 import de.cqrity.vulnerapp.exception.NotFound;
 import de.cqrity.vulnerapp.repository.ClassifiedAdRepository;
@@ -107,6 +108,19 @@ public class JspController {
 
         mav.addObject("latestAds", classifiedAdRepository.findAll());
 
+        return mav;
+    }
+
+
+    @RequestMapping(value = "/ad/{id}/edit", method = RequestMethod.GET)
+    public ModelAndView editAd(@PathVariable Long id) {
+        ClassifiedAd ad = classifiedAdRepository.findOne(id);
+        if (ad == null) {
+            throw new NotFound("Anzeige existiert nicht.");
+        }
+
+        ModelAndView mav = new ModelAndView("ad_edit", "command", new ClassifiedAdResource(ad));
+        mav.addObject("ad", ad);
         return mav;
     }
 
