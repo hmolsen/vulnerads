@@ -97,4 +97,17 @@ public class JspController {
         return mav;
     }
 
+    @RequestMapping(value = "/ad/{id}/delete", method = RequestMethod.GET)
+    public ModelAndView deleteAd(@PathVariable Long id) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("index");
+
+        classifiedAdRepository.delete(id);
+        mav.addObject("deleted", true);
+
+        mav.addObject("latestAds", classifiedAdRepository.findAll());
+
+        return mav;
+    }
+
 }

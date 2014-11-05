@@ -4,8 +4,9 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <sec:authentication var="username" property="principal.username"/>
+<c:set var="isOwnAd" value="${ad.owner.username eq username}" />
 <c:choose>
-    <c:when test="${ad.owner.username eq username}">
+    <c:when test="${isOwnAd}">
         <c:set var="adBackgroundColorClass" value="own-ad" />
     </c:when>
     <c:otherwise>
@@ -29,6 +30,21 @@
         <div class="col-md-8 col-md-offset-2">
             <h2>${ad.title}</h2>
             <div class="brdr ${adBackgroundColorClass} pad-10 box-shad btm-mrg-20">
+                <c:if test="${isOwnAd}">
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <div class="pull-right btn-group">
+                                <button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}/edit'">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                                <button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}/delete'">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
                 <div class="row">
                     <div class="col-md-4">
                         <p><span class="glyphicon glyphicon-user"></span> ${ad.owner.firstname} ${ad.owner.lastname}</p>

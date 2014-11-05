@@ -23,15 +23,14 @@
 <div class="col-sm-8 col-sm-offset-2">
     <c:forEach var="ad" items="${latestAds}">
 
-        <sec:authentication var="username" property="principal.username"/>
-        <c:choose>
-            <c:when test="${ad.owner.username eq username}">
+        <c:set var="adBackgroundColorClass" value="bgc-fff" />
+
+        <sec:authorize access="isAuthenticated()">
+            <sec:authentication var="username" property="principal.username"/>
+            <c:if test="${ad.owner.username eq username}">
                 <c:set var="adBackgroundColorClass" value="own-ad" />
-            </c:when>
-            <c:otherwise>
-                <c:set var="adBackgroundColorClass" value="bgc-fff" />
-            </c:otherwise>
-        </c:choose>
+            </c:if>
+        </sec:authorize>
 
         <div class="brdr ${adBackgroundColorClass} pad-10 box-shad btm-mrg-20 ad-listing">
             <div class="media">
