@@ -2,6 +2,17 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<sec:authentication var="username" property="principal.username"/>
+<c:choose>
+    <c:when test="${ad.owner.username eq username}">
+        <c:set var="adBackgroundColorClass" value="own-ad" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="adBackgroundColorClass" value="bgc-fff" />
+    </c:otherwise>
+</c:choose>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +28,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h2>${ad.title}</h2>
-            <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20">
+            <div class="brdr ${adBackgroundColorClass} pad-10 box-shad btm-mrg-20">
                 <div class="row">
                     <div class="col-md-4">
                         <p><span class="glyphicon glyphicon-user"></span> ${ad.owner.firstname} ${ad.owner.lastname}</p>

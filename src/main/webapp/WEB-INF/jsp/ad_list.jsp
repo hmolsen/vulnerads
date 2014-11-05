@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <div class="container-fluid" id="body-container">
 <div class="container container-pad" id="ad-listing">
 
@@ -20,7 +22,18 @@
 <div class="row">
 <div class="col-sm-8 col-sm-offset-2">
     <c:forEach var="ad" items="${latestAds}">
-        <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 ad-listing">
+
+        <sec:authentication var="username" property="principal.username"/>
+        <c:choose>
+            <c:when test="${ad.owner.username eq username}">
+                <c:set var="adBackgroundColorClass" value="own-ad" />
+            </c:when>
+            <c:otherwise>
+                <c:set var="adBackgroundColorClass" value="bgc-fff" />
+            </c:otherwise>
+        </c:choose>
+
+        <div class="brdr ${adBackgroundColorClass} pad-10 box-shad btm-mrg-20 ad-listing">
             <div class="media">
                 <a class="pull-left" href="/ad/${ad.id}" target="_parent">
                     <img alt="image" class="img-responsive"
