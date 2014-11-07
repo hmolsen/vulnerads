@@ -36,10 +36,10 @@
                         <div class="col-md-6">
                             <div class="pull-right btn-group">
                                 <button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}/edit'">
-                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    <span class="glyphicon glyphicon-pencil"></span> Bearbeiten
                                 </button>
                                 <button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}/delete'">
-                                    <span class="glyphicon glyphicon-trash"></span>
+                                    <span class="glyphicon glyphicon-trash"></span> L&ouml;schen
                                 </button>
                             </div>
                         </div>

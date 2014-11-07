@@ -35,21 +35,6 @@
                 <form:input path="title" placeholder="Titel" cssClass="form-control" />
             </div>
             <div class="brdr ${adBackgroundColorClass} pad-10 box-shad btm-mrg-20">
-                <c:if test="${isOwnAd}">
-                    <div class="row">
-                        <div class="col-md-6"></div>
-                        <div class="col-md-6">
-                            <div class="pull-right btn-group">
-                                <form:button class="btn btn-default">
-                                    <span class="glyphicon glyphicon-check"></span>
-                                </form:button>
-                                <form:button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}'">
-                                    <span class="glyphicon glyphicon-arrow-left"></span>
-                                </form:button>
-                            </div>
-                        </div>
-                    </div>
-                </c:if>
                 <div class="row">
                     <div class="col-md-4">
                         <p><span class="glyphicon glyphicon-user"></span> ${ad.owner.firstname} ${ad.owner.lastname}</p>
@@ -77,6 +62,21 @@
                         <form:textarea path="description" rows="20" cssClass="form-control" />
                     </div>
                 </div>
+                <c:if test="${isOwnAd}">
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <div class="pull-right btn-group">
+                                <form:button class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-check"></span> Speichern
+                                </form:button>
+                                <form:button type="button" class="btn btn-danger" onClick="location.href='/ad/${ad.id}'">
+                                    <span class="glyphicon glyphicon-arrow-left"></span> Verwerfen
+                                </form:button>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
             </div>
         </div>
     </div>
