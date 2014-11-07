@@ -21,9 +21,6 @@ public class ClassifiedAd {
     @ManyToOne(fetch = FetchType.EAGER)
     private User owner;
 
-    @Enumerated(EnumType.STRING)
-    Category category;
-
     @NotEmpty
     @Size(max = 100)
     String title;
@@ -40,13 +37,13 @@ public class ClassifiedAd {
     @SuppressWarnings("unused")
     ClassifiedAd() { }
 
-    public ClassifiedAd(User owner, Category category, String title, String description, int price, Date creationDate) {
+    public ClassifiedAd(User owner, String title, String description, int price, Date creationDate) {
         this.owner = owner;
-        this.category = category;
         this.title = title;
         this.description = description;
         this.price = price;
-        this.createdtimestamp.setTime(creationDate.getTime());
+        if (creationDate != null)
+            this.createdtimestamp.setTime(creationDate.getTime());
     }
 
     public long getId() {
@@ -63,14 +60,6 @@ public class ClassifiedAd {
 
     public void setOwner(User owner) {
         this.owner = owner;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public String getTitle() {
@@ -98,7 +87,7 @@ public class ClassifiedAd {
     }
 
     public String getShortDescription() {
-        return description.substring(0, SHORT_DESCRIPTION_LENGTH) + " ...";
+        return description.substring(0, Math.min(description.length(), SHORT_DESCRIPTION_LENGTH)) + " ...";
     }
 
     public Date getCreatedtimestamp() {
@@ -126,7 +115,6 @@ public class ClassifiedAd {
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
                 .add("owner", owner)
-                .add("category", category)
                 .add("title", title)
                 .add("description", description)
                 .add("price", price)

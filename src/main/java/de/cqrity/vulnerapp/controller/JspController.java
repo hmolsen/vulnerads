@@ -1,7 +1,6 @@
 package de.cqrity.vulnerapp.controller;
 
 
-import de.cqrity.vulnerapp.domain.Category;
 import de.cqrity.vulnerapp.domain.ClassifiedAd;
 import de.cqrity.vulnerapp.domain.ClassifiedAdResource;
 import de.cqrity.vulnerapp.domain.User;
@@ -55,7 +54,6 @@ public class JspController {
                 User owner = userRepository.findOne(rs.getLong("OWNER_ID"));
                 ClassifiedAd ad = new ClassifiedAd(
                         owner,
-                        Category.valueOf(rs.getString("CATEGORY")),
                         rs.getString("TITLE"),
                         rs.getString("DESCRIPTION"),
                         rs.getInt("PRICE"),

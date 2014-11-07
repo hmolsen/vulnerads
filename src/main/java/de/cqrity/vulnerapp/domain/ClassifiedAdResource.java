@@ -9,8 +9,6 @@ public class ClassifiedAdResource {
 
     private long id;
 
-    Category category;
-
     @NotEmpty
     @Size(max = 100)
     String title;
@@ -24,7 +22,6 @@ public class ClassifiedAdResource {
 
     public ClassifiedAdResource(ClassifiedAd ad) {
         this.id = ad.getId();
-        this.category = ad.getCategory();
         this.title = ad.getTitle();
         setDescription(ad.getDescription());
         this.price = ad.getPrice();
@@ -36,14 +33,6 @@ public class ClassifiedAdResource {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public String getTitle() {
