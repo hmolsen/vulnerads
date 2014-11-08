@@ -20,6 +20,8 @@ public class ClassifiedAdResource {
     @Range(min = 0)
     int price;
 
+    public ClassifiedAdResource() { }
+
     public ClassifiedAdResource(ClassifiedAd ad) {
         this.id = ad.getId();
         this.title = ad.getTitle();
