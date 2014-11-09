@@ -3,6 +3,9 @@ package de.cqrity.vulnerapp.domain;
 import com.google.common.base.MoreObjects;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class UserResource {
 
     private long userid;
@@ -12,6 +15,10 @@ public class UserResource {
     private String lastname;
     private String creditcardnumber;
     private String phonenumber;
+    @Pattern(regexp = "\\d+")
+    @Size(min = 5, max = 5)
+    private String zip;
+    private String town;
     @NotEmpty
     private String password;
     @NotEmpty
@@ -27,6 +34,8 @@ public class UserResource {
         this.lastname = user.getLastname();
         this.creditcardnumber = user.getCreditcardnumber();
         this.phonenumber = user.getPhonenumber();
+        this.zip = user.getZip();
+        this.town = user.getTown();
         this.password = user.getPassword();
         this.password2 = user.getPassword();
     }
@@ -95,6 +104,22 @@ public class UserResource {
         this.phonenumber = phonenumber;
     }
 
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -103,6 +128,8 @@ public class UserResource {
                 .add("lastname", lastname)
                 .add("creditcardnumber", creditcardnumber)
                 .add("phonenumber", phonenumber)
+                .add("zip", zip)
+                .add("town", town)
                 .add("password", password)
                 .add("password2", password2)
                 .toString();

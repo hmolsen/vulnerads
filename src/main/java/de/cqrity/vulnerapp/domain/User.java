@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.security.Principal;
 import java.util.Arrays;
@@ -30,6 +31,7 @@ public class User implements UserDetails, Principal {
 
     private String phonenumber;
 
+    @Pattern(regexp = "\\d+")
     @Size(min = 5, max = 5)
     private String zip;
 
