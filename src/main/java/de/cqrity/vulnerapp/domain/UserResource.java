@@ -11,6 +11,7 @@ public class UserResource {
     private String firstname;
     private String lastname;
     private String creditcardnumber;
+    private String phonenumber;
     @NotEmpty
     private String password;
     @NotEmpty
@@ -25,6 +26,7 @@ public class UserResource {
         this.firstname = user.getFirstname();
         this.lastname = user.getLastname();
         this.creditcardnumber = user.getCreditcardnumber();
+        this.phonenumber = user.getPhonenumber();
         this.password = user.getPassword();
         this.password2 = user.getPassword();
     }
@@ -85,6 +87,14 @@ public class UserResource {
         this.password2 = password2;
     }
 
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -92,6 +102,7 @@ public class UserResource {
                 .add("firstname", firstname)
                 .add("lastname", lastname)
                 .add("creditcardnumber", creditcardnumber)
+                .add("phonenumber", phonenumber)
                 .add("password", password)
                 .add("password2", password2)
                 .toString();

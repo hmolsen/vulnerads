@@ -47,6 +47,7 @@ public class UserService {
         user.setFirstname(request.getFirstname());
         user.setLastname(request.getLastname());
         user.setCreditcardnumber(request.getCreditcardnumber());
+        user.setPhonenumber(request.getPhonenumber());
         if (!request.getPassword().isEmpty()) {
             user.setPassword(request.getPassword());
         }

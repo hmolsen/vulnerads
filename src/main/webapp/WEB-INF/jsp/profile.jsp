@@ -28,27 +28,31 @@
         <h1><spring:message code="profile.heading"/></h1>
         <form:form action="profile" method="POST">
             <div class="form-group">
-                <form:input path="username" class="form-control" placeholder="Username" />
+                <form:input path="username" class="form-control" placeholder="Benutzername" />
                 <form:errors path="username" cssClass="has-error" />
             </div>
             <div class="form-group">
-                <form:input path="firstname" class="form-control" placeholder="Firstname" />
+                <form:input path="firstname" class="form-control" placeholder="Vorname" />
                 <form:errors path="firstname" cssClass="has-error" />
             </div>
             <div class="form-group">
-                <form:input path="lastname" class="form-control" placeholder="Lastname" />
+                <form:input path="lastname" class="form-control" placeholder="Nachname" />
                 <form:errors path="lastname" cssClass="has-error" />
             </div>
             <div class="form-group">
-                <form:input path="creditcardnumber" class="form-control" placeholder="Credit Card Number" />
+                <form:input path="creditcardnumber" class="form-control" placeholder="Kreditkartennummer" />
                 <form:errors path="creditcardnumber" cssClass="has-error" />
             </div>
             <div class="form-group">
-                <form:password path="password" class="form-control" placeholder="Password"/>
+                <form:input path="phonenumber" class="form-control" placeholder="Telefonnummer" />
+                <form:errors path="phonenumber" cssClass="has-error" />
+            </div>
+            <div class="form-group">
+                <form:password path="password" class="form-control" placeholder="Passwort"/>
                 <form:errors path="password" cssClass="has-error" />
             </div>
             <div class="form-group">
-                <form:password path="password2" class="form-control" placeholder="Repeat password"/>
+                <form:password path="password2" class="form-control" placeholder="Passwort wiederholen"/>
                 <form:errors path="password2" cssClass="has-error" />
             </div>
             <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="save"/>"/>

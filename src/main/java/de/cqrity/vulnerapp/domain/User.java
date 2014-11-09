@@ -5,7 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.security.Principal;
 import java.util.Arrays;
@@ -29,7 +28,6 @@ public class User implements UserDetails, Principal {
 
     private String creditcardnumber;
 
-    @Pattern(regexp = "<^((\\+|00)[1-9]\\d{0,3}|0 ?[1-9]|\\(00? ?[1-9][\\d ]*\\))[\\d\\-/ ]*$>")
     private String phonenumber;
 
     @Size(min = 5, max = 5)
