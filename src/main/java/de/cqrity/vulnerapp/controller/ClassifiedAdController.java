@@ -51,7 +51,8 @@ public class ClassifiedAdController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("index");
 
-        String sql = "SELECT * FROM classified_ad WHERE UCASE(title) LIKE UCASE('%" + s + "%')";
+        String sql = "SELECT * FROM classified_ad WHERE UCASE(title) LIKE UCASE('%" + s + "%') " +
+                "ORDER BY createdtimestamp DESC";
         List<ClassifiedAd> ads = jdbcTemplate.query(sql, new RowMapper<ClassifiedAd>() {
             @Override
             public ClassifiedAd mapRow(ResultSet rs, int rowNum) throws SQLException {

@@ -20,7 +20,7 @@ public class JspController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("index");
         mav.addObject("deleted", deleted);
-        mav.addObject("latestAds", classifiedAdRepository.findAll());
+        mav.addObject("latestAds", classifiedAdRepository.findAllByOrderByCreatedtimestampDesc());
 
         return mav;
     }
