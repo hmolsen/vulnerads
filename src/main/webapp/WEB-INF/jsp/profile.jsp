@@ -26,7 +26,7 @@
     <div class="col-md-5"></div>
     <div class="col-md-2">
         <h1><spring:message code="profile.heading"/></h1>
-        <form:form action="profile" method="POST">
+        <form:form action="profile" method="POST" accept-charset="ISO-8859-1">
             <div class="form-group">
                 <form:input path="firstname" class="form-control" placeholder="Vorname" />
                 <form:errors path="firstname" cssClass="has-error" />

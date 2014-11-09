@@ -13,7 +13,7 @@
 </head>
 <body>
 <jsp:include page="header_user.jsp"/>
-<form:form action="/ad/create" method="post">
+<form:form action="/ad/create" method="post" accept-charset="ISO-8859-1">
     <div class="container-fluid" id="body-container">
         <div class="container container-pad" id="ad-listing">
 

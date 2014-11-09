@@ -26,7 +26,7 @@
     <div class="col-md-5"></div>
     <div class="col-md-2">
         <h1><spring:message code="register.heading"/></h1>
-        <form:form action="register" method="POST">
+        <form:form action="register" method="POST" accept-charset="ISO-8859-1">
 
             <div class="form-group">
                 <form:input path="username" class="form-control" placeholder="Username" />

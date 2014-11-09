@@ -17,7 +17,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="searchbar">
 
-            <form method="get" action="/ads" class="navbar-form navbar-left" role="search">
+            <form method="get" action="/ads" class="navbar-form navbar-left" role="search" accept-charset="ISO-8859-1">
                 <div class="form-group">
                     <div class="input-group">
                         <input name="s" type="text" class="form-control" autofocus="autofocus" placeholder="Suchen" value="${s}">
