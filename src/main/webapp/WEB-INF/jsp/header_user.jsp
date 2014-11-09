@@ -29,15 +29,15 @@
                 <li>
                     <p class="navbar-text">
                         <span class="glyphicon glyphicon-user"></span>
-                        <sec:authentication var="username" property="principal.username"/>
-                        ${username}
+                        <sec:authentication var="principal" property="principal"/>
+                        ${principal.firstname} ${principal.lastname}
                     </p>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Aktionen<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Anzeige aufgeben</a></li>
-                        <li><a href="/ads/${username}">Meine Anzeigen</a></li>
+                        <li><a href="/ads/${principal.username}">Meine Anzeigen</a></li>
                         <li class="divider"></li>
                         <li><a href="/profile">Profil bearbeiten</a></li>
                     </ul>

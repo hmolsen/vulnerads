@@ -25,8 +25,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Authority findAuthority(String name) {
-        return authorityRepository.findByName(name);
+    public Authority findAuthority(String authority) {
+        return authorityRepository.findByAuthority(authority);
     }
 
     public User save(final User user) {

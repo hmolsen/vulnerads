@@ -1,5 +1,5 @@
-INSERT INTO authority (name) VALUES ('USER');
-INSERT INTO authority (name) VALUES ('ADMIN');
+INSERT INTO authority (authority) VALUES ('USER');
+INSERT INTO authority (authority) VALUES ('ADMIN');
 INSERT INTO user (username, password, authority_id) VALUES ('admin', 'admin', 2);
 INSERT INTO user (username, password, firstname, lastname, zip, town, phonenumber, authority_id) VALUES ('g', 'g', 'Gustav', 'Gans', '23568', 'Lübeck', '+49 (451) 20955152', 1);
 INSERT INTO user (username, password, firstname, lastname, zip, town, phonenumber, authority_id) VALUES ('h', 'h', 'Herbert', 'Hansen', '21073', 'Hamburg', '040 - 97167263', 1);

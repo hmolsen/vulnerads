@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
@@ -15,6 +16,9 @@ import javax.sql.DataSource;
 public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
+
+    @Autowired
+    UserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -35,6 +39,7 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
                 .permitAll();
+        http.userDetailsService(userDetailsService);
     }
 
     @Override
@@ -50,7 +55,7 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private String getAuthoritiesQuery() {
-        return "SELECT u.username AS username, a.name AS authority "
+        return "SELECT u.username AS username, a.authority AS authority "
                + "FROM user u INNER JOIN authority a ON a.id = u.authority_id "
                + "WHERE u.username = ?";
     }
