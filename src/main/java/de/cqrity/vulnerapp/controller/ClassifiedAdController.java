@@ -23,6 +23,7 @@ import java.util.List;
 @Controller
 public class ClassifiedAdController {
 
+    public static final String ANZEIGEN_VON = "Anzeigen von: ";
     @Autowired
     ClassifiedAdRepository classifiedAdRepository;
 
@@ -37,6 +38,11 @@ public class ClassifiedAdController {
 
     @RequestMapping(value = "/ads", method = RequestMethod.GET)
     public ModelAndView showFilteredAds(@RequestParam(value = "s", required = false, defaultValue = "") String s) {
+        if (s.startsWith("[" + ANZEIGEN_VON)) {
+            String username = s.substring(ANZEIGEN_VON.length() + 1, s.length() - 1);
+            return showAdsByUser(username);
+        }
+
         ModelAndView mav = new ModelAndView();
         mav.setViewName("index");
 
@@ -70,7 +76,7 @@ public class ClassifiedAdController {
         List<ClassifiedAd> ads = classifiedAdRepository.findAllByUsername(username);
 
         mav.addObject("latestAds", ads);
-        mav.addObject("s", username);
+        mav.addObject("s", "[" + ANZEIGEN_VON + username + "]");
 
         return mav;
     }
