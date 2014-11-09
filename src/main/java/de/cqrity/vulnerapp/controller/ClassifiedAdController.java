@@ -10,6 +10,7 @@ import de.cqrity.vulnerapp.service.ClassifiedAdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -133,6 +135,33 @@ public class ClassifiedAdController {
 
         ModelAndView mav = new ModelAndView("ad_edit", "command", new ClassifiedAdResource(ad));
         mav.addObject("ad", ad);
+        return mav;
+    }
+
+
+    @RequestMapping(value = "/ad/create", method = RequestMethod.GET)
+    public ModelAndView createAd() {
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ClassifiedAd ad = new ClassifiedAd(principal, null, null, 0, new Date());
+
+        ModelAndView mav = new ModelAndView("ad_create", "command", new ClassifiedAdResource(ad));
+        mav.addObject("ad", ad);
+        return mav;
+    }
+
+    @RequestMapping(value = "/ad/create", method = RequestMethod.POST)
+    public ModelAndView createAd(@ModelAttribute("command") @Valid ClassifiedAdResource request,
+                                 BindingResult result) {
+        ModelAndView mav = new ModelAndView();
+        if (result.hasErrors()) {
+            mav.setViewName("ad_create");
+            return mav;
+        }
+
+        ClassifiedAd ad = classifiedAdService.create(request);
+        mav.setViewName("redirect:/ad/" + ad.getId());
+        mav.addObject("ad", ad);
+
         return mav;
     }
 }
