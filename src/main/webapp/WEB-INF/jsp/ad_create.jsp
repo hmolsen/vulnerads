@@ -22,6 +22,7 @@
                     <div class="input-group">
                         <span class="input-group-addon">Titel</span>
                         <form:input path="title" placeholder="Titel" cssClass="form-control" />
+                        <form:errors path="title" cssClass="has-error" />
                     </div>
                     <div class="brdr own-ad pad-10 box-shad btm-mrg-20">
                         <div class="row">
@@ -49,6 +50,7 @@
                             <div class="col-md-12">
                                 <h3>Beschreibung</h3>
                                 <form:textarea path="description" placeholder="Beschreibung" rows="20" cssClass="form-control" />
+                                <form:errors path="description" cssClass="has-error" />
                             </div>
                         </div>
                         <div class="row">
