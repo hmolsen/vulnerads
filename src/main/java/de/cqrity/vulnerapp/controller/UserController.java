@@ -1,11 +1,11 @@
 package de.cqrity.vulnerapp.controller;
 
+import de.cqrity.vulnerapp.domain.CreateUserResource;
 import de.cqrity.vulnerapp.domain.User;
 import de.cqrity.vulnerapp.domain.UserResource;
 import de.cqrity.vulnerapp.repository.UserRepository;
 import de.cqrity.vulnerapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -28,11 +28,11 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView showRegistrationPage() {
-        return new ModelAndView("register", "command", new UserResource());
+        return new ModelAndView("register", "command", new CreateUserResource());
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView registerNewUser(@ModelAttribute("command") @Valid UserResource request, BindingResult result) {
+    public ModelAndView registerNewUser(@ModelAttribute("command") @Valid CreateUserResource request, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView("register");
         modelAndView.addObject("username", request.getUsername());
         if (result.hasErrors()) {
@@ -56,7 +56,7 @@ public class UserController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView showEditProfileView() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        String username = userService.getPrincipal().getUsername();
         User user = userRepository.findByUsername(username);
         return new ModelAndView("profile", "command", new UserResource(user));
     }

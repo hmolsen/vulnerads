@@ -7,10 +7,10 @@ import de.cqrity.vulnerapp.exception.NotFound;
 import de.cqrity.vulnerapp.repository.ClassifiedAdRepository;
 import de.cqrity.vulnerapp.repository.UserRepository;
 import de.cqrity.vulnerapp.service.ClassifiedAdService;
+import de.cqrity.vulnerapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +34,9 @@ public class ClassifiedAdController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -139,7 +142,7 @@ public class ClassifiedAdController {
 
     @RequestMapping(value = "/ad/create", method = RequestMethod.GET)
     public ModelAndView createAd() {
-        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User principal = userService.getPrincipal();
         ClassifiedAd ad = new ClassifiedAd(principal, null, null, 0, new Date());
 
         ModelAndView mav = new ModelAndView("ad_create", "command", new ClassifiedAdResource(ad));

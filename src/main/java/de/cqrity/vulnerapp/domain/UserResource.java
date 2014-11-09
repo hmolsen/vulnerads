@@ -1,7 +1,6 @@
 package de.cqrity.vulnerapp.domain;
 
 import com.google.common.base.MoreObjects;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -9,8 +8,6 @@ import javax.validation.constraints.Size;
 public class UserResource {
 
     private long userid;
-    @NotEmpty
-    private String username;
     private String firstname;
     private String lastname;
     private String creditcardnumber;
@@ -19,9 +16,7 @@ public class UserResource {
     @Size(min = 5, max = 5)
     private String zip;
     private String town;
-    @NotEmpty
     private String password;
-    @NotEmpty
     private String password2;
 
     public UserResource() {
@@ -29,7 +24,6 @@ public class UserResource {
 
     public UserResource(User user) {
         this.userid = user.getId();
-        this.username = user.getUsername();
         this.firstname = user.getFirstname();
         this.lastname = user.getLastname();
         this.creditcardnumber = user.getCreditcardnumber();
@@ -70,14 +64,6 @@ public class UserResource {
 
     public void setCreditcardnumber(String creditcardnumber) {
         this.creditcardnumber = creditcardnumber;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -123,7 +109,6 @@ public class UserResource {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("username", username)
                 .add("firstname", firstname)
                 .add("lastname", lastname)
                 .add("creditcardnumber", creditcardnumber)

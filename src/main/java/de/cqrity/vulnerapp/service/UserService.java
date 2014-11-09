@@ -3,9 +3,13 @@ package de.cqrity.vulnerapp.service;
 import de.cqrity.vulnerapp.domain.Authority;
 import de.cqrity.vulnerapp.domain.User;
 import de.cqrity.vulnerapp.domain.UserResource;
+import de.cqrity.vulnerapp.exception.NotFound;
 import de.cqrity.vulnerapp.repository.AuthorityRepository;
 import de.cqrity.vulnerapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,27 +43,34 @@ public class UserService {
     public User update(UserResource request) {
         User user = userRepository.findOne(request.getUserid());
 
-        if (usernameShallBeChanged(user.getUsername(), request.getUsername())
-                && usernameAlreadyExists(request.getUsername())) {
-            throw new UnsupportedOperationException("Benutzername wird bereits verwendet");
+        if (user == null) {
+            throw new NotFound("Benutzer mit ID " + request.getUserid() + " existiert nicht!");
         }
-        user.setUsername(request.getUsername());
+
         user.setFirstname(request.getFirstname());
         user.setLastname(request.getLastname());
         user.setCreditcardnumber(request.getCreditcardnumber());
         user.setPhonenumber(request.getPhonenumber());
+        user.setZip(request.getZip());
+        user.setTown(request.getTown());
         if (!request.getPassword().isEmpty()) {
             user.setPassword(request.getPassword());
         }
 
-        return userRepository.save(user);
+        User updatedUser = userRepository.save(user);
+        updatePrincipal();
+        return updatedUser;
     }
 
-    private boolean usernameShallBeChanged(String oldUsername, String newUsername) {
-        return !oldUsername.equals(newUsername);
+    public User getPrincipal() {
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
-    private boolean usernameAlreadyExists(String username) {
-        return userRepository.findByUsername(username) != null;
+    private void updatePrincipal() {
+        String username = getPrincipal().getUsername();
+        User user = userRepository.findByUsername(username);
+        Authentication auth = new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(auth);
     }
+
 }

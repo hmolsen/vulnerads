@@ -28,10 +28,6 @@
         <h1><spring:message code="profile.heading"/></h1>
         <form:form action="profile" method="POST">
             <div class="form-group">
-                <form:input path="username" class="form-control" placeholder="Benutzername" />
-                <form:errors path="username" cssClass="has-error" />
-            </div>
-            <div class="form-group">
                 <form:input path="firstname" class="form-control" placeholder="Vorname" />
                 <form:errors path="firstname" cssClass="has-error" />
             </div>
@@ -46,6 +42,14 @@
             <div class="form-group">
                 <form:input path="phonenumber" class="form-control" placeholder="Telefonnummer" />
                 <form:errors path="phonenumber" cssClass="has-error" />
+            </div>
+            <div class="form-group">
+                <form:input path="zip" class="form-control" placeholder="PLZ" />
+                <form:errors path="zip" cssClass="has-error" />
+            </div>
+            <div class="form-group">
+                <form:input path="town" class="form-control" placeholder="Ort" />
+                <form:errors path="town" cssClass="has-error" />
             </div>
             <div class="form-group">
                 <form:password path="password" class="form-control" placeholder="Passwort"/>
