@@ -2,6 +2,7 @@ package de.cqrity.vulnerapp.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Size;
 
@@ -11,14 +12,16 @@ public class ClassifiedAdResource {
 
     @NotEmpty
     @Size(max = 100)
-    String title;
+    private String title;
 
     @NotEmpty
     @Size(max = 4000)
-    String description;
+    private String description;
 
     @Range(min = 0)
-    int price;
+    private int price;
+
+    private MultipartFile adphoto;
 
     public ClassifiedAdResource() { }
 
@@ -63,5 +66,13 @@ public class ClassifiedAdResource {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public MultipartFile getAdphoto() {
+        return adphoto;
+    }
+
+    public void setAdphoto(MultipartFile adphoto) {
+        this.adphoto = adphoto;
     }
 }
