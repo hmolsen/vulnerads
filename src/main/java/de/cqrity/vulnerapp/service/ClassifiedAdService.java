@@ -1,5 +1,6 @@
 package de.cqrity.vulnerapp.service;
 
+import com.google.common.io.Files;
 import de.cqrity.vulnerapp.domain.ClassifiedAd;
 import de.cqrity.vulnerapp.domain.ClassifiedAdResource;
 import de.cqrity.vulnerapp.domain.User;
@@ -7,7 +8,10 @@ import de.cqrity.vulnerapp.repository.ClassifiedAdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 @Service
@@ -33,6 +37,19 @@ public class ClassifiedAdService {
                                            request.getDescription(),
                                            request.getPrice(),
                                            new Date());
+
+        MultipartFile adphoto = request.getAdphoto();
+        String filename = adphoto.getOriginalFilename();
+        File photoFolder = new File(System.getProperty("user.home"), "vulnerapp_photos");
+        if (!photoFolder.exists()) {
+            photoFolder.mkdirs();
+        }
+        File photoFile = new File(photoFolder, filename);
+        try {
+            Files.write(adphoto.getBytes(), photoFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return classifiedAdRepository.save(ad);
     }
