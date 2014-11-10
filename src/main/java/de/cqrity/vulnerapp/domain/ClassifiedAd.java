@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 public class ClassifiedAd {
 
-    public static final int SHORT_DESCRIPTION_LENGTH = 250;
+    private static final int SHORT_DESCRIPTION_LENGTH = 250;
 
     @Id
     @GeneratedValue
@@ -23,16 +23,18 @@ public class ClassifiedAd {
 
     @NotEmpty
     @Size(max = 100)
-    String title;
+    private String title;
 
     @NotEmpty
     @Size(max = 4000)
-    String description;
+    private String description;
 
-    int price;
+    private int price;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdtimestamp = new Date();
+
+    private String photofilename;
 
     @SuppressWarnings("unused")
     ClassifiedAd() { }
@@ -111,6 +113,14 @@ public class ClassifiedAd {
         }
     }
 
+    public String getPhotofilename() {
+        return photofilename;
+    }
+
+    public void setPhotofilename(String photofilename) {
+        this.photofilename = photofilename;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -119,6 +129,8 @@ public class ClassifiedAd {
                 .add("title", title)
                 .add("description", description)
                 .add("price", price)
+                .add("createdtimestamp", createdtimestamp)
+                .add("photofilename", photofilename)
                 .toString();
     }
 }

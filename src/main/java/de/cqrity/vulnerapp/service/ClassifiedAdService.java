@@ -47,9 +47,12 @@ public class ClassifiedAdService {
         File photoFile = new File(photoFolder, filename);
         try {
             Files.write(adphoto.getBytes(), photoFile);
+            ad.setPhotofilename(filename);
         } catch (IOException e) {
+            ad.setPhotofilename(null);
             e.printStackTrace();
         }
+
 
         return classifiedAdRepository.save(ad);
     }

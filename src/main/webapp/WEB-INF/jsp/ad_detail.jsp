@@ -60,7 +60,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <img class="full-image" alt="image" src="http://images.prd.mris.com/image/V2/1/Yu59d899Ocpyr_RnF0-8qNJX1oYibjwp9TiLy-bZvU9vRJ2iC1zSQgFwW-fTCs6tVkKrj99s7FFm5Ygwl88xIA.jpg"></a>
+                        <img class="full-image" alt="image" src="/photo?fn=${ad.photofilename}"></a>
                      </div>
                 </div>
                 <div class="row">
