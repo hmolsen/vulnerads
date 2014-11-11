@@ -25,6 +25,7 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/ads").permitAll()
+                .antMatchers("/photo").permitAll()
                 .antMatchers("/register").anonymous()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
