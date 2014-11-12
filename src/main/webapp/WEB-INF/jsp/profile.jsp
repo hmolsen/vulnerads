@@ -5,11 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title><spring:message code="index.title"/></title>
-    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/css/vulnerapp.css" rel="stylesheet">
-</head>
+<jsp:include page="modules/head.jsp"/>
 <body>
 <jsp:include page="modules/header.jsp"/>
 <c:if test="${success}">
