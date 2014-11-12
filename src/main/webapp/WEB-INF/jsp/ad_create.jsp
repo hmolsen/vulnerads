@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="modules/head.jsp"/>
-<body>
+<body class="user">
 <jsp:include page="modules/header.jsp"/>
 <form:form action="/ad/create" method="post" enctype="multipart/form-data" accept-charset="ISO-8859-1">
     <div class="container-fluid" id="body-container">

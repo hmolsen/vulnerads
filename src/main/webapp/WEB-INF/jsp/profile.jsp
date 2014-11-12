@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="modules/head.jsp"/>
-<body>
+<body class="user">
 <jsp:include page="modules/header.jsp"/>
 <c:if test="${success}">
     <div class="alert alert-success" role="alert">

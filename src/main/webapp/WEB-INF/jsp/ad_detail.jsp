@@ -17,7 +17,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="modules/head.jsp"/>
-<body>
+<body class="user">
 <jsp:include page="modules/header.jsp"/>
 <div class="container-fluid" id="body-container">
 <div class="container container-pad" id="ad-listing">

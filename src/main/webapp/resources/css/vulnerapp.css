@@ -1,5 +1,9 @@
-body {
+.user {
     background-color: #e8e8e8;
+}
+
+.admin {
+    background-color: #E5B5B4;
 }
 
 .header-padder {
