@@ -14,7 +14,6 @@
     </div>
 </c:if>
 <jsp:include page="ad_list.jsp" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="/resources/js/bootstrap.min.js" type="application/javascript"></script>
+<jsp:include page="modules/scripts.jsp"/>
 </body>
 </html>
