@@ -7,3 +7,7 @@ xxx %') AND 1=2 UNION SELECT 1,null,(USERNAME + ':' + PASSWORD),null,1234,null,n
 
 Logged in USER can delete any user by HEADing /user/id/delete
 
+Access any file on server via "photo" interface. Need Burp for changing response mime type
+
+
+
