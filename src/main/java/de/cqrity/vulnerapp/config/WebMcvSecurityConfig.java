@@ -2,6 +2,7 @@ package de.cqrity.vulnerapp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -28,7 +29,10 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/photo").permitAll()
                 .antMatchers("/register").anonymous()
                 .antMatchers("/resources/**").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/admin/users/list").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/admin/defaultphoto").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/admin/defaultphoto").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/user/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
         http
             .formLogin()
