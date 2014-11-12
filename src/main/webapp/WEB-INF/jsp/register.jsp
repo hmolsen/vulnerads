@@ -11,7 +11,7 @@
     <link href="resources/css/vulnerapp.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="modules/header.jsp"/>
 <c:if test="${success}">
     <div class="alert alert-success" role="alert">
         ${username}, Registrierung erfolgreich! Sie k&ouml;nnen sich nun <a href="/login">einloggen</a>.

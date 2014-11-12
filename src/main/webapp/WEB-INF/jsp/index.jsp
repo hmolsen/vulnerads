@@ -10,12 +10,7 @@
     <link href="/resources/css/vulnerapp.css" rel="stylesheet">
 </head>
 <body>
-<sec:authorize access="isAuthenticated()">
-    <jsp:include page="header_user.jsp"/>
-</sec:authorize>
-<sec:authorize access="isAnonymous()">
-    <jsp:include page="header.jsp"/>
-</sec:authorize>
+<jsp:include page="modules/header.jsp"/>
 <c:if test="${deleted}">
     <div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Schlie&szlig;en</span></button>

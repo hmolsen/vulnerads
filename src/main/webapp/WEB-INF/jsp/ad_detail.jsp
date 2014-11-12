@@ -22,7 +22,7 @@
     <link href="/resources/css/vulnerapp.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="header_user.jsp"/>
+<jsp:include page="modules/header.jsp"/>
 <div class="container-fluid" id="body-container">
 <div class="container container-pad" id="ad-listing">
 

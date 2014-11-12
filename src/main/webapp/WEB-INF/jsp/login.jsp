@@ -10,7 +10,7 @@
     <link href="resources/css/vulnerapp.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="modules/header.jsp"/>
 <c:if test="${not empty error}">
     <div class="alert alert-danger" role="alert">Benutzername oder Passwort falsch.</div>
 </c:if>

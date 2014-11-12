@@ -1,10 +1,11 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#searchbar">
                 <span class="sr-only">Navigation wechseln</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -24,10 +25,15 @@
                     </div>
                 </div>
             </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="register"><spring:message code="header.register"/></a></li>
-                <li><a href="login"><spring:message code="header.login"/></a></li>
-            </ul>
+            <sec:authorize access="hasRole('ADMIN')">
+                <jsp:include page="header_admin.jsp"/>
+            </sec:authorize>
+            <sec:authorize access="hasRole('USER')">
+                <jsp:include page="header_user.jsp"/>
+            </sec:authorize>
+            <sec:authorize access="isAnonymous()">
+                <jsp:include page="header_anonymous.jsp"/>
+            </sec:authorize>
         </div>
         <!-- /.navbar-collapse -->
     </div>

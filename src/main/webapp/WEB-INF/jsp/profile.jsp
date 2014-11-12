@@ -11,7 +11,7 @@
     <link href="resources/css/vulnerapp.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="header_user.jsp"/>
+<jsp:include page="modules/header.jsp"/>
 <c:if test="${success}">
     <div class="alert alert-success" role="alert">
             Profil&auml;nderungen gespeichert.
