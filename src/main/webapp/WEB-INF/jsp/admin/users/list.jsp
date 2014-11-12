@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <jsp:include page="../../modules/head.jsp"/>
@@ -21,21 +22,27 @@
                             <th>PLZ</th>
                             <th>Ort</th>
                             <th>Telefon</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Löschen</th>
                             </thead>
                             <tbody>
 
                             <c:forEach items="${users}" var="user">
+                                <sec:authentication var="principal" property="principal"/>
                                 <tr>
-                                    <td><b>${user.username}</b></td>
-                                    <td>${user.firstname}</td>
-                                    <td>${user.lastname}</td>
-                                    <td>${user.zip}</td>
-                                    <td>${user.town}</td>
-                                    <td>${user.phonenumber}</td>
-                                    <td><p><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" data-placement="top" rel="tooltip"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-                                    <td><p><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" data-placement="top" rel="tooltip"><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                                    <td><b><c:out value="${user.username}"/></b></td>
+                                    <td><c:out value="${user.firstname}"/></td>
+                                    <td><c:out value="${user.lastname}"/></td>
+                                    <td><c:out value="${user.zip}"/></td>
+                                    <td><c:out value="${user.town}"/></td>
+                                    <td><c:out value="${user.phonenumber}"/></td>
+                                    <td><p><button class="btn btn-danger btn-xs"
+                                                   data-title="Delete"
+                                                   data-toggle="modal"
+                                                   data-target="#delete"
+                                                   data-placement="top"
+                                                   ${principal.username == user.username ? 'disabled' : ''}
+                                                   id="${user.id}"
+                                                   rel="tooltip"><span class="glyphicon glyphicon-trash"></span></button></p></td>
                                 </tr>
                             </c:forEach>
 
@@ -56,12 +63,14 @@
                         </div>
                         <div class="modal-body">
 
-                            <div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> Möchten Sie den Benutzer wirklich löschen?</div>
+                            <div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> Möchten Sie den Benutzer zusammen mit allen von ihm erstellten Anzeigen wirklich löschen?</div>
 
                         </div>
-                        <div class="modal-footer ">
-                            <button type="button" class="btn btn-danger" ><span class="glyphicon glyphicon-ok-sign"></span> Löschen</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Behalten</button>
+                        <div class="modal-footer">
+                            <form id="modal-delete-form" method="get">
+                                <button type="submit" class="btn btn-danger" ><span class="glyphicon glyphicon-ok-sign"></span> Löschen</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Behalten</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -70,5 +79,6 @@
     </div>
 </div>
 <jsp:include page="../../modules/scripts.jsp"/>
+<script src="/resources/js/userlist.js" type="application/javascript"></script>
 </body>
 </html>

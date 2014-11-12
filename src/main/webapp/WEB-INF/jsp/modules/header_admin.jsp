@@ -4,7 +4,7 @@
         <a href="/profile">
             <span class="glyphicon glyphicon-user"></span>
             <sec:authentication var="principal" property="principal"/>
-            ${principal.firstname} ${principal.lastname}
+            ${principal.firstname} ${principal.lastname} (Admin)
         </a>
     </li>
     <li class="dropdown">
@@ -16,7 +16,6 @@
             <li><a href="/profile">Profil bearbeiten</a></li>
             <li class="divider"></li>
             <li><a href="/admin/users/list">Benutzer bearbeiten</a></li>
-            <li><a href="/admin/ads">Anzeigen bearbeiten</a></li>
             <li><a href="/admin/defaultphoto">Standardbild bearbeiten</a></li>
         </ul>
     </li>

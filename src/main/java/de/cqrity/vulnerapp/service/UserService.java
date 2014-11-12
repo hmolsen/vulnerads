@@ -1,10 +1,12 @@
 package de.cqrity.vulnerapp.service;
 
 import de.cqrity.vulnerapp.domain.Authority;
+import de.cqrity.vulnerapp.domain.ClassifiedAd;
 import de.cqrity.vulnerapp.domain.User;
 import de.cqrity.vulnerapp.domain.UserResource;
 import de.cqrity.vulnerapp.exception.NotFound;
 import de.cqrity.vulnerapp.repository.AuthorityRepository;
+import de.cqrity.vulnerapp.repository.ClassifiedAdRepository;
 import de.cqrity.vulnerapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +26,9 @@ public class UserService {
 
     @Autowired
     private AuthorityRepository authorityRepository;
+
+    @Autowired
+    private ClassifiedAdRepository classifiedAdRepository;
 
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -73,4 +78,10 @@ public class UserService {
         SecurityContextHolder.getContext().setAuthentication(auth);
     }
 
+    public void delete(Long id) {
+        User userToDelete = userRepository.findOne(id);
+        List<ClassifiedAd> allByUsername = classifiedAdRepository.findAllByUsername(userToDelete.getUsername());
+        classifiedAdRepository.delete(allByUsername);
+        userRepository.delete(userToDelete);
+    }
 }
