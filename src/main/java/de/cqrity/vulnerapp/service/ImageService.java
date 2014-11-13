@@ -32,13 +32,11 @@ public class ImageService {
         imageRepository.save(defaultImage);
     }
 
-    public String storeImage(MultipartFile adphoto) {
+    public String storeImage(MultipartFile adphoto, long adId) {
         String filename = adphoto.getOriginalFilename();
-        File photoFolder = new File(System.getProperty("user.home"), "vulnerapp_photos");
-        if (!photoFolder.exists()) {
-            photoFolder.mkdirs();
-        }
-        File photoFile = new File(photoFolder, filename);
+        File imageFolder = getImageFolder();
+        File subfolder = new File(imageFolder, String.valueOf(adId));
+        File photoFile = new File(subfolder, filename);
         try {
             Files.write(adphoto.getBytes(), photoFile);
             return filename;
@@ -67,6 +65,14 @@ public class ImageService {
         }
 
         return new byte[0];
+    }
+
+    private File getImageFolder() {
+        File imageFolder = new File(System.getProperty("user.home"), "vulnerapp_photos");
+        if (!imageFolder.exists()) {
+            imageFolder.mkdirs();
+        }
+        return imageFolder;
     }
 
     private byte[] retrieveImageFromFilesystem(String fn) {

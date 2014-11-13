@@ -36,7 +36,7 @@
             <div class="media">
                 <a class="pull-left" href="/ad/${ad.id}" target="_parent">
                     <img alt="image" class="img-responsive"
-                         src="/photo?fn=${ad.photofilename}"></a>
+                         src="/photo?fn=${ad.id}/${ad.photofilename}"></a>
 
                 <div class="clearfix visible-sm"></div>
 

@@ -49,7 +49,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <img class="full-image" alt="image" src="/photo?fn=${ad.photofilename}">
+                        <img class="full-image" alt="image" src="/photo?fn=${ad.id}/${ad.photofilename}">
                         Foto ändern: <input type="file" name="adphoto"><br />
                      </div>
                 </div>

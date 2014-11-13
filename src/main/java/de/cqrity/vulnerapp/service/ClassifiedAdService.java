@@ -25,7 +25,8 @@ public class ClassifiedAdService {
         ad.setTitle(request.getTitle());
         ad.setDescription(request.getDescription());
         ad.setPrice(request.getPrice());
-        ad.setPhotofilename(imageService.storeImage(request.getAdphoto()));
+        String photofilename = imageService.storeImage(request.getAdphoto(), request.getId());
+        ad.setPhotofilename(photofilename);
 
         return classifiedAdRepository.save(ad);
     }
@@ -38,7 +39,9 @@ public class ClassifiedAdService {
                                            request.getPrice(),
                                            new Date());
 
-        ad.setPhotofilename(imageService.storeImage(request.getAdphoto()));
+        ad = classifiedAdRepository.save(ad); // to get the id
+
+        ad.setPhotofilename(imageService.storeImage(request.getAdphoto(), ad.getId()));
 
         return classifiedAdRepository.save(ad);
     }
