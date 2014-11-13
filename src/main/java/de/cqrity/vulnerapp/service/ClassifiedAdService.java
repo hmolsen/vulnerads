@@ -26,6 +26,7 @@ public class ClassifiedAdService {
         ad.setTitle(request.getTitle());
         ad.setDescription(request.getDescription());
         ad.setPrice(request.getPrice());
+        ad.setPhotofilename(storeImage(request.getAdphoto()));
 
         return classifiedAdRepository.save(ad);
     }
@@ -38,7 +39,12 @@ public class ClassifiedAdService {
                                            request.getPrice(),
                                            new Date());
 
-        MultipartFile adphoto = request.getAdphoto();
+        ad.setPhotofilename(storeImage(request.getAdphoto()));
+
+        return classifiedAdRepository.save(ad);
+    }
+
+    private String storeImage(MultipartFile adphoto) {
         String filename = adphoto.getOriginalFilename();
         File photoFolder = new File(System.getProperty("user.home"), "vulnerapp_photos");
         if (!photoFolder.exists()) {
@@ -47,13 +53,10 @@ public class ClassifiedAdService {
         File photoFile = new File(photoFolder, filename);
         try {
             Files.write(adphoto.getBytes(), photoFile);
-            ad.setPhotofilename(filename);
+            return filename;
         } catch (IOException e) {
-            ad.setPhotofilename(null);
             e.printStackTrace();
+            return null;
         }
-
-
-        return classifiedAdRepository.save(ad);
     }
 }

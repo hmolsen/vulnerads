@@ -56,7 +56,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <img class="full-image" alt="image" src="/photo?fn=${ad.photofilename}"></a>
+                        <img class="full-image" alt="image" src="/photo?fn=${ad.photofilename}">
                      </div>
                 </div>
                 <div class="row">

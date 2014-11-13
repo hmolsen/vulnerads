@@ -16,11 +16,11 @@
 </c:choose>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <jsp:include page="modules/head.jsp"/>
 <body class="user">
 <jsp:include page="modules/header.jsp"/>
-<form:form action="/ad/${ad.id}" method="post" accept-charset="ISO-8859-1">
+<form:form action="/ad/${ad.id}" method="post" enctype="multipart/form-data" accept-charset="ISO-8859-1">
 <div class="container-fluid" id="body-container">
 <div class="container container-pad" id="ad-listing">
 
@@ -49,7 +49,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <img class="full-image" alt="image" src="http://images.prd.mris.com/image/V2/1/Yu59d899Ocpyr_RnF0-8qNJX1oYibjwp9TiLy-bZvU9vRJ2iC1zSQgFwW-fTCs6tVkKrj99s7FFm5Ygwl88xIA.jpg"></a>
+                        <img class="full-image" alt="image" src="/photo?fn=${ad.photofilename}">
+                        Foto ändern: <input type="file" name="adphoto"><br />
                      </div>
                 </div>
                 <div class="row">
