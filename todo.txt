@@ -1,11 +1,6 @@
 
 - Function level checks ("Voters")
 - Clickjacker / X-Frame-Options rausnehmen
-- Session ID in URL
-- Renew Session ID deaktivieren
-- Anzeige bearbeiten: Foto editieren
-- Image laden aus JspController in ImageService
-- photos im unterordner mit ad ID anlegen
 - Benutzerprofil aufhübschen
 - 2 Step Registrierung für Session Fixation
 - Elevate users to admins

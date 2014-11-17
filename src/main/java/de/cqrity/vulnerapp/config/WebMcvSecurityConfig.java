@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
@@ -26,6 +25,7 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/login**").anonymous()
                 .antMatchers("/ads").permitAll()
                 .antMatchers("/photo").permitAll()
                 .antMatchers("/register").anonymous()
@@ -46,7 +46,9 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login")
                 .permitAll();
         http.userDetailsService(userDetailsService);
-        http.sessionManagement().sessionAuthenticationStrategy(new NullAuthenticatedSessionStrategy());
+        http.sessionManagement().sessionFixation().none();
+        http.sessionManagement().enableSessionUrlRewriting(true);
+        http.csrf().disable();
     }
 
     @Override

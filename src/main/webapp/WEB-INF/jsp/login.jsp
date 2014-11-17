@@ -14,7 +14,7 @@
     <div class="col-md-5"></div>
     <div class="col-md-2">
         <h1><spring:message code="login.heading"/></h1>
-        <form name='loginForm' action="/login" method='POST' accept-charset="ISO-8859-1">
+        <form name='loginForm' action="<c:url value="login"/>" method='POST' accept-charset="ISO-8859-1">
 
             <div class="form-group">
                 <input type='text' class="form-control" name='username' placeholder="Benutzername">

@@ -1,5 +1,6 @@
 package de.cqrity.vulnerapp;
 
+import de.cqrity.vulnerapp.config.SecurityInitializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -27,6 +28,6 @@ public class Vulnerapp extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Vulnerapp.class, args);
+        SpringApplication.run(new Class[] { Vulnerapp.class, SecurityInitializer.class }, args);
     }
 }
