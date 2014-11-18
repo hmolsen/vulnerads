@@ -1,15 +1,13 @@
 package de.cqrity.vulnerapp.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 
 @Entity
 public class Image {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "image_seq_gen")
+    @SequenceGenerator(name = "image_seq_gen", sequenceName = "image_id_seq")
     private long id;
 
     private String name;

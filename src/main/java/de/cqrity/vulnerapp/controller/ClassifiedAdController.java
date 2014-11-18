@@ -26,6 +26,13 @@ import java.util.List;
 public class ClassifiedAdController {
 
     public static final String ANZEIGEN_VON = "Anzeigen von: ";
+
+    ////// hsqldb
+    //private static final String UPPER_FN = "UCASE";
+
+    ////// postgres
+    private static final String UPPER_FN = "UPPER";
+
     @Autowired
     ClassifiedAdRepository classifiedAdRepository;
 
@@ -51,7 +58,7 @@ public class ClassifiedAdController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("index");
 
-        String sql = "SELECT * FROM classified_ad WHERE UCASE(title) LIKE UCASE('%" + s + "%') " +
+        String sql = "SELECT * FROM classified_ad WHERE " + UPPER_FN + "(title) LIKE " + UPPER_FN + "('%" + s + "%') " +
                 "ORDER BY createdtimestamp DESC";
         List<ClassifiedAd> ads = jdbcTemplate.query(sql, new RowMapper<ClassifiedAd>() {
             @Override

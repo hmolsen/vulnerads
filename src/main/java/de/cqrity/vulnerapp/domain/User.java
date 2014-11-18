@@ -12,10 +12,12 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @Entity
+@Table(name = "usr")
 public class User implements UserDetails, Principal {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq_gen")
+    @SequenceGenerator(name = "user_seq_gen", sequenceName = "user_id_seq")
     private long id;
 
     @Column(unique = true)

@@ -60,12 +60,12 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private String getUsersQuery() {
-        return "SELECT username, password, true from USER where username = ?";
+        return "SELECT username, password, true FROM usr WHERE username = ?";
     }
 
     private String getAuthoritiesQuery() {
         return "SELECT u.username AS username, a.authority AS authority "
-               + "FROM user u INNER JOIN authority a ON a.id = u.authority_id "
+               + "FROM usr u INNER JOIN authority a ON a.id = u.authority_id "
                + "WHERE u.username = ?";
     }
 }

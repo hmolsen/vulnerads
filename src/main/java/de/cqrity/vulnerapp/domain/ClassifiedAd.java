@@ -15,7 +15,8 @@ public class ClassifiedAd {
     private static final int SHORT_DESCRIPTION_LENGTH = 250;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "classified_ad_seq_gen")
+    @SequenceGenerator(name = "classified_ad_seq_gen", sequenceName = "classified_ad_id_seq")
     private long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
