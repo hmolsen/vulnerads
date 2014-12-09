@@ -27,10 +27,6 @@ public class ClassifiedAdController {
 
     public static final String ANZEIGEN_VON = "Anzeigen von: ";
 
-    ////// hsqldb
-    //private static final String UPPER_FN = "UCASE";
-
-    ////// postgres
     private static final String UPPER_FN = "UPPER";
 
     @Autowired
