@@ -6,6 +6,7 @@
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/java/de/cqrity/vulnerapp/config/WebMvcConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/de/cqrity/vulnerapp/config/WebMcvSecurityConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/de/cqrity/vulnerapp/config/SecurityInitializer.java</file>
         </fileset>
       </configuration>
     </facet>
