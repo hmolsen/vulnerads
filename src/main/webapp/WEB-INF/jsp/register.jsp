@@ -18,8 +18,8 @@
             ${username}, Registrierung fehlgeschlagen! ${error}.
     </div>
 </c:if>
-<div class="row">
-    <div class="col-md-5"></div>
+<div class="row no-margin">
+<div class="col-md-5"></div>
     <div class="col-md-2">
         <h1><spring:message code="register.heading"/></h1>
         <form:form action="register" method="POST" accept-charset="ISO-8859-1">

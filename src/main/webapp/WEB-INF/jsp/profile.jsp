@@ -18,10 +18,9 @@
             Benutzerprofil konnte nicht gespeichert werden! ${error}.
     </div>
 </c:if>
-<div class="row">
-    <div class="col-md-5"></div>
-    <div class="col-md-2">
-        <h1><spring:message code="profile.heading"/></h1>
+<div class="row no-margin">
+    <div class="col-md-4 col-md-offset-4">
+    <h1><spring:message code="profile.heading"/></h1>
         <form:form action="profile" method="POST" accept-charset="ISO-8859-1">
             <div class="form-group">
                 <form:input path="firstname" class="form-control" placeholder="Vorname" />
@@ -60,7 +59,6 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form:form>
     </div>
-    <div class="col-md-5"></div>
 </div>
 <jsp:include page="modules/scripts.jsp"/>
 </body>

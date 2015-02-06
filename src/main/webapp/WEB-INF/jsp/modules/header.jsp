@@ -39,6 +39,6 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-<div class="row">
-    <div class="header-padder"></div>
+<div class="row no-margin">
+<div class="header-padder"></div>
 </div>

@@ -4,7 +4,7 @@
 <div class="container-fluid" id="body-container">
 <div class="container container-pad" id="ad-listing">
 
-<div class="row">
+    <div class="row no-margin">
     <div class="col-md-8 col-md-offset-2">
         <c:choose>
             <c:when test="${not empty s}">
