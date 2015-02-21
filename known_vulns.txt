@@ -10,5 +10,9 @@ Logged in USER can delete any user by HEADing /user/id/delete
 
 Access any file on server via "photo" interface. Need Burp for changing response mime type
 
+Passwords cleartext
+
+Brute Force Login
+
 
 
