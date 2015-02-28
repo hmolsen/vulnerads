@@ -56,13 +56,14 @@
 
                         <c:choose>
                             <c:when test="${(not empty ad.owner.firstname) and (not empty ad.owner.lastname)}">
-                                <li>${ad.owner.firstname} ${ad.owner.lastname}</li>
+                                <li>
+                                    <a href="/userdetail?id=${ad.owner.id}">${ad.owner.firstname} ${ad.owner.lastname}</a>
+                                </li>
                             </c:when>
                             <c:otherwise>
-                                <li>${ad.owner.username}</li>
+                                <li><a href="/userdetail?id=${ad.owner.id}">${ad.owner.username}</a></li>
                             </c:otherwise>
                         </c:choose>
-
                         <c:if test="${(not empty ad.owner.zip) and (not empty ad.owner.town)}">
                             <li style="list-style: none">|</li>
                             <li>${ad.owner.zip} ${ad.owner.town}</li>
