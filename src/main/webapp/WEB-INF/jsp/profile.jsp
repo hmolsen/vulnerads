@@ -15,7 +15,7 @@
 </c:if>
 <c:if test="${not empty error}">
     <div class="alert alert-danger" role="alert">
-            Benutzerprofil konnte nicht gespeichert werden! ${error}.
+        TOTAL FATAL! ${error}.
     </div>
 </c:if>
 <div class="row no-margin">

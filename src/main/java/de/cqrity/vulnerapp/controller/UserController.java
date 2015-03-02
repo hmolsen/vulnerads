@@ -74,7 +74,7 @@ public class UserController {
                 modelAndView.addObject("authority", "Administrator");
             }
         } catch (Exception e) {
-            modelAndView.addObject("error", "TOTAL FATAL! Unvorhergesehener Ausnahmefehler an der Adresse 0x00000000");
+            modelAndView.addObject("error", "Unvorhergesehener Ausnahmefehler an der Adresse 0x00000000");
         }
         return modelAndView;
     }
