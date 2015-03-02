@@ -61,7 +61,22 @@ public class UserController {
     public ModelAndView showEditProfileView() {
         String username = userService.getPrincipal().getUsername();
         User user = userRepository.findByUsername(username);
-        return new ModelAndView("profile", "command", new UserResource(user));
+        ModelAndView modelAndView = new ModelAndView("profile", "command", new UserResource(user));
+        try {
+            String sql = "SELECT authority.authority " +
+                    "FROM authority " +
+                    "INNER JOIN usr on usr.authority_id=authority.id " +
+                    "WHERE usr.username='" + username + "'";
+            String authority = jdbcTemplate.queryForObject(sql, String.class);
+            if (authority.equals("USER")) {
+                modelAndView.addObject("authority", "Standard-Benutzer");
+            } else {
+                modelAndView.addObject("authority", "Administrator");
+            }
+        } catch (Exception e) {
+            modelAndView.addObject("error", "TOTAL FATAL! Unvorhergesehener Ausnahmefehler an der Adresse 0x00000000");
+        }
+        return modelAndView;
     }
 
     @RequestMapping(value = "/userdetail", method = RequestMethod.GET)
