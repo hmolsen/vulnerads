@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 public class UserResource {
 
     private long userid;
+    private String username;
     private String firstname;
     private String lastname;
     private String creditcardnumber;
@@ -24,6 +25,7 @@ public class UserResource {
 
     public UserResource(User user) {
         this.userid = user.getId();
+        this.username = user.getUsername();
         this.firstname = user.getFirstname();
         this.lastname = user.getLastname();
         this.creditcardnumber = user.getCreditcardnumber();
@@ -40,6 +42,14 @@ public class UserResource {
 
     public void setUserid(long userid) {
         this.userid = userid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstname() {

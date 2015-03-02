@@ -25,7 +25,11 @@
         <h3>Kontotyp: ${authority}</h3>
         <form:form action="profile" method="POST" accept-charset="ISO-8859-1">
             <div class="form-group">
-                <form:input path="firstname" class="form-control" placeholder="Vorname" />
+                <form:input path="username" class="form-control" placeholder="Benutzername"/>
+                <form:errors path="username" cssClass="has-error"/>
+            </div>
+            <div class="form-group">
+            <form:input path="firstname" class="form-control" placeholder="Vorname" />
                 <form:errors path="firstname" cssClass="has-error" />
             </div>
             <div class="form-group">

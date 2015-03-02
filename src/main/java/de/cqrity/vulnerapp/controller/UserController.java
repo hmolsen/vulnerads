@@ -81,11 +81,11 @@ public class UserController {
 
     @RequestMapping(value = "/userdetail", method = RequestMethod.GET)
     public ModelAndView showEditProfileView(@RequestParam("id") String id) {
-        String findById = "SELECT firstname, lastname, phonenumber, town, zip FROM usr WHERE id =" + id;
+        String findById = "SELECT username,firstname, lastname, phonenumber, town, zip FROM usr WHERE id =" + id;
         User user = jdbcTemplate.queryForObject(findById, new RowMapper<User>() {
             @Override
             public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-                User user = new User(null, null, null);
+                User user = new User(rs.getString("username"), null, null);
                 user.setFirstname(rs.getString("firstname"));
                 user.setLastname(rs.getString("lastname"));
                 user.setZip(rs.getString("zip"));

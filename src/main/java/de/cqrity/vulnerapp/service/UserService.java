@@ -52,6 +52,7 @@ public class UserService {
             throw new NotFound("Benutzer mit ID " + request.getUserid() + " existiert nicht!");
         }
 
+        user.setUsername(request.getUsername());
         user.setFirstname(request.getFirstname());
         user.setLastname(request.getLastname());
         user.setCreditcardnumber(request.getCreditcardnumber());
@@ -72,8 +73,8 @@ public class UserService {
     }
 
     private void updatePrincipal() {
-        String username = getPrincipal().getUsername();
-        User user = userRepository.findByUsername(username);
+        long userId = getPrincipal().getId();
+        User user = userRepository.findById(userId);
         Authentication auth = new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(auth);
     }
