@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -62,20 +63,7 @@ public class UserController {
         String username = userService.getPrincipal().getUsername();
         User user = userRepository.findByUsername(username);
         ModelAndView modelAndView = new ModelAndView("profile", "command", new UserResource(user));
-        try {
-            String sql = "SELECT authority.authority " +
-                    "FROM authority " +
-                    "INNER JOIN usr on usr.authority_id=authority.id " +
-                    "WHERE usr.username='" + username + "'";
-            String authority = jdbcTemplate.queryForObject(sql, String.class);
-            if (authority.equals("USER")) {
-                modelAndView.addObject("authority", "Standard-Benutzer");
-            } else {
-                modelAndView.addObject("authority", "Administrator");
-            }
-        } catch (Exception e) {
-            modelAndView.addObject("error", "Unvorhergesehener Ausnahmefehler an der Adresse 0x00000000");
-        }
+        addAuthorityString(username, modelAndView);
         return modelAndView;
     }
 
@@ -116,6 +104,7 @@ public class UserController {
             return modelAndView;
         }
         modelAndView.addObject("success", true);
+        addAuthorityString(request.getUsername(), modelAndView);
         return modelAndView;
     }
 
@@ -130,5 +119,24 @@ public class UserController {
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("users", userService.getUsers());
         return new ModelAndView("/admin/users/list", modelMap);
+    }
+
+    private void addAuthorityString(String username, ModelAndView modelAndView) {
+        try {
+            String sql = "SELECT authority.authority " +
+                    "FROM authority " +
+                    "INNER JOIN usr on usr.authority_id=authority.id " +
+                    "WHERE usr.username='" + username + "'";
+            List<String> authority = jdbcTemplate.queryForList(sql, String.class);
+            if (!authority.isEmpty()) {
+                if (authority.equals("USER")) {
+                    modelAndView.addObject("authority", "Standard-Benutzer");
+                } else {
+                    modelAndView.addObject("authority", "Administrator");
+                }
+            }
+        } catch (Exception e) {
+            modelAndView.addObject("error", "Unvorhergesehener Ausnahmefehler an der Adresse 0x00000000");
+        }
     }
 }
