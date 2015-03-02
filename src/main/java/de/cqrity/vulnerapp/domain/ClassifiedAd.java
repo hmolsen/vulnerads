@@ -91,6 +91,9 @@ public class ClassifiedAd {
     }
 
     public String getShortDescription() {
+        if (description == null) {
+            return description;
+        }
         return description.substring(0, Math.min(description.length(), SHORT_DESCRIPTION_LENGTH)) + " ...";
     }
 
