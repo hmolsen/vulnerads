@@ -4,6 +4,7 @@ import com.google.common.io.ByteStreams;
 import com.google.common.io.Files;
 import de.cqrity.vulnerapp.domain.Image;
 import de.cqrity.vulnerapp.repository.ImageRepository;
+import de.cqrity.vulnerapp.util.VirusScanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class ImageService {
     @Autowired
     ServletContext context;
 
+    @Autowired
+    VirusScanner virusScanner;
+
     public void updateDefaultPhoto(byte[] image) {
         Image defaultImage = new Image();
         defaultImage.setImage(image);
@@ -36,9 +40,13 @@ public class ImageService {
         String filename = adphoto.getOriginalFilename();
         File imageFolder = getImageFolder();
         File subfolder = new File(imageFolder, String.valueOf(adId));
+        if (!subfolder.exists()) subfolder.mkdirs();
         File photoFile = new File(subfolder, filename);
         try {
             Files.write(adphoto.getBytes(), photoFile);
+            if (!virusScanner.forFile(photoFile).scan().isVirusFree()) {
+                photoFile.delete();
+            }
             return filename;
         } catch (IOException e) {
             e.printStackTrace();
