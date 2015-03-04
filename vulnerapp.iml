@@ -54,7 +54,6 @@
     <orderEntry type="library" exported="" name="Gradle: spring-data-commons-1.8.4.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: antlr-2.7.7" level="project" />
     <orderEntry type="library" exported="" name="Gradle: jandex-1.1.0.Final" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: xml-apis-1.0.b2" level="project" />
     <orderEntry type="library" exported="" name="Gradle: jboss-logging-3.1.3.GA" level="project" />
     <orderEntry type="library" exported="" name="Gradle: guava-18.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: spring-security-config-3.2.5.RELEASE" level="project" />
@@ -93,6 +92,28 @@
     <orderEntry type="library" exported="" name="Gradle: hibernate-core-4.3.7.Final" level="project" />
     <orderEntry type="library" exported="" name="Gradle: tomcat-juli-7.0.56" level="project" />
     <orderEntry type="library" exported="" name="Gradle: postgresql-9.3-1102-jdbc41" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: esapi-2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-configuration-1.5" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-beanutils-core-1.7.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-fileupload-1.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-collections-3.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: log4j-1.2.16" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: xom-1.2.5" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: bsh-core-2.0b4" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: antisamy-1.4.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-lang-2.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-digester-1.8" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: xalan-2.7.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: batik-css-1.7" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: nekohtml-1.9.12" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-httpclient-3.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-beanutils-1.7.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: batik-ext-1.7" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: batik-util-1.7" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: xml-apis-ext-1.3.04" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-codec-1.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: xercesImpl-2.8.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: xml-apis-2.0.2" level="project" />
   </component>
 </module>
 
