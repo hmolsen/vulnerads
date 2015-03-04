@@ -114,6 +114,8 @@
     <orderEntry type="library" exported="" name="Gradle: commons-codec-1.2" level="project" />
     <orderEntry type="library" exported="" name="Gradle: xercesImpl-2.8.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: xml-apis-2.0.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: encoder-1.1.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: encoder-jsp-1.1.1" level="project" />
   </component>
 </module>
 

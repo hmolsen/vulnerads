@@ -2,6 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="encode" uri="https://www.owasp.org/index.php/OWASP_Java_Encoder_Project" %>
 
 <sec:authentication var="username" property="principal.username"/>
 <c:set var="isOwnAd" value="${ad.owner.username eq username}" />
@@ -43,8 +45,12 @@
                 </c:if>
                 <div class="row">
                     <div class="col-md-4">
-                        <p><span class="glyphicon glyphicon-user"></span> ${ad.owner.firstname} ${ad.owner.lastname}</p>
-                        <p><span class="glyphicon glyphicon-envelope"></span> ${ad.owner.zip} ${ad.owner.town}</p>
+                        <p><span
+                                class="glyphicon glyphicon-user"></span> ${fn:escapeXml(ad.owner.firstname)} ${encode:forHtml(ad.owner.lastname)}
+                        </p>
+
+                        <p><span class="glyphicon glyphicon-envelope"></span> ${ad.owner.zip} <c:out
+                                value="${ad.owner.town}"/></p>
                     </div>
                     <div class="col-md-6">
                         <p><span class="glyphicon glyphicon-earphone"></span> ${ad.owner.phonenumber}</p>

@@ -21,6 +21,8 @@ dependencies {
     compile 'org.springframework.security:spring-security-taglibs:3.2.5.RELEASE'
     compile 'org.apache.tomcat.embed:tomcat-embed-jasper:8.0.14'
     compile 'org.owasp.esapi:esapi:2.1.0'
+    compile 'org.owasp.encoder:encoder:1.1.1'
+    compile 'org.owasp.encoder:encoder-jsp:1.1.1'
     compile 'javax.servlet:jstl:1.2'
 
     ////// <SNIP> Comment this out if running with hsqldb
