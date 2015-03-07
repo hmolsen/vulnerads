@@ -48,7 +48,7 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
         http.userDetailsService(userDetailsService);
         http.sessionManagement().sessionFixation().none();
         http.sessionManagement().enableSessionUrlRewriting(true);
-        //http.csrf().disable();
+        http.csrf().disable();
     }
 
     @Override
