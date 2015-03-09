@@ -9,16 +9,12 @@ import de.cqrity.vulnerapp.repository.UserRepository;
 import de.cqrity.vulnerapp.service.ClassifiedAdService;
 import de.cqrity.vulnerapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -26,8 +22,6 @@ import java.util.List;
 public class ClassifiedAdController {
 
     public static final String ANZEIGEN_VON = "Anzeigen von: ";
-
-    private static final String UPPER_FN = "UPPER";
 
     @Autowired
     ClassifiedAdRepository classifiedAdRepository;
@@ -41,9 +35,6 @@ public class ClassifiedAdController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
-
     @RequestMapping(value = "/ads", method = RequestMethod.GET)
     public ModelAndView showFilteredAds(@RequestParam(value = "s", required = false, defaultValue = "") String s) {
         if (s.startsWith("[" + ANZEIGEN_VON)) {
@@ -54,22 +45,7 @@ public class ClassifiedAdController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("index");
 
-        String sql = "SELECT * FROM classified_ad WHERE " + UPPER_FN + "(title) LIKE " + UPPER_FN + "('%" + s + "%') " +
-                "ORDER BY createdtimestamp DESC";
-        List<ClassifiedAd> ads = jdbcTemplate.query(sql, new RowMapper<ClassifiedAd>() {
-            @Override
-            public ClassifiedAd mapRow(ResultSet rs, int rowNum) throws SQLException {
-                User owner = userRepository.findOne(rs.getLong("OWNER_ID"));
-                ClassifiedAd ad = new ClassifiedAd(
-                        owner,
-                        rs.getString("TITLE"),
-                        rs.getString("DESCRIPTION"),
-                        rs.getInt("PRICE"),
-                        rs.getTimestamp("CREATEDTIMESTAMP"));
-                ad.setId(rs.getLong("ID"));
-                return ad;
-            }
-        });
+        List<ClassifiedAd> ads = classifiedAdService.fetchLatestAds(s);
 
         mav.addObject("latestAds", ads);
         mav.addObject("s", s);
@@ -96,11 +72,14 @@ public class ClassifiedAdController {
         mav.setViewName("ad_detail");
 
         ClassifiedAd ad = classifiedAdRepository.findOne(id);
-        if (ad == null) {
-            throw new NotFound("Anzeige existiert nicht.");
+        if (ad != null) {
+            mav.setViewName("ad_detail");
+            mav.addObject("ad", ad);
+        } else {
+            mav.setViewName("index");
+            mav.addObject("error", "Anzeige existiert nicht");
+            mav.addObject("latestAds", classifiedAdService.fetchLatestAds(""));
         }
-        mav.addObject("ad", ad);
-
         return mav;
     }
 

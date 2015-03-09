@@ -26,24 +26,25 @@
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h2>${ad.title}</h2>
-            <div class="brdr ${adBackgroundColorClass} pad-10 box-shad btm-mrg-20">
-                <c:if test="${isOwnAd}">
-                    <div class="row">
-                        <div class="col-md-6"></div>
-                        <div class="col-md-6">
-                            <div class="pull-right btn-group">
-                                <button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}/edit'">
-                                    <span class="glyphicon glyphicon-pencil"></span> Bearbeiten
-                                </button>
-                                <button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}/delete'">
-                                    <span class="glyphicon glyphicon-trash"></span> L&ouml;schen
-                                </button>
-                            </div>
+            <c:if test="${isOwnAd}">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}/edit'">
+                                <span class="glyphicon glyphicon-pencil"></span> Bearbeiten
+                            </button>
+                            <button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}/delete'">
+                                <span class="glyphicon glyphicon-trash"></span> L&ouml;schen
+                            </button>
                         </div>
                     </div>
-                </c:if>
-                <div class="row">
+                </div>
+            </c:if>
+            <h2>${ad.title}</h2>
+
+            <div class="brdr ${adBackgroundColorClass} pad-10 box-shad btm-mrg-20">
+
+            <div class="row">
                     <div class="col-md-4">
                         <p><span
                                 class="glyphicon glyphicon-user"></span> ${fn:escapeXml(ad.owner.firstname)} ${encode:forHtml(ad.owner.lastname)}
