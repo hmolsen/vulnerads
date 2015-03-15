@@ -25,6 +25,7 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/cors/*").permitAll()
                 .antMatchers("/login**").anonymous()
                 .antMatchers("/ads").permitAll()
                 .antMatchers("/photo").permitAll()
@@ -45,6 +46,7 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
                 .permitAll();
+        http.headers().disable();
         http.userDetailsService(userDetailsService);
         http.sessionManagement().sessionFixation().none();
         http.sessionManagement().enableSessionUrlRewriting(true);
