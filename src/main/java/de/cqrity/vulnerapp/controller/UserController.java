@@ -129,7 +129,7 @@ public class UserController {
                     "WHERE usr.username='" + username + "'";
             List<String> authority = jdbcTemplate.queryForList(sql, String.class);
             if (!authority.isEmpty()) {
-                if (authority.equals("USER")) {
+                if (authority.contains("USER")) {
                     modelAndView.addObject("authority", "Standard-Benutzer");
                 } else {
                     modelAndView.addObject("authority", "Administrator");
