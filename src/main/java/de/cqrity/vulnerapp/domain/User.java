@@ -34,7 +34,7 @@ public class User implements UserDetails, Principal {
     private String phonenumber;
 
     @Pattern(regexp = "\\d+")
-    @Size(min = 5, max = 5)
+    @Size(min = 0, max = 5)
     private String zip;
 
     private String town;
@@ -97,6 +97,10 @@ public class User implements UserDetails, Principal {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -120,10 +124,6 @@ public class User implements UserDetails, Principal {
     @Override
     public String getName() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public Authority getAuthority() {
