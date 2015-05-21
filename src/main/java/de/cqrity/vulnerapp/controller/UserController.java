@@ -6,6 +6,7 @@ import de.cqrity.vulnerapp.domain.UserResource;
 import de.cqrity.vulnerapp.repository.UserRepository;
 import de.cqrity.vulnerapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
@@ -101,6 +102,10 @@ public class UserController {
         } catch (UnsupportedOperationException e) {
             modelAndView.addObject("error", e.getMessage());
             result.addError(new FieldError("username", "username", e.getMessage()));
+            return modelAndView;
+        } catch (DataIntegrityViolationException e) {
+            modelAndView.addObject("error", "Benutzer existiert bereits");
+            result.addError(new FieldError("username", "username", "Benutzer existiert bereits"));
             return modelAndView;
         }
         modelAndView.addObject("success", true);
