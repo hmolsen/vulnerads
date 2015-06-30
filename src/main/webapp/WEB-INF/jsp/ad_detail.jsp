@@ -40,14 +40,14 @@
                     </div>
                 </div>
             </c:if>
-            <h2>${ad.title}</h2>
+            <h2>${ad.title}"</h2>
 
             <div class="brdr ${adBackgroundColorClass} pad-10 box-shad btm-mrg-20">
 
             <div class="row">
                     <div class="col-md-4">
-                        <p><span
-                                class="glyphicon glyphicon-user"></span> ${fn:escapeXml(ad.owner.firstname)} ${encode:forHtml(ad.owner.lastname)}
+                        <p>
+                            <span class="glyphicon glyphicon-user"></span> ${ad.owner.firstname} ${ad.owner.lastname}
                         </p>
 
                         <p><span class="glyphicon glyphicon-envelope"></span> ${ad.owner.zip} <c:out
