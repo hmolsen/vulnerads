@@ -6,3 +6,15 @@
 - Elevate users to admins
 - Delete ads
 - Sicherstellen, dass nur JPG hochgeladen werden können
+
+-----------------------
+TRAINING JUNI/JULI 2015
+-----------------------
+- XSS evil.js lösung aus VM entfernen
+- CSP Testseite selber bauen
+- Dinge auf Startseite einbauen, so dass man mit CSP auch was tolles machen kann (externe Quellen)
+-
+
+
+SOFORT:
+ZAP 2.4.0 runterladen
