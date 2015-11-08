@@ -41,3 +41,24 @@ List<ClassifiedAd> ads = jdbcTemplate.query(
                         return ad;
                     }
                 });
+
+
+oder im UserController:
+private void addAuthorityString(String username, ModelAndView modelAndView) {
+        try {
+            String sql = "SELECT authority.authority " +
+                    "FROM authority " +
+                    "INNER JOIN usr on usr.authority_id=authority.id " +
+                    "WHERE usr.username='?'";
+            List<String> authority = jdbcTemplate.queryForList(sql, String.class, username);
+            if (!authority.isEmpty()) {
+                if (authority.contains("USER")) {
+                    modelAndView.addObject("authority", "Standard-Benutzer");
+                } else {
+                    modelAndView.addObject("authority", "Administrator");
+                }
+            }
+        } catch (Exception e) {
+            modelAndView.addObject("error", "Unvorhergesehener Ausnahmefehler an der Adresse 0x00000000");
+        }
+    }
