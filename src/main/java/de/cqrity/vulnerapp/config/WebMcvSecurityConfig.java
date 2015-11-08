@@ -26,7 +26,7 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/cors/*").permitAll()
-                .antMatchers("/login**").anonymous()
+                .antMatchers("/login**").permitAll()
                 .antMatchers("/ads").permitAll()
                 .antMatchers("/photo").permitAll()
                 .antMatchers("/register").anonymous()
@@ -37,12 +37,12 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/user/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
         http
-            .formLogin()
+                .formLogin()
                 .loginPage("/login").failureUrl("/login?error")
                 .usernameParameter("username").passwordParameter("password")
                 .defaultSuccessUrl("/")
                 .permitAll().and()
-            .logout()
+                .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
                 .permitAll();
@@ -67,7 +67,7 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private String getAuthoritiesQuery() {
         return "SELECT u.username AS username, a.authority AS authority "
-               + "FROM usr u INNER JOIN authority a ON a.id = u.authority_id "
-               + "WHERE u.username = ?";
+                + "FROM usr u INNER JOIN authority a ON a.id = u.authority_id "
+                + "WHERE u.username = ?";
     }
 }
