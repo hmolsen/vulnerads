@@ -13,8 +13,8 @@ public class UserResource {
     private String lastname;
     private String creditcardnumber;
     private String phonenumber;
-    @Pattern(regexp = "\\d+")
-    @Size(min = 5, max = 5)
+    @Pattern(regexp = "\\d*")
+    @Size(min = 0, max = 5)
     private String zip;
     private String town;
     private String password;

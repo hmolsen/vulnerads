@@ -33,7 +33,7 @@ public class User implements UserDetails, Principal {
 
     private String phonenumber;
 
-    @Pattern(regexp = "\\d+")
+    @Pattern(regexp = "\\d*")
     @Size(min = 0, max = 5)
     private String zip;
 
