@@ -74,6 +74,7 @@ public class ClassifiedAdService {
                         rs.getInt("PRICE"),
                         rs.getTimestamp("CREATEDTIMESTAMP"));
                 ad.setId(rs.getLong("ID"));
+                ad.setPhotofilename(rs.getString("PHOTOFILENAME"));
                 return ad;
             }
         });

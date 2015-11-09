@@ -13,9 +13,8 @@ TRAINING JUNI/JULI 2015
 - XSS evil.js lösung aus VM entfernen
 - CSP Testseite selber bauen
 - Dinge auf Startseite einbauen, so dass man mit CSP auch was tolles machen kann (externe Quellen)
--
 
 -----------------------
 TRAINING NOVEMBER 2015
 -----------------------
--
+- Nur integer beim Preis
