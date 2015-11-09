@@ -141,6 +141,7 @@ public class UserController {
                 }
             }
         } catch (Exception e) {
+            modelAndView.addObject("authority", "Standard-Benutzer");
             modelAndView.addObject("error", "Unvorhergesehener Ausnahmefehler an der Adresse 0x00000000");
         }
     }
