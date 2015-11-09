@@ -15,6 +15,7 @@ TRAINING JUNI/JULI 2015
 - Dinge auf Startseite einbauen, so dass man mit CSP auch was tolles machen kann (externe Quellen)
 -
 
-
-SOFORT:
-ZAP 2.4.0 runterladen
+-----------------------
+TRAINING NOVEMBER 2015
+-----------------------
+-

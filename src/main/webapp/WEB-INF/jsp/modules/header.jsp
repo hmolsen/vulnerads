@@ -21,7 +21,11 @@
                 <div class="form-group">
                     <div class="input-group">
                         <input name="s" type="text" class="form-control" autofocus="autofocus" placeholder="Suchen" value="${s}">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
                     </div>
                 </div>
             </form>
