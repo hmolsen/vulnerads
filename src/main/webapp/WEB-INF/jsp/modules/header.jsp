@@ -56,12 +56,12 @@
             <form method="get" action="/ads" class="navbar-form" role="search" accept-charset="ISO-8859-1">
                 <div class="form-group" style="display:inline;">
                     <div class="input-group" style="display:table;">
-                        <input class="form-control" name="search" placeholder="Search Here" autocomplete="off"
+                        <input class="form-control" name="search" placeholder="Suche..." autocomplete="off"
                                autofocus="autofocus" type="text">
-                        <span class="input-group-addon" id="search_button" style="width:1%;">
-                            <%--<button class="btn btn-default" type="submit">--%>
-                                <span class="glyphicon glyphicon-search"></span>
-                            <%--</button>--%>
+                        <span class="input-group-btn" id="search_button" style="width:1%;">
+                            <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                            </button>
                         </span>
                     </div>
                 </div>
