@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </c:if>
-            <h2>${ad.title}"</h2>
+            <h2>${ad.title}</h2>
 
             <div class="brdr ${adBackgroundColorClass} pad-10 box-shad btm-mrg-20">
 
