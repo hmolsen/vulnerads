@@ -15,7 +15,7 @@
 
         <div class="navbar-collapse collapse" id="searchbar">
 
-        <sec:authorize access="hasRole('ADMIN')">
+            <sec:authorize access="hasRole('ADMIN')">
                 <jsp:include page="header_admin.jsp"/>
             </sec:authorize>
             <sec:authorize access="hasRole('USER')">
@@ -26,13 +26,13 @@
             </sec:authorize>
 
             <form method="get" action="/ads" class="navbar-form" role="search" accept-charset="ISO-8859-1">
-                <div class="form-group" style="display:inline;">
-                    <div class="input-group" style="display:table;">
+                <div class="form-group" id="search_form_group">
+                    <div class="input-group" id="search_input_group">
                         <input class="form-control" name="search" placeholder="Suche..." autocomplete="off"
                                autofocus="autofocus" type="text">
-                        <span class="input-group-btn" id="search_button" style="width:1%;">
+                        <span class="input-group-btn" id="search_button">
                             <button class="btn btn-default" type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
+                                <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
                     </div>
@@ -42,5 +42,5 @@
     </div>
 </nav>
 <div class="row no-margin">
-<div class="header-padder"></div>
+    <div class="header-padder"></div>
 </div>

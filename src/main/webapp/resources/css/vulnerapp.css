@@ -97,6 +97,18 @@ h4.media-heading > a > small {
     }
 }
 
+#search_form_group {
+    display: inline;
+}
+
+#search_input_group {
+    display: table;
+}
+
+#search_button {
+    width: 1%;
+}
+
 .full-image {
     width: 100%;
 }
