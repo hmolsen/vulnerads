@@ -43,7 +43,11 @@
                     <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-addon">Preis / &euro;</span>
-                            <form:input path="price" cssClass="form-control" />
+
+                            <div class="form-group">
+                                <form:input path="price" cssClass="form-control"/>
+                                <form:errors path="price" cssClass="has-error"/>
+                            </div>
                         </div>
                     </div>
                 </div>

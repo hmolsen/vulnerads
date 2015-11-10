@@ -87,11 +87,14 @@ public class ClassifiedAdController {
     public ModelAndView updateAd(@PathVariable Long id,
                                  @ModelAttribute("command") @Valid ClassifiedAdResource request,
                                  BindingResult result) {
-        ModelAndView mav = new ModelAndView("ad_detail");
+
         if (result.hasErrors()) {
+            ModelAndView mav = new ModelAndView("redirect:/ad/{id}/edit");
+            mav.addObject("error", "War nix. Mekrste selbst...");
             return mav;
         }
 
+        ModelAndView mav = new ModelAndView("ad_detail");
         ClassifiedAd ad = classifiedAdService.update(request);
         mav.addObject("ad", ad);
 
