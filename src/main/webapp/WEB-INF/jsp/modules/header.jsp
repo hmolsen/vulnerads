@@ -28,8 +28,8 @@
             <form method="get" action="/ads" class="navbar-form" role="search" accept-charset="ISO-8859-1">
                 <div class="form-group" id="search_form_group">
                     <div class="input-group" id="search_input_group">
-                        <input class="form-control" name="search" placeholder="Suche..." autocomplete="off"
-                               autofocus="autofocus" type="text">
+                        <input class="form-control" name="s" placeholder="Suche..." autocomplete="off"
+                               autofocus="autofocus" type="text" value="${s}">
                         <span class="input-group-btn" id="search_button">
                             <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
