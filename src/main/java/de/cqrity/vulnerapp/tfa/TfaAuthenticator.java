@@ -1,8 +1,6 @@
 package de.cqrity.vulnerapp.tfa;
 
 import org.apache.commons.codec.binary.Base32;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -11,8 +9,6 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 public class TfaAuthenticator {
-
-    private static final Logger logger = LoggerFactory.getLogger(TfaAuthenticator.class);
 
     public boolean verifyCode(String secret, int tfaCode, int variance)
             throws InvalidKeyException, NoSuchAlgorithmException {

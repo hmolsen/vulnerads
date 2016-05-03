@@ -1,5 +1,6 @@
 package de.cqrity.vulnerapp.service;
 
+import de.cqrity.vulnerapp.config.DatabaseEncryptor;
 import de.cqrity.vulnerapp.domain.Authority;
 import de.cqrity.vulnerapp.domain.ClassifiedAd;
 import de.cqrity.vulnerapp.domain.User;
@@ -8,6 +9,7 @@ import de.cqrity.vulnerapp.exception.NotFound;
 import de.cqrity.vulnerapp.repository.AuthorityRepository;
 import de.cqrity.vulnerapp.repository.ClassifiedAdRepository;
 import de.cqrity.vulnerapp.repository.UserRepository;
+import org.apache.commons.codec.binary.Base32;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.SecureRandom;
 import java.util.List;
 
 @Service
@@ -89,6 +92,14 @@ public class UserService {
 
     public String generateOTPProtocol(String userName) {
         User user = userRepository.findByUsername(userName);
-        return String.format("otpauth://totp/Vulnerads%%20Kleinanzeigen:%s?secret=%s&issuer=Vulnerads%%20Kleinanzeigen", userName, user.generateTfaSecret());
+        String unencryptedTfaSecret = generateNewTfaSecret();
+        user.setEncryptedTfaSecret(DatabaseEncryptor.getInstance().encrypt(unencryptedTfaSecret));
+        return String.format("otpauth://totp/Vulnerads%%20Kleinanzeigen:%s?secret=%s&issuer=Vulnerads%%20Kleinanzeigen", userName, unencryptedTfaSecret);
+    }
+
+    public String generateNewTfaSecret() {
+        byte[] buffer = new byte[10];
+        new SecureRandom().nextBytes(buffer);
+        return new String(new Base32().encode(buffer));
     }
 }

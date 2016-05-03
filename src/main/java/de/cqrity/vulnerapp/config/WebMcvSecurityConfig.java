@@ -61,9 +61,9 @@ public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         TfaAuthenticationProvider tfaAuthenticationProvider = new TfaAuthenticationProvider();
+        tfaAuthenticationProvider.setDatabaseEncryptor(DatabaseEncryptor.getInstance());
         tfaAuthenticationProvider.setTfaAuthenticator(new TfaAuthenticator());
         tfaAuthenticationProvider.setUserDetailsService(userDetailsService);
         return tfaAuthenticationProvider;
     }
-
 }

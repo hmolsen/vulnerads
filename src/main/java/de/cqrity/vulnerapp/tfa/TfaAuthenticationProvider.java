@@ -1,5 +1,6 @@
 package de.cqrity.vulnerapp.tfa;
 
+import de.cqrity.vulnerapp.config.DatabaseEncryptor;
 import de.cqrity.vulnerapp.domain.User;
 import de.cqrity.vulnerapp.tfa.authdetails.TfaWebAuthenticationDetails;
 import de.cqrity.vulnerapp.tfa.exception.MissingTfaKeyAuthenticatorException;
@@ -15,7 +16,9 @@ import java.security.NoSuchAlgorithmException;
 
 public class TfaAuthenticationProvider extends DaoAuthenticationProvider {
 
-    TfaAuthenticator tfaAuthenticator;
+    private TfaAuthenticator tfaAuthenticator;
+
+    private DatabaseEncryptor databaseEncryptor;
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
@@ -23,11 +26,11 @@ public class TfaAuthenticationProvider extends DaoAuthenticationProvider {
         if (authentication.getDetails() instanceof TfaWebAuthenticationDetails) {
             User user = (User) userDetails;
             if (user.isTfaEnabled()) {
-                String tfaSecret = user.getTfaSecret();
+                byte[] encryptedTfaSecret = user.getEncryptedTfaSecret();
                 Integer tfaKey = ((TfaWebAuthenticationDetails) authentication.getDetails()).getTfaKey();
                 if (tfaKey != null) {
                     try {
-                        if (!tfaAuthenticator.verifyCode(tfaSecret, tfaKey, 2)) {
+                        if (!tfaAuthenticator.verifyCode(databaseEncryptor.decrypt(encryptedTfaSecret), tfaKey, 2)) {
                             System.out.printf("Code %d was not valid", tfaKey);
                             authentication.eraseCredentials();
                             throw new BadCredentialsException("Invalid 2FA code");
@@ -46,5 +49,9 @@ public class TfaAuthenticationProvider extends DaoAuthenticationProvider {
 
     public void setTfaAuthenticator(TfaAuthenticator tfaAuthenticator) {
         this.tfaAuthenticator = tfaAuthenticator;
+    }
+
+    public void setDatabaseEncryptor(DatabaseEncryptor databaseEncryptor) {
+        this.databaseEncryptor = databaseEncryptor;
     }
 }
