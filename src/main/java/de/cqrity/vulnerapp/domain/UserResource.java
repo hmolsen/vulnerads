@@ -19,6 +19,7 @@ public class UserResource {
     private String town;
     private String password;
     private String password2;
+    private boolean isTfaEnabled;
 
     public UserResource() {
     }
@@ -34,6 +35,7 @@ public class UserResource {
         this.town = user.getTown();
         this.password = user.getPassword();
         this.password2 = user.getPassword();
+        this.isTfaEnabled = user.isTfaEnabled();
     }
 
     public long getUserid() {
@@ -90,6 +92,14 @@ public class UserResource {
 
     public void setPassword2(String password2) {
         this.password2 = password2;
+    }
+
+    public boolean isTfaEnabled() {
+        return isTfaEnabled;
+    }
+
+    public void setTfaEnabled(boolean isTfaEnabled) {
+        this.isTfaEnabled = isTfaEnabled;
     }
 
     public String getPhonenumber() {

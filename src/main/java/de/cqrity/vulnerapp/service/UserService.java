@@ -62,6 +62,7 @@ public class UserService {
         if (!request.getPassword().isEmpty()) {
             user.setPassword(request.getPassword());
         }
+        user.setTfaEnabled(request.isTfaEnabled());
 
         User updatedUser = userRepository.save(user);
         updatePrincipal();
@@ -84,5 +85,10 @@ public class UserService {
         List<ClassifiedAd> allByUsername = classifiedAdRepository.findAllByUsername(userToDelete.getUsername());
         classifiedAdRepository.delete(allByUsername);
         userRepository.delete(userToDelete);
+    }
+
+    public String generateOTPProtocol(String userName) {
+        User user = userRepository.findByUsername(userName);
+        return String.format("otpauth://totp/Vulnerads%%20Kleinanzeigen:%s?secret=%s&issuer=Vulnerads%%20Kleinanzeigen", userName, user.generateTfaSecret());
     }
 }

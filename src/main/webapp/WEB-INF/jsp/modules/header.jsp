@@ -15,10 +15,10 @@
 
         <div class="navbar-collapse collapse" id="searchbar">
 
-            <sec:authorize access="hasRole('ADMIN')">
+            <sec:authorize access="hasAuthority('ADMIN')">
                 <jsp:include page="header_admin.jsp"/>
             </sec:authorize>
-            <sec:authorize access="hasRole('USER')">
+            <sec:authorize access="hasAuthority('USER')">
                 <jsp:include page="header_user.jsp"/>
             </sec:authorize>
             <sec:authorize access="isAnonymous()">

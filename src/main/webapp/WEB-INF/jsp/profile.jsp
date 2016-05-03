@@ -23,7 +23,7 @@
         <h1><spring:message code="profile.heading"/></h1>
 
         <h3>Kontotyp: ${authority}</h3>
-        <form:form action="profile" method="POST" accept-charset="ISO-8859-1">
+        <form:form action="profile" method="POST" accept-charset="UTF-8">
             <div class="form-group">
                 <form:input path="username" class="form-control" placeholder="Benutzername"/>
                 <form:errors path="username" cssClass="has-error"/>
@@ -60,11 +60,52 @@
                 <form:password path="password2" class="form-control" placeholder="Passwort wiederholen"/>
                 <form:errors path="password2" cssClass="has-error"/>
             </div>
+            <div class="form-group">
+                <label for="tfa_enabled">2 Faktor Authentifizierung: </label>
+
+                <div class="checkbox pull-right no-margin">
+                    <form:checkbox path="tfaEnabled" id="tfa_enabled" data-toggle="toggle" data-on="Aktiviert"
+                                   data-off="Deaktiviert" data-onstyle="success" data-offstyle="danger"/>
+                    <form:errors path="tfaEnabled" cssClass="has-error"/>
+                </div>
+            </div>
             <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="save"/>"/>
             <form:hidden path="userid"/>
         </form:form>
+
+    </div>
+
+    <div class="modal fade" id="showtfasecret" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title custom_align" id="Heading">2 Faktor Authentifizierung</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="alert alert-warning">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        <b>Neuer 2-Faktor Code</b>
+                        <br/>
+                        Alle alten Codes wurden deativiert. Scannen Sie den neuen Code mit z.B. der Google Authenticator
+                        App um 2-Faktor Authentifizierung zu verwenden.
+                        <br/>
+                        Dieser Code wird nicht erneut angezeigt.
+                    </div>
+                    <img class="center-block lazy" data-src-lazy="/profile/tfasecret.png"/>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span
+                            class="glyphicon glyphicon-remove"></span> Schließen
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <jsp:include page="modules/scripts.jsp"/>
+<script src="/resources/js/userprofile.js" type="application/javascript"></script>
 </body>
 </html>

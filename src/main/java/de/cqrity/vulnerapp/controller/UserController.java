@@ -1,5 +1,10 @@
 package de.cqrity.vulnerapp.controller;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import de.cqrity.vulnerapp.domain.CreateUserResource;
 import de.cqrity.vulnerapp.domain.User;
 import de.cqrity.vulnerapp.domain.UserResource;
@@ -9,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -16,7 +22,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -49,7 +57,9 @@ public class UserController {
             return modelAndView;
         }
         try {
-            userService.save(new User(request.getUsername(), request.getPassword(), userService.findAuthority("USER")));
+            userService.save(new User(request.getUsername(),
+                    request.getPassword(),
+                    userService.findAuthority("USER")));
         } catch (UnsupportedOperationException e) {
             modelAndView.addObject("error", "Benutzer existiert bereits");
             result.addError(new FieldError("username", "username", "Benutzer existiert bereits"));
@@ -124,6 +134,16 @@ public class UserController {
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("users", userService.getUsers());
         return new ModelAndView("/admin/users/list", modelMap);
+    }
+
+    @RequestMapping(value = "/profile/tfasecret.png", method = RequestMethod.GET)
+    public void generateQRCode(HttpServletResponse response, Authentication auth) throws WriterException, IOException {
+        String otpProtocol = userService.generateOTPProtocol(auth.getName());
+        response.setContentType("image/png");
+        QRCodeWriter writer = new QRCodeWriter();
+        BitMatrix matrix = writer.encode(otpProtocol, BarcodeFormat.QR_CODE, 250, 250);
+        MatrixToImageWriter.writeToStream(matrix, "PNG", response.getOutputStream());
+        response.getOutputStream().flush();
     }
 
     private void addAuthorityString(String username, ModelAndView modelAndView) {

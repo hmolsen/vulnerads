@@ -11,9 +11,10 @@
     <div class="alert alert-danger" role="alert">Benutzername oder Passwort falsch.</div>
 </c:if>
 <div class="row no-margin">
-<div class="col-md-5"></div>
+    <div class="col-md-5"></div>
     <div class="col-md-2">
         <h1><spring:message code="login.heading"/></h1>
+
         <form name='loginForm' action="<c:url value="login"/>" method='POST' accept-charset="ISO-8859-1">
 
             <div class="form-group">
@@ -22,8 +23,10 @@
             <div class="form-group">
                 <input type='password' class="form-control" name='password' placeholder="Passwort"/>
             </div>
+            <div class="form-group">
+                <input type='text' class="form-control" name='tfakey' placeholder="2FA Code"/>
+            </div>
             <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="login.heading"/>"/>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
     </div>
     <div class="col-md-5"></div>

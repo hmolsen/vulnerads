@@ -1,6 +1,7 @@
 package de.cqrity.vulnerapp.domain;
 
 import com.google.common.base.MoreObjects;
+import org.apache.commons.codec.binary.Base32;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.security.Principal;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -24,6 +26,10 @@ public class User implements UserDetails, Principal {
     private String username;
 
     private String password;
+
+    private String tfaSecret;
+
+    private boolean isTfaEnabled = false;
 
     private String firstname;
 
@@ -91,6 +97,25 @@ public class User implements UserDetails, Principal {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String generateTfaSecret() {
+        byte[] buffer = new byte[10];
+        new SecureRandom().nextBytes(buffer);
+        tfaSecret = new String(new Base32().encode(buffer));
+        return tfaSecret;
+    }
+
+    public String getTfaSecret() {
+        return tfaSecret;
+    }
+
+    public boolean isTfaEnabled() {
+        return isTfaEnabled;
+    }
+
+    public void setTfaEnabled(boolean isTfaEnabled) {
+        this.isTfaEnabled = isTfaEnabled;
     }
 
     public String getUsername() {
