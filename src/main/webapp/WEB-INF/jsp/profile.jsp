@@ -23,7 +23,7 @@
         <h1><spring:message code="profile.heading"/></h1>
 
         <h3>Kontotyp: ${authority}</h3>
-        <form:form action="profile" method="POST" accept-charset="UTF-8">
+        <form:form action="profile" method="POST">
             <div class="form-group">
                 <form:input path="username" class="form-control" placeholder="Benutzername"/>
                 <form:errors path="username" cssClass="has-error"/>
