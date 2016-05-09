@@ -60,15 +60,15 @@
                 <form:password path="password2" class="form-control" placeholder="Passwort wiederholen"/>
                 <form:errors path="password2" cssClass="has-error"/>
             </div>
-            <div class="form-group">
-                <label for="tfa_enabled">2 Faktor Authentifizierung: </label>
+            <!-- div class="form-group">
+            <label for="tfa_enabled">2 Faktor Authentifizierung: </label>
 
                 <div class="checkbox pull-right no-margin">
                     <form:checkbox path="tfaEnabled" id="tfa_enabled" data-toggle="toggle" data-on="Aktiviert"
                                    data-off="Deaktiviert" data-onstyle="success" data-offstyle="danger"/>
                     <form:errors path="tfaEnabled" cssClass="has-error"/>
                 </div>
-            </div>
+            </div -->
             <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="save"/>"/>
             <form:hidden path="userid"/>
         </form:form>

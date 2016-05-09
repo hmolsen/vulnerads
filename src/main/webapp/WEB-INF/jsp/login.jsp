@@ -23,9 +23,9 @@
             <div class="form-group">
                 <input type='password' class="form-control" name='password' placeholder="Passwort"/>
             </div>
-            <div class="form-group">
+            <!-- div class="form-group">
                 <input type='text' class="form-control" name='tfakey' placeholder="2FA Code"/>
-            </div>
+            </div -->
             <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="login.heading"/>"/>
         </form>
     </div>
