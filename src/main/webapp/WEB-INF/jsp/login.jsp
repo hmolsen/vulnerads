@@ -26,6 +26,7 @@
             <!-- div class="form-group">
                 <input type='text' class="form-control" name='tfakey' placeholder="2FA Code"/>
             </div -->
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="login.heading"/>"/>
         </form>
     </div>
