@@ -39,8 +39,10 @@ public class ClassifiedAdService {
         ad.setTitle(request.getTitle());
         ad.setDescription(request.getDescription());
         ad.setPrice(request.getPrice());
-        String photofilename = imageService.storeImage(request.getAdphoto(), request.getId());
-        ad.setPhotofilename(photofilename);
+        if (!request.getAdphoto().isEmpty()) {
+            String photofilename = imageService.storeImage(request.getAdphoto(), request.getId());
+            ad.setPhotofilename(photofilename);
+        }
 
         return classifiedAdRepository.save(ad);
     }
