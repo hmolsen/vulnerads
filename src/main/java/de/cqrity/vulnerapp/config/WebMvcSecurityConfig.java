@@ -16,7 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class WebMcvSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserDetailsService userDetailsService;
