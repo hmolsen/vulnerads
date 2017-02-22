@@ -3,3 +3,6 @@ build/*
 gradle/*
 gradlew*
 .DS_Store
+*.ipr
+*.iws
+*.iml
