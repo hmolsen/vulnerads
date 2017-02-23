@@ -27,7 +27,7 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     @Qualifier("bcryptAuthenticationProvider")
-    AuthenticationProvider tfaAuthenticationProvider;
+    AuthenticationProvider bcryptAuthenticationProvider;
 
     @Autowired
     @Qualifier("plaintextAuthenticationProvider")
@@ -60,7 +60,7 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
         http.authenticationProvider(plaintextAuthenticationProvider);
-        http.authenticationProvider(tfaAuthenticationProvider);
+        http.authenticationProvider(bcryptAuthenticationProvider);
 
         http.headers().disable();
         http.sessionManagement().sessionFixation().none();
