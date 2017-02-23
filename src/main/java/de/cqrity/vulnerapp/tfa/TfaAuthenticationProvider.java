@@ -11,24 +11,25 @@ import org.springframework.security.core.AuthenticationException;
 
 public class TfaAuthenticationProvider extends DaoAuthenticationProvider {
 
-    private TfaAuthenticator tfaAuthenticator = new TfaAuthenticator();
-
-    private DatabaseEncryptor databaseEncryptor = DatabaseEncryptor.getInstance();
-
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         final Integer submittedTfaCode = ((TfaWebAuthenticationDetails) authentication.getDetails()).getTfaKey();
         final User user = (User) getUserDetailsService().loadUserByUsername(authentication.getName());
+
         if (user == null) {
             throw new BadCredentialsException("authentication failed");
         }
+
         if (user.isTfaEnabled()) {
-            byte[] encryptedTfaSecret = user.getEncryptedTfaSecret();
             if (submittedTfaCode == null) {
                 throw new BadCredentialsException("No Two-Factor Authentication Code provided");
             }
 
-            if (!tfaAuthenticator.verifyCode(databaseEncryptor.decrypt(encryptedTfaSecret), submittedTfaCode, 2)) {
+            byte[] encryptedTfaSecret = user.getEncryptedTfaSecret();
+            final DatabaseEncryptor databaseEncryptor = DatabaseEncryptor.getInstance();
+            final TfaAuthenticator tfaAuthenticator = new TfaAuthenticator(databaseEncryptor, encryptedTfaSecret, 2);
+
+            if (!tfaAuthenticator.verifyCode(submittedTfaCode)) {
                 System.out.printf("Code %d was not valid", submittedTfaCode);
                 throw new BadCredentialsException("Invalid Two-Factor Authentication Code provided");
             }
