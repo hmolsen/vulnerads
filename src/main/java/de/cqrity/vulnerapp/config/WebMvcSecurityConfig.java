@@ -1,18 +1,21 @@
 package de.cqrity.vulnerapp.config;
 
 import de.cqrity.vulnerapp.tfa.TfaAuthenticationProvider;
-import de.cqrity.vulnerapp.tfa.TfaAuthenticator;
 import de.cqrity.vulnerapp.tfa.authdetails.TfaWebAuthenticationDetailsSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.encoding.PlaintextPasswordEncoder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -23,7 +26,8 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
 
     @Autowired
-    AuthenticationProvider authenticationProvider;
+    @Qualifier("plaintextAuthenticationProvider")
+    AuthenticationProvider plaintextAuthenticationProvider;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -50,21 +54,20 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
                 .permitAll();
-        http.authenticationProvider(authenticationProvider);
+
+        http.authenticationProvider(plaintextAuthenticationProvider);
 
         http.headers().disable();
-        http.userDetailsService(userDetailsService);
         http.sessionManagement().sessionFixation().none();
         http.sessionManagement().enableSessionUrlRewriting(true);
         http.csrf().disable();
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        TfaAuthenticationProvider tfaAuthenticationProvider = new TfaAuthenticationProvider();
-        tfaAuthenticationProvider.setDatabaseEncryptor(DatabaseEncryptor.getInstance());
-        tfaAuthenticationProvider.setTfaAuthenticator(new TfaAuthenticator());
-        tfaAuthenticationProvider.setUserDetailsService(userDetailsService);
-        return tfaAuthenticationProvider;
+    public AuthenticationProvider plaintextAuthenticationProvider() {
+        DaoAuthenticationProvider plaintextAuthenticationProvider = new TfaAuthenticationProvider();
+        plaintextAuthenticationProvider.setUserDetailsService(userDetailsService);
+        plaintextAuthenticationProvider.setPasswordEncoder(new PlaintextPasswordEncoder());
+        return plaintextAuthenticationProvider;
     }
 }
