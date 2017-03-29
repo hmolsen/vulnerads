@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="s" uri="http://localhost:8080/sanitizer"%>
 
 <div class="container-fluid" id="body-container">
 <div class="container container-pad" id="ad-listing">
@@ -70,7 +71,7 @@
                         </c:if>
                     </ul>
 
-                    <p class="hidden-xs">${ad.getShortDescription()}</p>
+                    <p class="hidden-xs"><s:sanitize untrustedHtml="${ad.getShortDescription()}"/></p>
                     <a href="/ad/${ad.id}"><span class="fnt-smaller fnt-lighter fnt-arial">[more...]</span></a>
                 </div>
             </div>

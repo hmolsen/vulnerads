@@ -1,0 +1,16 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>Sanitizer TLD</short-name>
+    <uri>http://localhost:8080/sanitizer</uri>
+    <tag>
+        <name>sanitize</name>
+        <tag-class>de.cqrity.vulnerapp.util.WhitelistHtmlSanitizerTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>untrustedHtml</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>

@@ -26,6 +26,7 @@ dependencies {
     compile 'org.owasp.encoder:encoder:1.1.1'
     compile 'org.owasp.encoder:encoder-jsp:1.1.1'
     compile 'javax.servlet:jstl:1.2'
+    compile 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20160924.1'
 
     ////// <SNIP> Comment this out if running with hsqldb
     compile 'org.postgresql:postgresql:9.3-1102-jdbc41'
