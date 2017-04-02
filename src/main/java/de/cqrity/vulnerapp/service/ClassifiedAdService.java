@@ -22,16 +22,16 @@ public class ClassifiedAdService {
     private static final String UPPER_FN = "UPPER";
 
     @Autowired
-    ClassifiedAdRepository classifiedAdRepository;
+    private ClassifiedAdRepository classifiedAdRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    ImageService imageService;
+    private ImageService imageService;
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public ClassifiedAd update(ClassifiedAdResource request) {
         ClassifiedAd ad = classifiedAdRepository.findOne(request.getId());
@@ -63,23 +63,25 @@ public class ClassifiedAdService {
     }
 
     public List<ClassifiedAd> fetchLatestAds(String searchString) {
-        String sql = "SELECT * FROM classified_ad WHERE " + UPPER_FN + "(title) LIKE " + UPPER_FN + "('%" + searchString + "%') " +
+        String searchStringWithWildcards = "%" + searchString + "%";
+
+        String sql = "SELECT * FROM classified_ad WHERE " + UPPER_FN + "(title) LIKE " + UPPER_FN + "('" + searchStringWithWildcards + "') " +
                 "ORDER BY createdtimestamp DESC";
-        return jdbcTemplate.query(sql, new RowMapper<ClassifiedAd>() {
-            @Override
-            public ClassifiedAd mapRow(ResultSet rs, int rowNum) throws SQLException {
-                User owner = userRepository.findOne(rs.getLong("OWNER_ID"));
-                ClassifiedAd ad = new ClassifiedAd(
-                        owner,
-                        rs.getString("TITLE"),
-                        rs.getString("DESCRIPTION"),
-                        rs.getInt("PRICE"),
-                        rs.getTimestamp("CREATEDTIMESTAMP"));
-                ad.setId(rs.getLong("ID"));
-                ad.setPhotofilename(rs.getString("PHOTOFILENAME"));
-                return ad;
-            }
-        });
+
+        RowMapper<ClassifiedAd> classifiedAdRowMapper = (rs, rowNum) -> {
+            User owner = userRepository.findOne(rs.getLong("OWNER_ID"));
+            ClassifiedAd ad = new ClassifiedAd(
+                    owner,
+                    rs.getString("TITLE"),
+                    rs.getString("DESCRIPTION"),
+                    rs.getInt("PRICE"),
+                    rs.getTimestamp("CREATEDTIMESTAMP"));
+            ad.setId(rs.getLong("ID"));
+            ad.setPhotofilename(rs.getString("PHOTOFILENAME"));
+            return ad;
+        };
+
+        return jdbcTemplate.query(sql, classifiedAdRowMapper);
     }
 
 }
