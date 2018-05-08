@@ -6,3 +6,10 @@ gradlew*
 *.ipr
 *.iws
 *.iml
+.gradle/
+
+### Eclipse ###
+.project
+.settings/
+.classpath
+bin/

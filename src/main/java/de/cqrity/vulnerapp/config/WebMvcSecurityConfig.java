@@ -1,7 +1,5 @@
 package de.cqrity.vulnerapp.config;
 
-import de.cqrity.vulnerapp.tfa.TfaAuthenticationProvider;
-import de.cqrity.vulnerapp.tfa.authdetails.TfaWebAuthenticationDetailsSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -10,13 +8,15 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authentication.encoding.PlaintextPasswordEncoder;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import de.cqrity.vulnerapp.tfa.TfaAuthenticationProvider;
+import de.cqrity.vulnerapp.tfa.authdetails.TfaWebAuthenticationDetailsSource;
 
 @Configuration
 @EnableWebSecurity
@@ -55,12 +55,17 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login")
                 .permitAll();
 
-        http.authenticationProvider(plaintextAuthenticationProvider);
-
         http.headers().disable();
         http.sessionManagement().sessionFixation().none();
         http.sessionManagement().enableSessionUrlRewriting(true);
         http.csrf().disable();
+    }
+    
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // Die AuthenticationProvider werden in der angegebenen Reihenfolge abgearbeitet.
+        // Dadurch ist es auch bereits registrierten Nutzern weiterhin möglich, sich anzumelden.
+        auth.authenticationProvider(plaintextAuthenticationProvider);
     }
 
     @Bean
