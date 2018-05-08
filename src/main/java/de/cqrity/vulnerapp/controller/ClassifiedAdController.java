@@ -151,4 +151,37 @@ public class ClassifiedAdController {
 
         return mav;
     }
+    
+    @RequestMapping(value = "/ad/import", method = RequestMethod.GET)
+    public ModelAndView createImport() {
+        ClassifiedAdFileResource adfile = new ClassifiedAdFileResource(null);
+        ModelAndView mav = new ModelAndView("ad_import", "command", adfile);
+        return mav;
+    }
+
+    @RequestMapping(value = "/ad/import", method = RequestMethod.POST)
+    public ModelAndView importAd(@ModelAttribute("command") @Valid ClassifiedAdFileResource request,
+            BindingResult result) {
+        if (result.hasErrors()) {
+            ModelAndView mav = new ModelAndView();
+            mav.setViewName("ad_import");
+            return mav;
+        }
+
+        ClassifiedAd ad = classifiedAdService.importAd(request);
+        if (ad == null) {
+            ModelAndView mav = new ModelAndView();
+            mav.setViewName("ad_import");
+            mav.addObject("importError", "Datei konnte nicht importiert werden.");
+            return mav;
+        }
+
+        User principal = userService.getPrincipal();
+        ad.setOwner(principal);
+        
+        ModelAndView mav = new ModelAndView("ad_create", "command", new ClassifiedAdResource(ad));
+        mav.addObject("ad", ad);
+        return mav;
+    }
+
 }

