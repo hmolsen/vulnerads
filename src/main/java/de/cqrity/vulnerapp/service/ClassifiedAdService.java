@@ -1,20 +1,27 @@
 package de.cqrity.vulnerapp.service;
 
-import de.cqrity.vulnerapp.domain.ClassifiedAd;
-import de.cqrity.vulnerapp.domain.ClassifiedAdResource;
-import de.cqrity.vulnerapp.domain.User;
-import de.cqrity.vulnerapp.repository.ClassifiedAdRepository;
-import de.cqrity.vulnerapp.repository.UserRepository;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Date;
-import java.util.List;
+import de.cqrity.vulnerapp.controller.ClassifiedAdFileResource;
+import de.cqrity.vulnerapp.domain.ClassifiedAd;
+import de.cqrity.vulnerapp.domain.ClassifiedAdResource;
+import de.cqrity.vulnerapp.domain.User;
+import de.cqrity.vulnerapp.repository.ClassifiedAdRepository;
+import de.cqrity.vulnerapp.repository.UserRepository;
+import de.cqrity.vulnerapp.xml.ClassifiedAdXmlDocument;
 
 @Service
 public class ClassifiedAdService {
@@ -82,6 +89,21 @@ public class ClassifiedAdService {
         };
 
         return jdbcTemplate.query(sql, classifiedAdRowMapper);
+    }
+    
+    public ClassifiedAd importAd(ClassifiedAdFileResource request) {
+        ClassifiedAd ad;
+        try {
+            MultipartFile adfile = request.getAdfile();
+            JAXBContext jaxbContext = JAXBContext.newInstance(ClassifiedAdXmlDocument.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            ClassifiedAdXmlDocument document = (ClassifiedAdXmlDocument) jaxbUnmarshaller
+                    .unmarshal(adfile.getInputStream());
+            ad = document.getAd();
+        } catch (JAXBException | IOException e) {
+            ad = null;
+        }
+        return ad;
     }
 
 }

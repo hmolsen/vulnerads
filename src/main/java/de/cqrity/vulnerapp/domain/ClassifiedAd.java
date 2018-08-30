@@ -1,40 +1,63 @@
 package de.cqrity.vulnerapp.domain;
 
-import com.google.common.base.MoreObjects;
-import de.cqrity.vulnerapp.util.DateUtils;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.google.common.base.MoreObjects;
+
+import de.cqrity.vulnerapp.util.DateUtils;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class ClassifiedAd {
 
     private static final int SHORT_DESCRIPTION_LENGTH = 250;
 
+    @XmlTransient
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "classified_ad_seq_gen")
     @SequenceGenerator(name = "classified_ad_seq_gen", sequenceName = "classified_ad_id_seq")
     private long id;
 
+    @XmlTransient
     @ManyToOne(fetch = FetchType.EAGER)
     private User owner;
 
+    @XmlElement(name = "title")
     @NotEmpty
     @Size(max = 100)
     private String title;
 
+    @XmlElement(name = "description")
     @NotEmpty
     @Size(max = 4000)
     private String description;
 
+    @XmlElement(name = "price")
     private int price;
 
+    @XmlTransient
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdtimestamp = new Date();
 
+    @XmlTransient
     private String photofilename;
 
     @SuppressWarnings("unused")

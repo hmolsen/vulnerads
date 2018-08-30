@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authentication.encoding.PlaintextPasswordEncoder;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -59,15 +60,20 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login")
                 .permitAll();
 
-        http.authenticationProvider(plaintextAuthenticationProvider);
-        http.authenticationProvider(bcryptAuthenticationProvider);
-
         http.headers().disable();
         http.sessionManagement().sessionFixation().none();
         http.sessionManagement().enableSessionUrlRewriting(true);
         http.csrf().disable();
     }
 
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // Die AuthenticationProvider werden in der angegebenen Reihenfolge abgearbeitet.
+        // Dadurch ist es auch bereits registrierten Nutzern weiterhin möglich, sich anzumelden.
+        auth.authenticationProvider(plaintextAuthenticationProvider);
+        auth.authenticationProvider(bcryptAuthenticationProvider);
+    }
+    
     @Bean
     PasswordEncoder bcryptPasswordEncoder() {
         return new BCryptPasswordEncoder();

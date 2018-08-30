@@ -11,6 +11,7 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Aktionen<span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
             <li><a href="/ad/create">Anzeige aufgeben</a></li>
+            <li><a href="/ad/import">Anzeige importieren</a></li>
             <li><a href="/ads/${principal.username}">Meine Anzeigen</a></li>
             <li class="divider"></li>
             <li><a href="/profile">Profil bearbeiten</a></li>
