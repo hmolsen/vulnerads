@@ -30,7 +30,7 @@ dependencies {
     compile 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20170515.1'
 
     ////// <SNIP> Comment this out if running with hsqldb
-    compile 'org.postgresql:postgresql'
+    compile 'org.postgresql:postgresql:42.2.5.jre7'
     ////// <SNAP>
 
     ////// <SNIP> Comment this out if running with postgresql
