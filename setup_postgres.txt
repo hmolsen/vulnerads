@@ -1,5 +1,7 @@
 Terminal:
 
+sudo -u postgres -i
+
 $ psql template1
 psql (9.3.5)
 Type "help" for help.
@@ -12,6 +14,9 @@ CREATE DATABASE
 
 template1=# GRANT ALL PRIVILEGES ON DATABASE trainingsdb to training;
 GRANT
+
+template1=# ALTER USER training WITH PASSWORD 'training';
+ALTER ROLE
 
 template1=# \q
 
