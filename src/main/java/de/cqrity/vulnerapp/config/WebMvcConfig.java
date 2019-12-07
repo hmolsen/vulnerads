@@ -35,7 +35,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return (tomcat) -> {
             tomcat.addContextCustomizers((context) -> {
                 context.setUseHttpOnly(false);
-                //((StandardJarScanner) context.getJarScanner()).setScanManifest(false);
+                ((StandardJarScanner) context.getJarScanner()).setScanManifest(false);
             });
         };
     }
