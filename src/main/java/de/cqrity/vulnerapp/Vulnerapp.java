@@ -1,30 +1,22 @@
 package de.cqrity.vulnerapp;
 
+import de.cqrity.vulnerapp.config.SecurityInitializer;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.util.unit.DataSize;
+
 import javax.servlet.MultipartConfigElement;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.MultipartConfigFactory;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-
-import de.cqrity.vulnerapp.config.SecurityInitializer;
-
-@ComponentScan
-@EnableAutoConfiguration
-public class Vulnerapp extends SpringBootServletInitializer {
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(Vulnerapp.class);
-    }
+@SpringBootApplication
+public class Vulnerapp {
 
     @Bean
     MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setMaxFileSize("12MB");
-        factory.setMaxRequestSize("12MB");
+        factory.setMaxFileSize(DataSize.ofMegabytes(12));
+        factory.setMaxRequestSize(DataSize.ofMegabytes(12));
         return factory.createMultipartConfig();
     }
 

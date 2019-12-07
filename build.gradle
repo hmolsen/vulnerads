@@ -1,7 +1,7 @@
 buildscript {
     repositories { mavenCentral() }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.1.RELEASE")
     }
 }
 
@@ -15,29 +15,30 @@ repositories {
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-security'
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'org.springframework.boot:spring-boot-starter-jdbc'
-    compile 'org.springframework.security:spring-security-taglibs'
-    compile 'org.apache.tomcat.embed:tomcat-embed-jasper:9.+'
+    compile 'org.springframework.boot:spring-boot-starter-web:2.2.1.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-security:2.2.1.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa:2.2.1.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-jdbc:2.2.1.RELEASE'
+    compile 'org.springframework.security:spring-security-taglibs:5.2.1.RELEASE'
+    compile 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.29'
     compile 'commons-codec:commons-codec:1.10'
     compile 'com.google.zxing:javase:3.3.0'
-    compile 'org.owasp.esapi:esapi:2.1.0.1'
-    compile 'org.owasp.encoder:encoder:1.2.1'
-    compile 'org.owasp.encoder:encoder-jsp:1.2.1'
+    compile 'org.owasp.esapi:esapi:2.2.0.0'
+    compile 'org.owasp.encoder:encoder:1.2.2'
+    compile 'org.owasp.encoder:encoder-jsp:1.2.2'
     compile 'javax.servlet:jstl:1.2'
-    compile 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20170515.1'
+    compile 'javax.xml.bind:jaxb-api:2.3.0'
+    compile 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20191001.1'
 
     ////// <SNIP> Comment this out if running with hsqldb
-    compile 'org.postgresql:postgresql:42.2.5.jre7'
+    compile 'org.postgresql:postgresql:42.2.8.jre7'
     ////// <SNAP>
 
     ////// <SNIP> Comment this out if running with postgresql
     // compile 'org.hsqldb:hsqldb:2.4.0'
     ////// <SNAP>
 
-    compile 'com.google.guava:guava:23.0'
+    compile 'com.google.guava:guava:28.1-jre'
 
 }
 

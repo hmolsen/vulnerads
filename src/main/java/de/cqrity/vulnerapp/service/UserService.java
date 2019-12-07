@@ -49,7 +49,7 @@ public class UserService {
     }
 
     public User update(UserResource request) {
-        User user = userRepository.findOne(request.getUserid());
+        User user = userRepository.getOne(request.getUserid());
 
         if (user == null) {
             throw new NotFound("Benutzer mit ID " + request.getUserid() + " existiert nicht!");
@@ -84,9 +84,9 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        User userToDelete = userRepository.findOne(id);
+        User userToDelete = userRepository.getOne(id);
         List<ClassifiedAd> allByUsername = classifiedAdRepository.findAllByUsername(userToDelete.getUsername());
-        classifiedAdRepository.delete(allByUsername);
+        classifiedAdRepository.deleteAll(allByUsername);
         userRepository.delete(userToDelete);
     }
 

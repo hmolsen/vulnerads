@@ -7,12 +7,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.authentication.encoding.PlaintextPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import de.cqrity.vulnerapp.tfa.TfaAuthenticationProvider;
@@ -26,8 +26,8 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
 
     @Autowired
-    @Qualifier("plaintextAuthenticationProvider")
-    AuthenticationProvider plaintextAuthenticationProvider;
+    @Qualifier("md5AuthenticationProvider")
+    AuthenticationProvider md5AuthenticationProvider;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -63,16 +63,14 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // Die AuthenticationProvider werden in der angegebenen Reihenfolge abgearbeitet.
-        // Dadurch ist es auch bereits registrierten Nutzern weiterhin möglich, sich anzumelden.
-        auth.authenticationProvider(plaintextAuthenticationProvider);
+        auth.authenticationProvider(md5AuthenticationProvider);
     }
 
     @Bean
-    public AuthenticationProvider plaintextAuthenticationProvider() {
-        DaoAuthenticationProvider plaintextAuthenticationProvider = new TfaAuthenticationProvider();
-        plaintextAuthenticationProvider.setUserDetailsService(userDetailsService);
-        plaintextAuthenticationProvider.setPasswordEncoder(new PlaintextPasswordEncoder());
-        return plaintextAuthenticationProvider;
+    public AuthenticationProvider md5AuthenticationProvider() {
+        DaoAuthenticationProvider authenticationProvider = new TfaAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setPasswordEncoder(new MessageDigestPasswordEncoder("MD5"));
+        return authenticationProvider;
     }
 }

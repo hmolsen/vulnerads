@@ -41,7 +41,7 @@ public class ClassifiedAdService {
     private JdbcTemplate jdbcTemplate;
 
     public ClassifiedAd update(ClassifiedAdResource request) {
-        ClassifiedAd ad = classifiedAdRepository.findOne(request.getId());
+        ClassifiedAd ad = classifiedAdRepository.getOne(request.getId());
 
         ad.setTitle(request.getTitle());
         ad.setDescription(request.getDescription());
@@ -76,7 +76,7 @@ public class ClassifiedAdService {
                 "ORDER BY createdtimestamp DESC";
 
         RowMapper<ClassifiedAd> classifiedAdRowMapper = (rs, rowNum) -> {
-            User owner = userRepository.findOne(rs.getLong("OWNER_ID"));
+            User owner = userRepository.getOne(rs.getLong("OWNER_ID"));
             ClassifiedAd ad = new ClassifiedAd(
                     owner,
                     rs.getString("TITLE"),

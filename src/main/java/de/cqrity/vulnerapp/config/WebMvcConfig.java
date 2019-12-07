@@ -1,22 +1,16 @@
 package de.cqrity.vulnerapp.config;
 
-import org.apache.catalina.Context;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
-import org.springframework.boot.context.embedded.tomcat.TomcatContextCustomizer;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.apache.tomcat.util.scan.StandardJarScanner;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-
-import java.util.Arrays;
 
 @Configuration
 @EnableWebMvc
-public class WebMvcConfig extends WebMvcConfigurerAdapter {
+public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -31,23 +25,19 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
 
-    @Bean
-    public EmbeddedServletContainerFactory servletContainer() {
-        TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
-        factory.setTomcatContextCustomizers(Arrays.asList(new CustomCustomizer()));
-        return factory;
-    }
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
-    static class CustomCustomizer implements TomcatContextCustomizer {
-        @Override
-        public void customize(Context context) {
-            context.setUseHttpOnly(false);
-        }
+    @Bean
+    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> tomcatCustomizer() {
+        return (tomcat) -> {
+            tomcat.addContextCustomizers((context) -> {
+                context.setUseHttpOnly(false);
+                //((StandardJarScanner) context.getJarScanner()).setScanManifest(false);
+            });
+        };
     }
 
 }
