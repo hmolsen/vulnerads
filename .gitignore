@@ -6,6 +6,7 @@ out/*
 *.iws
 *.iml
 .gradle/
+*.p12
 
 ### Eclipse ###
 .project
