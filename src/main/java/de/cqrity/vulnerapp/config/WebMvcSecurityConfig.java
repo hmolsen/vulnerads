@@ -55,7 +55,7 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().disable();
         http.sessionManagement().sessionFixation().none();
         http.sessionManagement().enableSessionUrlRewriting(false);
-        http.csrf().disable();
+        http.csrf().ignoringAntMatchers("/cors/*").disable();
     }
     
     @Override

@@ -2,15 +2,24 @@ package de.cqrity.vulnerapp.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CorsDemoController {
 
-    @RequestMapping(value = "/cors/demo", method = RequestMethod.POST)
+    @PostMapping("/cors/demo")
     @ResponseStatus(HttpStatus.OK)
-    public void corsDemo() {
+    public void corsDemoStandardPost() {
     }
+
+    @GetMapping("/cors/demo")
+    @ResponseStatus(HttpStatus.OK)
+    public void corsDemoGet() {
+    }
+
+    @DeleteMapping("/cors/demo")
+    @ResponseStatus(HttpStatus.OK)
+    public void corsDemoDelete() {
+    }
+
 }
