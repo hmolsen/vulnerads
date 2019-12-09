@@ -27,6 +27,7 @@ public class User implements UserDetails, Principal {
 
     private byte[] encryptedTfaSecret;
 
+    @Column(columnDefinition = "boolean default false")
     private boolean isTfaEnabled = false;
 
     private String firstname;
