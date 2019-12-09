@@ -32,7 +32,7 @@ public class ClassifiedAd {
     @XmlTransient
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "classified_ad_seq_gen")
-    @SequenceGenerator(name = "classified_ad_seq_gen", sequenceName = "classified_ad_id_seq")
+    @SequenceGenerator(name = "classified_ad_seq_gen", sequenceName = "classified_ad_id_seq", initialValue = 1000)
     private long id;
 
     @XmlTransient

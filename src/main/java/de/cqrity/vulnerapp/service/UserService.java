@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,7 +64,7 @@ public class UserService {
         user.setZip(request.getZip());
         user.setTown(request.getTown());
         if (!request.getPassword().isEmpty()) {
-            user.setPassword(request.getPassword());
+            user.setPassword(new MessageDigestPasswordEncoder("MD5").encode(request.getPassword()));
         }
         user.setTfaEnabled(request.isTfaEnabled());
 

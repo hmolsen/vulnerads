@@ -15,6 +15,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -58,7 +59,7 @@ public class UserController {
         }
         try {
             userService.save(new User(request.getUsername(),
-                    request.getPassword(),
+                    new MessageDigestPasswordEncoder("MD5").encode(request.getPassword()),
                     userService.findAuthority("USER")));
         } catch (UnsupportedOperationException e) {
             modelAndView.addObject("error", "Benutzer existiert bereits");

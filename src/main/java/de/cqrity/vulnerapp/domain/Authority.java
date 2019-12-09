@@ -10,7 +10,7 @@ public class Authority implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authority_seq_gen")
-    @SequenceGenerator(name = "authority_seq_gen", sequenceName = "authority_id_seq")
+    @SequenceGenerator(name = "authority_seq_gen", sequenceName = "authority_id_seq", initialValue = 1000)
     private long id;
 
     private String authority;
