@@ -23,29 +23,27 @@ public class VirusScanner {
     VirusScanner() {
     }
 
-    public VirusScanner forFile(File file) {
+    public de.cqrity.vulnerapp.util.VirusScanner forFile(File file) {
         this.file = file;
         return this;
     }
 
-    public VirusScanner scan() {
+    public de.cqrity.vulnerapp.util.VirusScanner scan() {
         try {
             File antivir = new ServletContextResource(servletContext, "/resources/antivir/antivir.sh").getFile();
 
-            String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
-
-            String usernameSafeForUnix = ESAPI.encoder().encodeForOS(new UnixCodec(), username);
+            String absolutePath = ESAPI.encoder().encodeForOS(new UnixCodec(), file.getAbsolutePath());
+            String username = ESAPI.encoder().encodeForOS(new UnixCodec(), SecurityContextHolder.getContext().getAuthentication().getName());
 
             String[] command = new String[]{
                     "/bin/sh",
                     "-c",
-                    "\"" + antivir.getAbsolutePath() + "\" \"" + file.getAbsolutePath() + "\"" + usernameSafeForUnix
+                    "\"" + antivir.getAbsolutePath() + "\" -f \"" + absolutePath + "\" -u\"" + username
             };
             Process proc = Runtime.getRuntime().exec(command, null, null);
 
-            new StreamGobbler(proc.getErrorStream(), "STDERR").start();
-            new StreamGobbler(proc.getInputStream(), "STDOUT").start();
+            new de.cqrity.vulnerapp.util.VirusScanner.StreamGobbler(proc.getErrorStream(), "STDERR").start();
+            new de.cqrity.vulnerapp.util.VirusScanner.StreamGobbler(proc.getInputStream(), "STDOUT").start();
 
             int exitCode = proc.waitFor();
             if (exitCode == 0) {

@@ -17,8 +17,8 @@ public class CspFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse res = (HttpServletResponse) response;
         res.setHeader("Content-Security-Policy", "default-src 'self'");
-        //res.setHeader("Content-Security-Policy", "default-src 'self'; report-uri http://localhost:8666/logger/log.jsp");
-        //res.setHeader("Content-Security-Policy-Report-Only", "default-src 'self'; report-uri http://localhost:8666/logger/log.jsp");
+        //res.setHeader("Content-Security-Policy", "default-src 'self'; report-uri https://attacat.de:8666/logger/log.jsp");
+        //res.setHeader("Content-Security-Policy-Report-Only", "default-src 'self'; report-uri https://attacat.de:8666/logger/log.jsp");
         chain.doFilter(request, res);
     }
 

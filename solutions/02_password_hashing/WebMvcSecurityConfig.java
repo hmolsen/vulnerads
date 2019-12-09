@@ -1,22 +1,20 @@
 package de.cqrity.vulnerapp.config;
 
+import de.cqrity.vulnerapp.tfa.MD5BCryptPasswordEncoder;
 import de.cqrity.vulnerapp.tfa.TfaAuthenticationProvider;
 import de.cqrity.vulnerapp.tfa.authdetails.TfaWebAuthenticationDetailsSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.authentication.encoding.PlaintextPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -27,12 +25,7 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
 
     @Autowired
-    @Qualifier("bcryptAuthenticationProvider")
-    AuthenticationProvider bcryptAuthenticationProvider;
-
-    @Autowired
-    @Qualifier("plaintextAuthenticationProvider")
-    AuthenticationProvider plaintextAuthenticationProvider;
+    AuthenticationProvider authenticationProvider;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -62,36 +55,20 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.headers().disable();
         http.sessionManagement().sessionFixation().none();
-        http.sessionManagement().enableSessionUrlRewriting(true);
+        http.sessionManagement().enableSessionUrlRewriting(false);
         http.csrf().disable();
     }
 
     @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // Die AuthenticationProvider werden in der angegebenen Reihenfolge abgearbeitet.
-        // Dadurch ist es auch bereits registrierten Nutzern weiterhin möglich, sich anzumelden.
-        auth.authenticationProvider(plaintextAuthenticationProvider);
-        auth.authenticationProvider(bcryptAuthenticationProvider);
-    }
-    
-    @Bean
-    PasswordEncoder bcryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
+    public void configure(AuthenticationManagerBuilder auth) {
+        auth.authenticationProvider(authenticationProvider);
     }
 
     @Bean
-    public AuthenticationProvider bcryptAuthenticationProvider() {
-        TfaAuthenticationProvider bcryptAuthenticationProvider = new TfaAuthenticationProvider();
-        bcryptAuthenticationProvider.setUserDetailsService(userDetailsService);
-        bcryptAuthenticationProvider.setPasswordEncoder(bcryptPasswordEncoder());
-        return bcryptAuthenticationProvider;
-    }
-
-    @Bean
-    public AuthenticationProvider plaintextAuthenticationProvider() {
-        DaoAuthenticationProvider plaintextAuthenticationProvider = new TfaAuthenticationProvider();
-        plaintextAuthenticationProvider.setUserDetailsService(userDetailsService);
-        plaintextAuthenticationProvider.setPasswordEncoder(new PlaintextPasswordEncoder());
-        return plaintextAuthenticationProvider;
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authenticationProvider = new TfaAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setPasswordEncoder(new MD5BCryptPasswordEncoder());
+        return authenticationProvider;
     }
 }

@@ -73,7 +73,7 @@
                         <div class="col-md-12">
                             <h3>Beschreibung</h3>
 
-                            <p>${ad.description}</p>
+                            <p><c:out value="${ad.description}" /></p>
                         </div>
                     </div>
                 </div>

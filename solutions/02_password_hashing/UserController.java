@@ -1,15 +1,21 @@
 package de.cqrity.vulnerapp.controller;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import de.cqrity.vulnerapp.domain.CreateUserResource;
 import de.cqrity.vulnerapp.domain.User;
 import de.cqrity.vulnerapp.domain.UserResource;
 import de.cqrity.vulnerapp.repository.UserRepository;
 import de.cqrity.vulnerapp.service.UserService;
+import de.cqrity.vulnerapp.tfa.MD5BCryptPasswordEncoder;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -17,9 +23,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -31,8 +37,6 @@ public class UserController {
     JdbcTemplate jdbcTemplate;
     @Autowired
     private UserService userService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView showRegistrationPage() {
@@ -52,12 +56,9 @@ public class UserController {
             return modelAndView;
         }
         try {
-            userService.save(new User(
-                            request.getUsername(),
-                            passwordEncoder.encode(request.getPassword()),
-                            //request.getPassword(),
-                            userService.findAuthority("USER"))
-            );
+            userService.save(new User(request.getUsername(),
+                    new MD5BCryptPasswordEncoder().encode(request.getPassword()),
+                    userService.findAuthority("USER")));
         } catch (UnsupportedOperationException e) {
             modelAndView.addObject("error", "Benutzer existiert bereits");
             result.addError(new FieldError("username", "username", "Benutzer existiert bereits"));
@@ -79,17 +80,14 @@ public class UserController {
     @RequestMapping(value = "/userdetail", method = RequestMethod.GET)
     public ModelAndView showEditProfileView(@RequestParam("id") String id) {
         String findById = "SELECT username,firstname, lastname, phonenumber, town, zip FROM usr WHERE id =" + id;
-        User user = jdbcTemplate.queryForObject(findById, new RowMapper<User>() {
-            @Override
-            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-                User user = new User(rs.getString("username"), null, null);
-                user.setFirstname(rs.getString("firstname"));
-                user.setLastname(rs.getString("lastname"));
-                user.setZip(rs.getString("zip"));
-                user.setTown(rs.getString("town"));
-                user.setPhonenumber(rs.getString("phonenumber"));
-                return user;
-            }
+        User user = jdbcTemplate.queryForObject(findById, (rs, rowNum) -> {
+            User user1 = new User(rs.getString("username"), null, null);
+            user1.setFirstname(rs.getString("firstname"));
+            user1.setLastname(rs.getString("lastname"));
+            user1.setZip(rs.getString("zip"));
+            user1.setTown(rs.getString("town"));
+            user1.setPhonenumber(rs.getString("phonenumber"));
+            return user1;
         });
         return new ModelAndView("userdetail", "command", new UserResource(user));
     }
@@ -134,6 +132,16 @@ public class UserController {
         return new ModelAndView("/admin/users/list", modelMap);
     }
 
+    @RequestMapping(value = "/profile/tfasecret.png", method = RequestMethod.GET)
+    public void generateQRCode(HttpServletResponse response, Authentication auth) throws WriterException, IOException {
+        String otpProtocol = userService.generateOTPProtocol(auth.getName());
+        response.setContentType("image/png");
+        QRCodeWriter writer = new QRCodeWriter();
+        BitMatrix matrix = writer.encode(otpProtocol, BarcodeFormat.QR_CODE, 250, 250);
+        MatrixToImageWriter.writeToStream(matrix, "PNG", response.getOutputStream());
+        response.getOutputStream().flush();
+    }
+
     private void addAuthorityString(String username, ModelAndView modelAndView) {
         try {
             String sql = "SELECT authority.authority " +
@@ -149,6 +157,7 @@ public class UserController {
                 }
             }
         } catch (Exception e) {
+            modelAndView.addObject("authority", "Standard-Benutzer");
             modelAndView.addObject("error", "Unvorhergesehener Ausnahmefehler an der Adresse 0x00000000");
         }
     }
