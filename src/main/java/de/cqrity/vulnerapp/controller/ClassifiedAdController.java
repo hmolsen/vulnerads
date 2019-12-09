@@ -67,11 +67,11 @@ public class ClassifiedAdController {
     }
 
     @RequestMapping(value = "/ad/{id}", method = RequestMethod.GET)
-    public ModelAndView showFilteredAds(@PathVariable Long id) {
+    public ModelAndView showFilteredAds(@PathVariable long id) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("ad_detail");
 
-        ClassifiedAd ad = classifiedAdRepository.getOne(id);
+        ClassifiedAd ad = classifiedAdRepository.findById(id);
         if (ad != null) {
             mav.setViewName("ad_detail");
             mav.addObject("ad", ad);
@@ -114,8 +114,8 @@ public class ClassifiedAdController {
 
 
     @RequestMapping(value = "/ad/{id}/edit", method = RequestMethod.GET)
-    public ModelAndView editAd(@PathVariable Long id) {
-        ClassifiedAd ad = classifiedAdRepository.getOne(id);
+    public ModelAndView editAd(@PathVariable long id) {
+        ClassifiedAd ad = classifiedAdRepository.findById(id);
         if (ad == null) {
             throw new NotFound("Anzeige existiert nicht.");
         }

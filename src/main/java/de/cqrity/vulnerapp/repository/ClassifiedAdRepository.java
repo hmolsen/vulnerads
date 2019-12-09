@@ -13,4 +13,6 @@ public interface ClassifiedAdRepository extends JpaRepository<ClassifiedAd, Long
     public List<ClassifiedAd> findAllByUsername(@Param("username") String username);
 
     public List<ClassifiedAd> findAllByOrderByCreatedtimestampDesc();
+
+    public ClassifiedAd findById(long id);
 }
