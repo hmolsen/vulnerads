@@ -1,2 +1,10 @@
 Zeitzone auf Kali einstellen:
 > dpkg-reconfigure tzdata
+
+Autologin als root
+> mousepad /etc/gdm3/daemon.conf
+
+    [daemon]
+    # Enabling automatic login
+    AutomaticLoginEnable = true
+    AutomaticLogin = root
