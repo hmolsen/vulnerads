@@ -11,7 +11,7 @@ public class CorsDemoFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
-        //response.setHeader("Access-Control-Allow-Origin", "http://localhost:8666");
+        //response.setHeader("Access-Control-Allow-Origin", "https://attacat.de:8666");
         chain.doFilter(req, res);
     }
 
