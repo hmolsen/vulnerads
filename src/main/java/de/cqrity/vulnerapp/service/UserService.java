@@ -10,11 +10,11 @@ import de.cqrity.vulnerapp.repository.AuthorityRepository;
 import de.cqrity.vulnerapp.repository.ClassifiedAdRepository;
 import de.cqrity.vulnerapp.repository.UserRepository;
 import org.apache.commons.codec.binary.Base32;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,7 +64,7 @@ public class UserService {
         user.setZip(request.getZip());
         user.setTown(request.getTown());
         if (!request.getPassword().isEmpty()) {
-            user.setPassword(new MessageDigestPasswordEncoder("MD5").encode(request.getPassword()));
+            user.setPassword(DigestUtils.md5Hex(request.getPassword()));
         }
         user.setTfaEnabled(request.isTfaEnabled());
 

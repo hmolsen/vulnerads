@@ -10,12 +10,12 @@ import de.cqrity.vulnerapp.domain.User;
 import de.cqrity.vulnerapp.domain.UserResource;
 import de.cqrity.vulnerapp.repository.UserRepository;
 import de.cqrity.vulnerapp.service.UserService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -59,7 +59,7 @@ public class UserController {
         }
         try {
             userService.save(new User(request.getUsername(),
-                    new MessageDigestPasswordEncoder("MD5").encode(request.getPassword()),
+                            DigestUtils.md5Hex(request.getPassword()),
                     userService.findAuthority("USER")));
         } catch (UnsupportedOperationException e) {
             modelAndView.addObject("error", "Benutzer existiert bereits");
@@ -82,17 +82,14 @@ public class UserController {
     @RequestMapping(value = "/userdetail", method = RequestMethod.GET)
     public ModelAndView showEditProfileView(@RequestParam("id") String id) {
         String findById = "SELECT username,firstname, lastname, phonenumber, town, zip FROM usr WHERE id =" + id;
-        User user = jdbcTemplate.queryForObject(findById, new RowMapper<User>() {
-            @Override
-            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-                User user = new User(rs.getString("username"), null, null);
-                user.setFirstname(rs.getString("firstname"));
-                user.setLastname(rs.getString("lastname"));
-                user.setZip(rs.getString("zip"));
-                user.setTown(rs.getString("town"));
-                user.setPhonenumber(rs.getString("phonenumber"));
-                return user;
-            }
+        User user = jdbcTemplate.queryForObject(findById, (rs, rowNum) -> {
+            User user1 = new User(rs.getString("username"), null, null);
+            user1.setFirstname(rs.getString("firstname"));
+            user1.setLastname(rs.getString("lastname"));
+            user1.setZip(rs.getString("zip"));
+            user1.setTown(rs.getString("town"));
+            user1.setPhonenumber(rs.getString("phonenumber"));
+            return user1;
         });
         return new ModelAndView("userdetail", "command", new UserResource(user));
     }
