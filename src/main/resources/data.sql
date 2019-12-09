@@ -14,15 +14,15 @@ VALUES (4, 'jens', MD5('j'), FALSE, 'Jens', 'Junker', '21635', 'Jork',
         '04162 / 94 23 14', 1);
 INSERT INTO usr (id, username, password, is_tfa_enabled, firstname, lastname, zip, town, phonenumber, authority_id)
 VALUES
-  (5, 'gisi', MD5('zg2lkjb8'), FALSE, 'Gisela', 'Gerhardt', '92274', 'Gebenbach',
+  (5, 'gisi', MD5('wzPvij*,dmimj1gS'), FALSE, 'Gisela', 'Gerhardt', '92274', 'Gebenbach',
    '09622 35 21 32', 1);
 INSERT INTO usr (id, username, password, is_tfa_enabled, firstname, lastname, zip, town, phonenumber, authority_id)
 VALUES
-  (6, 'werner', MD5('ib2ub3l1'), FALSE, 'Werner', 'Weber', '65203', 'Wiesbaden',
+  (6, 'werner', MD5('justinbieber'), FALSE, 'Werner', 'Weber', '65203', 'Wiesbaden',
    '+49 (0) 611 / 18462803', 1);
 INSERT INTO usr (id, username, password, is_tfa_enabled, firstname, lastname, zip, town, phonenumber, authority_id)
 VALUES
-  (7, 'sibylle', MD5('hbeb23n4'), FALSE, 'Sibylle', 'Schäfer', '21682', 'Stade',
+  (7, 'sibylle', MD5('shepherdess'), FALSE, 'Sibylle', 'Schäfer', '21682', 'Stade',
    '+49 (0) 4142 / 728304', 1);
 INSERT INTO classified_ad (id, owner_id, title, description, price, createdtimestamp, photofilename) VALUES
   (1, 2, 'Bmw 320D M-Packet/Alcantara/xenon/ Tüv neu/ 1hand Schnäppchen',
