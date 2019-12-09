@@ -1,7 +1,8 @@
 package de.cqrity.vulnerapp.config;
 
+import de.cqrity.vulnerapp.tfa.TfaAuthenticationProvider;
+import de.cqrity.vulnerapp.tfa.authdetails.TfaWebAuthenticationDetailsSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,9 +16,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import de.cqrity.vulnerapp.tfa.TfaAuthenticationProvider;
-import de.cqrity.vulnerapp.tfa.authdetails.TfaWebAuthenticationDetailsSource;
-
 @Configuration
 @EnableWebSecurity
 public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -26,8 +24,7 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
 
     @Autowired
-    @Qualifier("md5AuthenticationProvider")
-    AuthenticationProvider md5AuthenticationProvider;
+    AuthenticationProvider authenticationProvider;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -62,12 +59,12 @@ public class WebMvcSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     
     @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(md5AuthenticationProvider);
+    public void configure(AuthenticationManagerBuilder auth) {
+        auth.authenticationProvider(authenticationProvider);
     }
 
     @Bean
-    public AuthenticationProvider md5AuthenticationProvider() {
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new TfaAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(new MessageDigestPasswordEncoder("MD5"));
