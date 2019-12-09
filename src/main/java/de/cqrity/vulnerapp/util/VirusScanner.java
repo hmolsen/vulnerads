@@ -33,7 +33,7 @@ public class VirusScanner {
             String[] command = new String[]{
                     "/bin/sh",
                     "-c",
-                    "\"" + antivir.getAbsolutePath() + "\" \"" + file.getAbsolutePath() + "\"" + SecurityContextHolder.getContext().getAuthentication().getName()
+                    "\"" + antivir.getAbsolutePath() + "\" -f \"" + file.getAbsolutePath() + "\" -u\"" + SecurityContextHolder.getContext().getAuthentication().getName()
             };
             Process proc = Runtime.getRuntime().exec(command, null, null);
 
