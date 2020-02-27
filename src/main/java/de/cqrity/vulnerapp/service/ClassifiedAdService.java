@@ -8,6 +8,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import de.cqrity.vulnerapp.config.DatabaseMigrator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -27,6 +30,8 @@ import de.cqrity.vulnerapp.xml.ClassifiedAdXmlDocument;
 public class ClassifiedAdService {
 
     private static final String UPPER_FN = "UPPER";
+
+    private static final Logger log = LoggerFactory.getLogger(ClassifiedAdService.class);
 
     @Autowired
     private ClassifiedAdRepository classifiedAdRepository;
@@ -102,6 +107,7 @@ public class ClassifiedAdService {
             ad = document.getAd();
         } catch (JAXBException | IOException e) {
             ad = null;
+            log.error("Could not parse XML", e);
         }
         return ad;
     }
