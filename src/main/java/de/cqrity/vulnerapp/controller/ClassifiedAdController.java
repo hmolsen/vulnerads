@@ -14,14 +14,19 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
+
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
 @Controller
 public class ClassifiedAdController {
+    public static final String ANZEIGEN_VON = "Anzeige von:";
 
-    public static final String ANZEIGEN_VON = "Anzeigen von: ";
+    @Autowired
+    private MessageSource messageSource;
 
     @Autowired
     ClassifiedAdRepository classifiedAdRepository;
@@ -77,7 +82,7 @@ public class ClassifiedAdController {
             mav.addObject("ad", ad);
         } else {
             mav.setViewName("index");
-            mav.addObject("error", "Anzeige existiert nicht");
+            mav.addObject("error", messageSource.getMessage("ad.controller.error.notexist=", null, LocaleContextHolder.getLocale()));
             mav.addObject("latestAds", classifiedAdService.fetchLatestAds(""));
         }
         return mav;
@@ -117,7 +122,7 @@ public class ClassifiedAdController {
     public ModelAndView editAd(@PathVariable long id) {
         ClassifiedAd ad = classifiedAdRepository.findById(id);
         if (ad == null) {
-            throw new NotFound("Anzeige existiert nicht.");
+            throw new NotFound(messageSource.getMessage("ad.controller.error.notexist=", null, LocaleContextHolder.getLocale()));
         }
 
         ModelAndView mav = new ModelAndView("ad_edit", "command", new ClassifiedAdResource(ad));
@@ -172,7 +177,7 @@ public class ClassifiedAdController {
         if (ad == null) {
             ModelAndView mav = new ModelAndView();
             mav.setViewName("ad_import");
-            mav.addObject("importError", "Datei konnte nicht importiert werden.");
+            mav.addObject("importError", messageSource.getMessage("ad.controller.error.noimport=", null, LocaleContextHolder.getLocale()));
             return mav;
         }
 

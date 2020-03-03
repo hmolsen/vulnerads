@@ -12,6 +12,8 @@ import de.cqrity.vulnerapp.repository.UserRepository;
 import de.cqrity.vulnerapp.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -39,6 +41,8 @@ public class UserController {
     JdbcTemplate jdbcTemplate;
     @Autowired
     private UserService userService;
+    @Autowired
+    private MessageSource messageSource;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView showRegistrationPage() {
@@ -53,7 +57,7 @@ public class UserController {
             return modelAndView;
         }
         if (!request.getPassword().equals(request.getPassword2())) {
-            modelAndView.addObject("error", "Passwörter stimmen nicht überein");
+            modelAndView.addObject("error", messageSource.getMessage("error.passwordmissmatch", null, LocaleContextHolder.getLocale()));
             result.addError(new FieldError("password", "password2", "Passwörter stimmen nicht überein"));
             return modelAndView;
         }
@@ -62,7 +66,7 @@ public class UserController {
                             DigestUtils.md5Hex(request.getPassword()),
                     userService.findAuthority("USER")));
         } catch (UnsupportedOperationException e) {
-            modelAndView.addObject("error", "Benutzer existiert bereits");
+            modelAndView.addObject("error", messageSource.getMessage("error.existinguser", null, LocaleContextHolder.getLocale()));
             result.addError(new FieldError("username", "username", "Benutzer existiert bereits"));
             return modelAndView;
         }
@@ -101,7 +105,7 @@ public class UserController {
             return modelAndView;
         }
         if (!request.getPassword().equals(request.getPassword2())) {
-            modelAndView.addObject("error", "Passwörter stimmen nicht überein");
+            modelAndView.addObject("error", messageSource.getMessage("error.passwordmissmatch", null, LocaleContextHolder.getLocale()));
             result.addError(new FieldError("password", "password2", "Passwörter stimmen nicht überein"));
             return modelAndView;
         }
@@ -112,7 +116,7 @@ public class UserController {
             result.addError(new FieldError("username", "username", e.getMessage()));
             return modelAndView;
         } catch (DataIntegrityViolationException e) {
-            modelAndView.addObject("error", "Benutzer existiert bereits");
+            modelAndView.addObject("error", messageSource.getMessage("error.existinguser", null, LocaleContextHolder.getLocale()));
             result.addError(new FieldError("username", "username", "Benutzer existiert bereits"));
             return modelAndView;
         }
@@ -153,14 +157,14 @@ public class UserController {
             List<String> authority = jdbcTemplate.queryForList(sql, String.class);
             if (!authority.isEmpty()) {
                 if (authority.contains("USER")) {
-                    modelAndView.addObject("authority", "Standard-Benutzer");
+                    modelAndView.addObject("authority", messageSource.getMessage("usercontroller.defaultuser", null, LocaleContextHolder.getLocale()));
                 } else {
-                    modelAndView.addObject("authority", "Administrator");
+                    modelAndView.addObject("authority", messageSource.getMessage("usercontroller.administrator", null, LocaleContextHolder.getLocale()));
                 }
             }
         } catch (Exception e) {
-            modelAndView.addObject("authority", "Standard-Benutzer");
-            modelAndView.addObject("error", "Unvorhergesehener Ausnahmefehler an der Adresse 0x00000000");
+            modelAndView.addObject("authority", messageSource.getMessage("usercontroller.defaultuser", null, LocaleContextHolder.getLocale()));
+            modelAndView.addObject("error", messageSource.getMessage("usercontroller.unexpectedexception.0x00000000",null, LocaleContextHolder.getLocale()));
         }
     }
 }

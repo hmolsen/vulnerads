@@ -17,12 +17,12 @@
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2">
 						<div class="input-group">
-							<span class="input-group-addon">Anzeige importieren</span>
+							<span class="input-group-addon"><spring:message code="ad.import.importad"/></span>
 						</div>
 						<div class="brdr own-ad pad-10 box-shad btm-mrg-20">
 							<div class="row">
 								<div class="col-md-12">
-									Datei:<input type="file" name="adfile"><br />
+									<spring:message code="ad.import.file"/><input type="file" name="adfile"><br />
 								</div>
 							</div>
 							<c:if test="${not empty importError}">
@@ -33,10 +33,10 @@
 								<div class="col-md-6">
 									<div class="pull-right btn-group">
 										<form:button class="btn btn-primary">
-											<span class="glyphicon glyphicon-check"></span> Anzeige importieren                                     </form:button>
+											<span class="glyphicon glyphicon-check"></span> <spring:message code="ad.import.importad"/>                                     </form:button>
 										<form:button type="button" class="btn btn-danger"
 											onClick="location.href='/ads'">
-											<span class="glyphicon glyphicon-arrow-left"></span> Verwerfen                                     </form:button>
+											<span class="glyphicon glyphicon-arrow-left"></span> <spring:message code="ad.import.discard"/>                                     </form:button>
 									</div>
 								</div>
 							</div>

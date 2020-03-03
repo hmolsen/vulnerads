@@ -10,22 +10,27 @@
 <jsp:include page="modules/header.jsp"/>
 <div class="row no-margin">
     <div class="col-md-4 col-md-offset-4">
-        <h1><spring:message code="userdetail.heading"/></h1>
+        <h1><spring:message code="userdetail.title"/></h1>
         <form:form accept-charset="ISO-8859-1">
             <div class="form-group">
-                <form:input path="firstname" class="form-control" placeholder="Vorname" disabled="true"/>
+                <spring:message code="userdetail.firstname" var="firstname"/>
+                <form:input path="firstname" class="form-control" placeholder="${firstname}" disabled="true"/>
             </div>
             <div class="form-group">
-                <form:input path="lastname" class="form-control" placeholder="Nachname" disabled="true"/>
+                <spring:message code="userdetail.lastname" var="lastname"/>
+                <form:input path="lastname" class="form-control" placeholder="${lastname}" disabled="true"/>
             </div>
             <div class="form-group">
-                <form:input path="phonenumber" class="form-control" placeholder="Telefonnummer" disabled="true"/>
+                <spring:message code="userdetail.phonenumber" var="phonenumber"/>
+                <form:input path="phonenumber" class="form-control" placeholder="${phonenumber}" disabled="true"/>
             </div>
             <div class="form-group">
-                <form:input path="zip" class="form-control" placeholder="PLZ" disabled="true"/>
+                <spring:message code="userdetail.zip" var="zip"/>
+                <form:input path="zip" class="form-control" placeholder="${zip}" disabled="true"/>
             </div>
             <div class="form-group">
-                <form:input path="town" class="form-control" placeholder="Ort" disabled="true"/>
+                <spring:message code="userdetail.town" var="town"/>
+                <form:input path="town" class="form-control" placeholder="${town}" disabled="true"/>
             </div>
         </form:form>
     </div>

@@ -10,12 +10,12 @@
 <jsp:include page="modules/header.jsp"/>
 <c:if test="${success}">
     <div class="alert alert-success" role="alert">
-        ${username}, Registrierung erfolgreich! Sie k&ouml;nnen sich nun <a href="/login">einloggen</a>.
+            ${username}<spring:message code="register.message.success"/>
     </div>
 </c:if>
 <c:if test="${not empty error}">
     <div class="alert alert-danger" role="alert">
-            ${username}, Registrierung fehlgeschlagen! ${error}.
+            ${username}<spring:message code="register.message.failed"/>${error}.
     </div>
 </c:if>
 <div class="row no-margin">
@@ -25,15 +25,18 @@
         <form:form action="register" method="POST" accept-charset="ISO-8859-1">
 
             <div class="form-group">
-                <form:input path="username" class="form-control" placeholder="Username" />
+                <spring:message code="register.field.username.hint" var="usrhint"/>
+                <form:input path="username" class="form-control" placeholder="${usrhint}"/>
                 <form:errors path="username" cssClass="has-error" />
             </div>
             <div class="form-group">
-                <form:password path="password" class="form-control" placeholder="Password"/>
+                <spring:message code="register.field.password.hint" var="pwhint"/>
+                <form:password path="password" class="form-control" placeholder="${pwhint}"/>
                 <form:errors path="password" cssClass="has-error" />
             </div>
             <div class="form-group">
-                <form:password path="password2" class="form-control" placeholder="Repeat password"/>
+                <spring:message code="register.field.retype.hint" var="repwhint"/>
+                <form:password path="password2" class="form-control" placeholder="${repwhint}"/>
                 <form:errors path="password2" cssClass="has-error" />
             </div>
             <input name="submit" class="btn btn-primary" type="submit" value="<spring:message code="register.heading"/>"/>

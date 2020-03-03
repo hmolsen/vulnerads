@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <jsp:include page="../modules/head.jsp"/>
@@ -10,7 +11,7 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h2>Standardbild ändern</h2>
+                <h2><spring:message code="change.default.photo"/></h2>
                 <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20">
                     <div class="row">
                         <div class="col-md-12">
@@ -25,7 +26,7 @@
 
                                 <div class="pull-right btn-group">
                                     <form:button class="btn btn-primary" type="submit">
-                                        <span class="glyphicon glyphicon-check"></span> Standardbild ändern
+                                        <span class="glyphicon glyphicon-check"></span><spring:message code="change.default.photo"/>
                                     </form:button>
                                 </div>
                             </form:form>

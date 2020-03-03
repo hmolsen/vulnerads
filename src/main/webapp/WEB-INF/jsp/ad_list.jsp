@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="s" uri="http://localhost:8080/sanitizer"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <div class="container-fluid" id="body-container">
 <div class="container container-pad" id="ad-listing">
@@ -9,12 +10,12 @@
     <div class="col-md-8 col-md-offset-2">
         <c:choose>
             <c:when test="${not empty s}">
-                <h1>Suchergebnisse</h1>
+                <h1><spring:message code="ad.list.searchresult"/></h1>
 
-                <p>Suche nach: ${s}</p>
+                <p><spring:message code="ad.list.searchfor"/>${s}</p>
             </c:when>
             <c:otherwise>
-                <h1>Neueste Anzeigen</h1>
+                <h1><spring:message code="ad.list.latestads"/></h1>
             </c:otherwise>
         </c:choose>
     </div>

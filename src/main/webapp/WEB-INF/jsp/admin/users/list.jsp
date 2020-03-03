@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -11,18 +12,18 @@
     <div class="container container-pad" id="ad-listing">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <h2>Benutzerliste</h2>
+                <h2><spring:message code="user.list"/></h2>
                 <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20">
                     <div class="table-responsive">
                         <table id="mytable" class="table table-bordred table-striped">
                             <thead>
-                            <th>Benutzername</th>
-                            <th>Vorname</th>
-                            <th>Nachname</th>
-                            <th>PLZ</th>
-                            <th>Ort</th>
-                            <th>Telefon</th>
-                            <th>Löschen</th>
+                            <th><spring:message code="list.username"/></th>
+                            <th><spring:message code="list.firstname"/></th>
+                            <th><spring:message code="list.surname"/></th>
+                            <th><spring:message code="list.postcode"/></th>
+                            <th><spring:message code="list.place"/></th>
+                            <th><spring:message code="list.phone"/></th>
+                            <th><spring:message code="list.delete"/></th>
                             </thead>
                             <tbody>
 
@@ -59,17 +60,17 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title custom_align" id="Heading">Benutzer löschen</h4>
+                            <h4 class="modal-title custom_align" id="Heading"><spring:message code="list.deleteuser"/>/h4>
                         </div>
                         <div class="modal-body">
 
-                            <div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> Möchten Sie den Benutzer zusammen mit allen von ihm erstellten Anzeigen wirklich löschen?</div>
+                            <div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span><spring:message code="list.deletemessage"/></div>
 
                         </div>
                         <div class="modal-footer">
                             <form id="modal-delete-form" method="get">
-                                <button type="submit" class="btn btn-danger" ><span class="glyphicon glyphicon-ok-sign"></span> Löschen</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Behalten</button>
+                                <button type="submit" class="btn btn-danger" ><span class="glyphicon glyphicon-ok-sign"></span><spring:message code="list.delete.ok"/></button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span><spring:message code="list.delete.no"/></button>
                             </form>
                         </div>
                     </div>

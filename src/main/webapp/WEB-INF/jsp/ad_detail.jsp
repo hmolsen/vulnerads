@@ -31,10 +31,10 @@
                     <div class="col-md-12">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}/edit'">
-                                <span class="glyphicon glyphicon-pencil"></span> Bearbeiten
+                                <span class="glyphicon glyphicon-pencil"></span> <spring:message code="ad.detail.edit"/>
                             </button>
                             <button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}/delete'">
-                                <span class="glyphicon glyphicon-trash"></span> L&ouml;schen
+                                <span class="glyphicon glyphicon-trash"></span> <spring:message code="ad.detail.delete"/>
                             </button>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <h3>Beschreibung</h3>
+                        <h3><spring:message code="ad.detail.description"/></h3>
                         <p>${ad.description}</p>
                     </div>
                 </div>

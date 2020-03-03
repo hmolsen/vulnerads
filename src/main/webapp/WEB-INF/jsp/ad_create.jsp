@@ -16,8 +16,9 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="input-group">
-                        <span class="input-group-addon">Titel</span>
-                        <form:input path="title" placeholder="Titel" cssClass="form-control" />
+                        <span class="input-group-addon"><spring:message code="ad.create.title"/></span>
+                        <spring:message code="ad.create.title" var="title"/>
+                        <form:input path="title" placeholder="${title}" cssClass="form-control" />
                         <form:errors path="title" cssClass="has-error" />
                     </div>
                     <div class="brdr own-ad pad-10 box-shad btm-mrg-20">
@@ -32,20 +33,22 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Preis / &euro;</span>
-                                    <form:input path="price" placeholder="Preis" cssClass="form-control" />
+                                    <span class="input-group-addon"><spring:message code="ad.create.price"/> / &euro;</span>
+                                    <spring:message code="ad.create.price" var="price"/>
+                                    <form:input path="price" placeholder="${price}" cssClass="form-control" />
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                Foto hochladen: <input type="file" name="adphoto"><br />
+                                <spring:message code="ad.create.imageup"/><input type="file" name="adphoto"><br />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h3>Beschreibung</h3>
-                                <form:textarea path="description" placeholder="Beschreibung" rows="20" cssClass="form-control" />
+                                <h3><spring:message code="ad.create.description"/></h3>
+                                <spring:message code="ad.create.description" var="desc"/>
+                                <form:textarea path="description" placeholder="${desc}" rows="20" cssClass="form-control" />
                                 <form:errors path="description" cssClass="has-error" />
                             </div>
                         </div>
@@ -54,10 +57,10 @@
                             <div class="col-md-6">
                                 <div class="pull-right btn-group">
                                     <form:button class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-check"></span> Anzeige aufgeben
+                                        <span class="glyphicon glyphicon-check"></span> <spring:message code="ad.create.submitad"/>
                                     </form:button>
                                     <form:button type="button" class="btn btn-danger" onClick="location.href='/ads'">
-                                        <span class="glyphicon glyphicon-arrow-left"></span> Verwerfen
+                                        <span class="glyphicon glyphicon-arrow-left"></span> <spring:message code="ad.create.discardad"/>
                                     </form:button>
                                 </div>
                             </div>

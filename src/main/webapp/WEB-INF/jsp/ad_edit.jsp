@@ -27,8 +27,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="input-group">
-                <span class="input-group-addon">Titel</span>
-                <form:input path="title" placeholder="Titel" cssClass="form-control" />
+                <span class="input-group-addon"><spring:message code="ad.edit.title"/></span>
+                <spring:message code="ad.edit.title" var="title"/>
+                <form:input path="title" placeholder="${title}" cssClass="form-control" />
             </div>
             <div class="brdr ${adBackgroundColorClass} pad-10 box-shad btm-mrg-20">
                 <div class="row">
@@ -42,7 +43,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="input-group">
-                            <span class="input-group-addon">Preis / &euro;</span>
+                            <span class="input-group-addon"><spring:message code="ad.edit.price"/> / &euro;</span>
 
                             <div class="form-group">
                                 <form:input path="price" cssClass="form-control"/>
@@ -54,12 +55,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <img class="full-image" alt="image" src="/photo?fn=${ad.id}/${ad.photofilename}">
-                        Foto ändern: <input type="file" name="adphoto"><br />
+                        <spring:message code="ad.edit.image"/><input type="file" name="adphoto"><br />
                      </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <h3>Beschreibung</h3>
+                        <h3><spring:message code="ad.edit.description"/></h3>
                         <form:textarea path="description" rows="20" cssClass="form-control" />
                     </div>
                 </div>
@@ -69,10 +70,10 @@
                         <div class="col-md-6">
                             <div class="pull-right btn-group">
                                 <form:button class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-check"></span> Speichern
+                                    <span class="glyphicon glyphicon-check"></span> <spring:message code="ad.edit.save"/>
                                 </form:button>
                                 <form:button type="button" class="btn btn-danger" onClick="location.href='/ad/${ad.id}'">
-                                    <span class="glyphicon glyphicon-arrow-left"></span> Verwerfen
+                                    <span class="glyphicon glyphicon-arrow-left"></span> <spring:message code="ad.edit.discard"/>
                                 </form:button>
                             </div>
                         </div>

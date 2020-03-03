@@ -12,6 +12,8 @@ import de.cqrity.vulnerapp.repository.UserRepository;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,6 +36,9 @@ public class UserService {
     @Autowired
     private ClassifiedAdRepository classifiedAdRepository;
 
+    @Autowired
+    private MessageSource messageSource;
+
     public List<User> getUsers() {
         return userRepository.findAll();
     }
@@ -44,7 +49,7 @@ public class UserService {
 
     public User save(final User user) {
         if (userRepository.findByUsername(user.getUsername()) != null) {
-            throw new UnsupportedOperationException("Benutzer existiert bereits");
+            throw new UnsupportedOperationException(messageSource.getMessage("error.existinguser", null, LocaleContextHolder.getLocale()));
         }
         return userRepository.save(user);
     }
@@ -53,7 +58,7 @@ public class UserService {
         User user = userRepository.findById(request.getUserid());
 
         if (user == null) {
-            throw new NotFound("Benutzer mit ID " + request.getUserid() + " existiert nicht!");
+            throw new NotFound(messageSource.getMessage("error.usrnotfound.one", null, LocaleContextHolder.getLocale()) + request.getUserid() + messageSource.getMessage("error.usrnotfound.two", null, LocaleContextHolder.getLocale()));
         }
 
         user.setUsername(request.getUsername());

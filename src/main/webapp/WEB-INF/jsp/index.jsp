@@ -14,15 +14,15 @@
 <jsp:include page="modules/header.jsp"/>
 <c:if test="${deleted}">
     <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Schlie&szlig;en</span></button>
-        Anzeige wurde gel&ouml;scht.
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only"><spring:message code="index.dismiss"/></span></button>
+        <spring:message code="index.deleted"/>
     </div>
 </c:if>
 <c:if test="${not empty error}">
     <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
-                class="sr-only">Schlie&szlig;en</span></button>
-        Fehler! ${error}.
+                class="sr-only"><spring:message code="index.dismiss"/></span></button>
+        <spring:message code="index.error"/>${error}.
     </div>
 </c:if>
 <jsp:include page="ad_list.jsp" />
