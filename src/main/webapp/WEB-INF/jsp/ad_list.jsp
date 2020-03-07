@@ -81,7 +81,7 @@
                     </ul>
 
                     <p class="hidden-xs"><s:sanitize untrustedHtml="${ad.getShortDescription()}"/></p>
-                    <a href="/ad/${ad.id}"><span class="fnt-smaller fnt-lighter fnt-arial">[more...]</span></a>
+                    <a href="/ad/${ad.id}"><span class="fnt-smaller fnt-lighter fnt-arial"><spring:message code="ad.list.more"/></span></a>
                 </div>
             </div>
         </div>
