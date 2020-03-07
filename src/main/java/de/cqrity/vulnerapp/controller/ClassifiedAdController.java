@@ -23,7 +23,7 @@ import java.util.List;
 
 @Controller
 public class ClassifiedAdController {
-    public static final String ANZEIGEN_VON = "Anzeige von:";
+    public static final String USER_FILTER = "user:";
 
     @Autowired
     private MessageSource messageSource;
@@ -42,8 +42,8 @@ public class ClassifiedAdController {
 
     @RequestMapping(value = "/ads", method = RequestMethod.GET)
     public ModelAndView showFilteredAds(@RequestParam(value = "s", required = false, defaultValue = "") String s) {
-        if (s.startsWith("[" + ANZEIGEN_VON)) {
-            String username = s.substring(ANZEIGEN_VON.length() + 1, s.length() - 1);
+        if (s.startsWith(USER_FILTER) && s.length() > USER_FILTER.length()) {
+            String username = s.split(USER_FILTER, 2)[1];
             return showAdsByUser(username);
         }
 
@@ -66,7 +66,7 @@ public class ClassifiedAdController {
         List<ClassifiedAd> ads = classifiedAdRepository.findAllByUsername(username);
 
         mav.addObject("latestAds", ads);
-        mav.addObject("s", "[" + ANZEIGEN_VON + username + "]");
+        mav.addObject("s", USER_FILTER + username);
 
         return mav;
     }
@@ -160,8 +160,7 @@ public class ClassifiedAdController {
     @RequestMapping(value = "/ad/import", method = RequestMethod.GET)
     public ModelAndView createImport() {
         ClassifiedAdFileResource adfile = new ClassifiedAdFileResource(null);
-        ModelAndView mav = new ModelAndView("ad_import", "command", adfile);
-        return mav;
+        return new ModelAndView("ad_import", "command", adfile);
     }
 
     @RequestMapping(value = "/ad/import", method = RequestMethod.POST)
