@@ -17,16 +17,26 @@
 
             <ul class="nav navbar-nav navbar-right center-block">
                 <li>
-                    <div class="dropdown">
-                        <button class="btn navbar-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <spring:message code="header.languagedropdown"/>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="${requestScope['javax.servlet.forward.request_uri']}?lang=de"><span class="flag-icon flag-icon-de"> </span> Deutsch</a></li>
-                            <li><a href="${requestScope['javax.servlet.forward.request_uri']}?lang=en"><span class="flag-icon flag-icon-us"> </span> English</a></li>
-                        </ul>
-                    </div>
+                    <c:choose>
+                        <c:when test="${pageContext.response.locale eq 'en'}">
+                            <a href="${requestScope['javax.servlet.forward.request_uri']}?lang=de"><span class="flag-icon flag-icon-de"> </span></a>
+                        </c:when>
+                        <c:when test="${pageContext.response.locale eq 'de'}">
+                            <a href="${requestScope['javax.servlet.forward.request_uri']}?lang=en"><span class="flag-icon flag-icon-us"> </span></a>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="dropdown">
+                                <button class="btn navbar-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <spring:message code="header.languagedropdown"/>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="${requestScope['javax.servlet.forward.request_uri']}?lang=de"><span class="flag-icon flag-icon-de"> </span> Deutsch</a></li>
+                                    <li><a href="${requestScope['javax.servlet.forward.request_uri']}?lang=en"><span class="flag-icon flag-icon-us"> </span> English</a></li>
+                                </ul>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
                 <sec:authorize access="hasAuthority('ADMIN')">
                     <jsp:include page="header_admin.jsp"/>
