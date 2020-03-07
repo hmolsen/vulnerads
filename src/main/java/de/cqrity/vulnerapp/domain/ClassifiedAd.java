@@ -128,15 +128,19 @@ public class ClassifiedAd {
     }
 
     public String printCreatedTimestamp() {
-        if (DateUtils.isToday(createdtimestamp)) {
-            return "Heute, " + new SimpleDateFormat("HH:mm").format(createdtimestamp);
-        }
-        else if (DateUtils.isYesterday(createdtimestamp)) {
-            return "Gestern, " + new SimpleDateFormat("HH:mm").format(createdtimestamp);
-        }
-        else {
+        if (DateUtils.isToday(createdtimestamp) || DateUtils.isYesterday(createdtimestamp)) {
+            return new SimpleDateFormat("HH:mm").format(createdtimestamp);
+        } else {
             return new SimpleDateFormat("dd.MM.yyyy").format(createdtimestamp);
         }
+    }
+
+    public boolean isFromToday() {
+        return DateUtils.isToday(createdtimestamp);
+    }
+
+    public boolean isFromYesterday() {
+        return DateUtils.isYesterday(createdtimestamp);
     }
 
     public String getPhotofilename() {

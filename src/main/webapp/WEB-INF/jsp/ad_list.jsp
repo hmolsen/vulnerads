@@ -47,7 +47,15 @@
 
                     <h4 class="media-heading">
                         <a href="/ad/${ad.id}" target="_parent">${ad.title}
-                            <small class="pull-right">${ad.printCreatedTimestamp()}</small>
+                            <small class="pull-right">
+                                <c:if test="${ad.isFromToday()}">
+                                    <spring:message code="ad.today"/>,
+                                </c:if>
+                                <c:if test="${ad.isFromYesterday()}">
+                                    <spring:message code="ad.yesterday"/>,
+                                </c:if>
+                                ${ad.printCreatedTimestamp()}
+                            </small>
                         </a>
                     </h4>
 
