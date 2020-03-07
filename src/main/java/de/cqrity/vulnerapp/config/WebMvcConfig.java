@@ -6,6 +6,7 @@ import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.LocaleResolver;
@@ -36,20 +37,19 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Bean
     public WebServerFactoryCustomizer<TomcatServletWebServerFactory> tomcatCustomizer() {
-        return (tomcat) -> {
-            tomcat.addContextCustomizers((context) -> {
-                context.setUseHttpOnly(false);
-                ((StandardJarScanner) context.getJarScanner()).setScanManifest(false);
-            });
-        };
+        return (tomcat) -> tomcat.addContextCustomizers((context) -> {
+            context.setUseHttpOnly(false);
+            ((StandardJarScanner) context.getJarScanner()).setScanManifest(false);
+        });
     }
 
     @Bean
     public LocaleResolver localeResolver() {
-       SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
-       Locale locale = new Locale( "de", "DE");
-       sessionLocaleResolver.setDefaultLocale(locale);
-       return sessionLocaleResolver;
+        CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
+        cookieLocaleResolver.setCookieName("LOCALE");
+        Locale locale = new Locale( "de", "DE");
+        cookieLocaleResolver.setDefaultLocale(locale);
+       return cookieLocaleResolver;
     }
 
     @Bean
