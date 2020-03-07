@@ -100,8 +100,7 @@ public class ClassifiedAd {
     }
 
     public void setDescription(String description) {
-        String htmled = description.replaceAll("\n", "<br />");
-        this.description = htmled;
+        this.description = description.replaceAll("\n", "<br />");
     }
 
     public int getPrice() {
