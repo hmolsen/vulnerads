@@ -55,7 +55,16 @@
                     </div>
                     <div class="col-md-6">
                         <p><span class="glyphicon glyphicon-earphone"></span> ${ad.owner.phonenumber}</p>
-                        <p><span class="glyphicon glyphicon-calendar"></span> ${ad.printCreatedTimestamp()}</p>
+                        <p>
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            <c:if test="${ad.isFromToday()}">
+                                <spring:message code="ad.today"/>,
+                            </c:if>
+                            <c:if test="${ad.isFromYesterday()}">
+                                <spring:message code="ad.yesterday"/>,
+                            </c:if>
+                            ${ad.printCreatedTimestamp()}
+                        </p>
                     </div>
                     <div class="col-md-2">
                         <h3 class="pull-right">${ad.price},- &euro;</h3>
