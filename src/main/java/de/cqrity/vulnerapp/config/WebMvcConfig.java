@@ -5,12 +5,12 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+
 import java.util.Locale;
 
 @Configuration
@@ -49,14 +49,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
         cookieLocaleResolver.setCookieName("LOCALE");
         Locale locale = new Locale( "de", "DE");
         cookieLocaleResolver.setDefaultLocale(locale);
-       return cookieLocaleResolver;
+        return cookieLocaleResolver;
     }
 
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
-       LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-       localeChangeInterceptor.setParamName("lang");
-       return localeChangeInterceptor;
+        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+        localeChangeInterceptor.setParamName("lang");
+        return localeChangeInterceptor;
     }
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
