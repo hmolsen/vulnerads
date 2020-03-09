@@ -17,6 +17,8 @@ import java.util.Locale;
 @EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer {
 
+    public static final int THREE_DAYS_IN_SECONDS = 3 * 24 * 60 * 60;
+
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
@@ -47,6 +49,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public LocaleResolver localeResolver() {
         CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
         cookieLocaleResolver.setCookieName("LOCALE");
+        cookieLocaleResolver.setCookieMaxAge(THREE_DAYS_IN_SECONDS);
         Locale locale = new Locale( "de", "DE");
         cookieLocaleResolver.setDefaultLocale(locale);
         return cookieLocaleResolver;
