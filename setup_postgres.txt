@@ -19,4 +19,3 @@ template1=# ALTER USER training WITH PASSWORD 'training';
 ALTER ROLE
 
 template1=# \q
-
