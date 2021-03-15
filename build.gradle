@@ -14,31 +14,43 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web:2.2.1.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-security:2.2.1.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa:2.2.1.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-jdbc:2.2.1.RELEASE'
-    compile 'org.springframework.security:spring-security-taglibs:5.2.1.RELEASE'
-    compile 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.29'
-    compile 'commons-codec:commons-codec:1.10'
-    compile 'com.google.zxing:javase:3.3.0'
-    compile 'org.owasp.esapi:esapi:2.2.0.0'
-    compile 'org.owasp.encoder:encoder:1.2.2'
-    compile 'org.owasp.encoder:encoder-jsp:1.2.2'
-    compile 'javax.servlet:jstl:1.2'
-    compile 'javax.xml.bind:jaxb-api:2.3.0'
-    compile 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20191001.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.2.1.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.2.1.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.2.1.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.2.1.RELEASE'
+    implementation 'org.springframework.security:spring-security-taglibs:5.2.1.RELEASE'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.29'
+    implementation 'commons-codec:commons-codec:1.10'
+    implementation 'com.google.zxing:javase:3.3.0'
+    implementation 'org.owasp.esapi:esapi:2.2.0.0'
+    implementation 'org.owasp.encoder:encoder:1.2.2'
+    implementation 'org.owasp.encoder:encoder-jsp:1.2.2'
+    implementation 'javax.servlet:jstl:1.2'
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+    implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20191001.1'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
 
     ////// <SNIP> Comment this out if running with hsqldb
-    compile 'org.postgresql:postgresql:42.2.8.jre7'
+    implementation 'org.postgresql:postgresql:42.2.8.jre7'
     ////// <SNAP>
 
     ////// <SNIP> Comment this out if running with postgresql
-    // compile 'org.hsqldb:hsqldb:2.4.0'
+    // implementation 'org.hsqldb:hsqldb:2.4.0'
     ////// <SNAP>
 
-    compile 'com.google.guava:guava:28.1-jre'
+    implementation 'com.google.guava:guava:28.1-jre'
+    
+    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.2.1.RELEASE'
 
 }
 
