@@ -82,7 +82,7 @@ public class ClassifiedAdController {
             mav.addObject("ad", ad);
         } else {
             mav.setViewName("index");
-            mav.addObject("error", messageSource.getMessage("ad.controller.error.notexist=", null, LocaleContextHolder.getLocale()));
+            mav.addObject("error", messageSource.getMessage("ad.controller.error.notexist", null, LocaleContextHolder.getLocale()));
             mav.addObject("latestAds", classifiedAdService.fetchLatestAds(""));
         }
         return mav;
@@ -122,7 +122,7 @@ public class ClassifiedAdController {
     public ModelAndView editAd(@PathVariable long id) {
         ClassifiedAd ad = classifiedAdRepository.findById(id);
         if (ad == null) {
-            throw new NotFound(messageSource.getMessage("ad.controller.error.notexist=", null, LocaleContextHolder.getLocale()));
+            throw new NotFound(messageSource.getMessage("ad.controller.error.notexist", null, LocaleContextHolder.getLocale()));
         }
 
         ModelAndView mav = new ModelAndView("ad_edit", "command", new ClassifiedAdResource(ad));
@@ -176,7 +176,7 @@ public class ClassifiedAdController {
         if (ad == null) {
             ModelAndView mav = new ModelAndView();
             mav.setViewName("ad_import");
-            mav.addObject("importError", messageSource.getMessage("ad.controller.error.noimport=", null, LocaleContextHolder.getLocale()));
+            mav.addObject("importError", messageSource.getMessage("ad.controller.error.noimport", null, LocaleContextHolder.getLocale()));
             return mav;
         }
 
