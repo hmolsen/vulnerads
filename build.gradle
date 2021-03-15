@@ -15,6 +15,7 @@ repositories {
 }
 
 configurations {
+    all*.exclude group: 'xml-apis'
     developmentOnly
     runtimeClasspath {
         extendsFrom developmentOnly
@@ -35,10 +36,8 @@ dependencies {
     implementation 'org.owasp.encoder:encoder:1.2.2'
     implementation 'org.owasp.encoder:encoder-jsp:1.2.2'
     implementation 'javax.servlet:jstl:1.2'
-    implementation 'javax.xml.bind:jaxb-api:2.3.0'
     implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20191001.1'
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
-    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
 
     ////// <SNIP> Comment this out if running with hsqldb
     implementation 'org.postgresql:postgresql:42.2.8.jre7'
