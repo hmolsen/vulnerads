@@ -1,6 +1,7 @@
 build/*
 out/*
 .idea/*
+.vscode/
 .DS_Store
 *.ipr
 *.iws
@@ -13,3 +14,4 @@ out/*
 .settings/
 .classpath
 bin/
+/build/
