@@ -1,0 +1,15 @@
+Angreifer und Opfer in getrennten Browserkontexten simulieren.
+
+Anmelden und JSESSIONID cookie auslesen.
+
+Payload in XSS anfälligen Titel einer Anzeige schreiben. Der Titel wird auf der Startseite auch noch nicht angemeldeten Benutzer:innen angezeigt.
+<script>document.cookie = "JSESSIONID={hier JSESSIONID einfügen};path=/"</script>
+
+Wieder abmelden. Das Opfers besucht die Startseite und bekommt den vorherig ausgewählten cookie gesetzt.
+Nach der Anmeldung des Opfers kann man nun im Namen des Opfers Anfragen tätigen
+
+Zum Schutz gegen Session fixation muss bei Login und Logout jedesmal ein neuer Cookie gesetzt werden.
+In config/WebMvcSecurityConfig.java folgende Zeile löschen:
+http.sessionManagement().sessionFixation().none();
+
+Spring Security schützt by default gegen Session Fixation Angriffe.
