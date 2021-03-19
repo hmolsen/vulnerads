@@ -11,7 +11,7 @@
 <body class="user">
 	<jsp:include page="modules/header.jsp" />
 	<form:form action="/ad/import" method="post"
-		enctype="multipart/form-data" accept-charset="ISO-8859-1">
+		enctype="multipart/form-data">
 		<div class="container-fluid" id="body-container">
 			<div class="container container-pad" id="ad-listing">
 				<div class="row">

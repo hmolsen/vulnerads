@@ -11,7 +11,7 @@
 <div class="row no-margin">
     <div class="col-md-4 col-md-offset-4">
         <h1><spring:message code="userdetail.title"/></h1>
-        <form:form accept-charset="ISO-8859-1">
+        <form:form>
             <div class="form-group">
                 <spring:message code="userdetail.firstname" var="firstname"/>
                 <form:input path="firstname" class="form-control" placeholder="${firstname}" disabled="true"/>
