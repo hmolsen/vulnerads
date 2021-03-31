@@ -20,8 +20,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form:form action="/admin/defaultphoto" method="post" enctype="multipart/form-data"
-                                       accept-charset="ISO-8859-1">
+                            <form:form action="/admin/defaultphoto" method="post" enctype="multipart/form-data">
                                 <input type="file" name="image">
 
                                 <div class="pull-right btn-group">
