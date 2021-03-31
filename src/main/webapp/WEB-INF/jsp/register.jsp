@@ -22,7 +22,7 @@
 <div class="col-md-5"></div>
     <div class="col-md-2">
         <h1><spring:message code="register.heading"/></h1>
-        <form:form action="register" method="POST" accept-charset="ISO-8859-1">
+        <form:form action="register" method="POST">
 
             <div class="form-group">
                 <spring:message code="register.field.username.hint" var="usrhint"/>
