@@ -1,4 +1,0 @@
-In WebMvcSecurityConfig diese Zeile ändern
-http.headers().disable();
-zu
-http.headers().contentSecurityPolicy("script-src 'self';");
