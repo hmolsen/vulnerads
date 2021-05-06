@@ -8,7 +8,3 @@ Cookie für eigene Anfragen nutzen.
 Im Browser Dev Tools > Web-Speicher zum manuellen Setzen von Cookie Werten.
 
 Eine Anzeige im Namen des Opfers schalten
-
-Zum Schutz vor diesem Angriff muss der Cookie auf HttpOnly gesetzt werden, damit Javascript Code keinen Zugriff mehr auf ihn hat.
-In WebMvcConfig entfernen:
-context.setUseHttpOnly(false);
