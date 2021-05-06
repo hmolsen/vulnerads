@@ -73,7 +73,7 @@
                         <div class="col-md-12">
                             <h3>Beschreibung</h3>
 
-                            <p><c:out value="${ad.description}" /></p>
+                            <p><s:sanitize untrustedHtml="${ad.description}"/></p>
                         </div>
                     </div>
                 </div>

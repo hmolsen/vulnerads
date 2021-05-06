@@ -4,6 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="encode" uri="https://www.owasp.org/index.php/OWASP_Java_Encoder_Project" %>
+<%@ taglib prefix="s" uri="http://localhost:8080/sanitizer"%>
 
 <sec:authentication var="username" property="principal.username"/>
 <c:set var="isOwnAd" value="${ad.owner.username eq username}" />
