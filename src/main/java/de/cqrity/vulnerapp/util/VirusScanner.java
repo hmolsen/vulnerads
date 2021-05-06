@@ -1,5 +1,7 @@
 package de.cqrity.vulnerapp.util;
 
+import org.owasp.esapi.ESAPI;
+import org.owasp.esapi.codecs.UnixCodec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
