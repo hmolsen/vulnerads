@@ -1,0 +1,3 @@
+Den Benutzernamen als folgendes mit Anführungszeichen setzen, dann wird daraus folgender Befehl zusammengesetzt:
+"foo && sleep 10" ---> /bin/sh -c  antivir.sh "filename.jpg" ""foo && sleep 10""
+"foo; sleep 10" ---> /bin/sh -c  antivir.sh "filename.jpg" ""foo; sleep 10""
