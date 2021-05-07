@@ -1,0 +1,8 @@
+In application.properties hinzufügen:
+server.error.whitelabel.enabled=false
+
+ErrorHandlerController den ErrorController implementieren lassen (/* Code einkommentieren */)
+RequestMapping auf /error hinzufügen:
+@RequestMapping("/error")
+public ModelAndView handleError(HttpServletRequest request) {
+    ...
