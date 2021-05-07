@@ -1,0 +1,15 @@
+In WebMvcSecurityConfig diese Zeile entfernen:
+http.headers().disable();
+
+In WebMvcSecurityConfig diese Zeile hinzufügen:
+http.headers().contentSecurityPolicy(csp) mit csp = ...
+"default-src 'none';"
+    Jegliche Nicht-HTML-Ressourcen werden blockiert. Die Seite ist nicht benutzbar.
+"script-src 'none';"
+    Jegliches JavaScript wird blockiert. Verschiedene Buttons im Header gehen dadurch kaputt.
+"script-src 'self';"
+    JavaScript von der aktuellen Origin wird erlaubt.
+    Verschiedene Buttons wie "Bearbeiten" oder "Löschen" bei einer Anzeige gehen kaputt, da diese inline Eventhandler nutzen, zB.: onClick="location.href='/ad/1/edit'"
+"script-src 'self unsafe-inline';"
+    JavaScript von der aktuellen Origin, <script> tags und inline Eventhandler sind erlaubt. Nichts geht kaputt.
+    Kein XSS Schutz mehr!
