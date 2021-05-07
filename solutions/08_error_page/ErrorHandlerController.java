@@ -18,7 +18,7 @@ public class ErrorHandlerController implements ErrorController{
 		return modelAndView;
 	}
 
-	// required for implementing ErrorController but not used
+	// ignore this, required for implementing ErrorController but not used
 	@Override
 	public String getErrorPath() {
 		return null;

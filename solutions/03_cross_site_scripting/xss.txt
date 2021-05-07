@@ -1,0 +1,9 @@
+Basis XSS: <script>alert("a")</script>
+
+Nicht Persistentes XSS:
+    Suchfeld
+
+Persistentes XSS
+    Beschreibungsfeld einer Anzeige, ...
+
+Cookie ausgeben: <script>alert(document.cookie)</script>
