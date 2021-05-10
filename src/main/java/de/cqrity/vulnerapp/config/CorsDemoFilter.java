@@ -12,7 +12,7 @@ public class CorsDemoFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Methods", "GET, POST");
-        //response.setHeader("Access-Control-Allow-Origin", "https://attacat.de:8666");
+        //response.setHeader("Access-Control-Allow-Origin", "http://vulnerads-cors.de:8001");
         //response.setHeader("Access-Control-Allow-Headers", "X-My-Own-Header");
         chain.doFilter(req, res);
     }
