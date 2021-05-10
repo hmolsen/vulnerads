@@ -1,0 +1,201 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="utf-8"/>
+<link href="bootstrap.min.css" rel="stylesheet">
+<title>CORS Demo</title>
+<script src="i18n.js"></script>
+<script type="text/javascript">
+    var request = new XMLHttpRequest();
+    var url = 'http://vulnerads.de/cors/demo';
+    
+    function callVulneradsGet() {
+        document.getElementById('successGet').style.visibility = 'hidden';
+        document.getElementById('failureGet').style.visibility = 'hidden';
+        request.open('GET', url, true);
+        request.onreadystatechange = handlerGet;
+        request.send();
+    };
+
+    function handlerGet(evtXHR) {
+        if (request.readyState == 4) {
+            if (request.status == 200) {
+		document.getElementById('successGet').style.visibility = 'visible';
+		document.getElementById('level2').style.visibility = 'visible';
+            } else {
+                document.getElementById('failureGet').style.visibility = 'visible';
+            }
+        }
+    }
+
+    function callVulneradsPost() {
+        document.getElementById('successPost').style.visibility = 'hidden';
+        document.getElementById('failurePost').style.visibility = 'hidden';
+        request.open('POST', url, true);
+        request.onreadystatechange = handlerPost;
+        request.send();
+    };
+
+    function handlerPost(evtXHR) {
+        if (request.readyState == 4) {
+            if (request.status == 200) {
+		document.getElementById('successPost').style.visibility = 'visible';
+		document.getElementById('level3').style.visibility = 'visible';
+            } else {
+                document.getElementById('failurePost').style.visibility = 'visible';
+            }
+        }
+    }
+
+    function callVulneradsPreflight() {
+        document.getElementById('successPreflight').style.visibility = 'hidden';
+        document.getElementById('failurePreflight').style.visibility = 'hidden';
+        request.open('POST', url, true);
+	request.setRequestHeader('X-My-Own-Header','TRUE');
+        request.onreadystatechange = handlerPreflight;
+        request.send();
+    };
+
+    function handlerPreflight(evtXHR) {
+        if (request.readyState == 4) {
+            if (request.status == 200) {
+		document.getElementById('successPreflight').style.visibility = 'visible';
+		document.getElementById('level4').style.visibility = 'visible';
+            } else {
+                document.getElementById('failurePreflight').style.visibility = 'visible';
+            }
+        }
+    }
+
+    function callVulneradsDelete() {
+        document.getElementById('successDelete').style.visibility = 'hidden';
+        document.getElementById('failureDelete').style.visibility = 'hidden';
+        request.open('DELETE', url, true);
+        request.onreadystatechange = handlerDelete;
+        request.send();
+    };
+
+    function handlerDelete(evtXHR) {
+        if (request.readyState == 4) {
+            if (request.status == 200) {
+		document.getElementById('successDelete').style.visibility = 'visible';
+		document.getElementById('win').style.visibility = 'visible';
+            } else {
+                document.getElementById('failureDelete').style.visibility = 'visible';
+            }
+        }
+    }
+</script>
+</head>
+<body onLoad="changelanguage('de')">
+	<button onclick="changelanguage('de')">Deutsch</button>
+	<button onclick="changelanguage('en')">English</button>
+	<form name='cors-poster' action="">
+		<div class="row no-margin" id="level1" style="visibility:visible">
+    		<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<h1 id="cors_uebung"></h1>
+				<p id="dont_reload"></p>
+			</div>
+    		<div class="col-md-1"></div>
+		</div>
+		
+		
+		<div class="row no-margin">
+    		<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<input type="button" class="btn btn-large" value="GET -> http://vulnerads.de/cors/demo" onclick="callVulneradsGet()" />
+	    		</div>
+			</div>
+			<div class="col-md-7">
+				<div id="failureGet" class="alert alert-danger" role="alert" style="visibility: hidden; position: relative; width: 100%">
+		    		<p id="get_reject"></p>
+			  	  	<p id="get_resolve"></p>
+		    	</div>
+				<div id="successGet" class="alert alert-success" role="alert" style="visibility: hidden; position: absolute; top:0; width: 100%">
+		    		<p id="get_success"></p>
+					<p id="get_cors_correct"></p>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		
+		
+		<div class="row no-margin" id="level2" style="visibility:hidden">
+    		<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<input type="button" class="btn btn-large" value="Default POST -> http://vulnerads.de/cors/demo" onclick="callVulneradsPost()" />
+	    		</div>
+			</div>
+			<div class="col-md-7">
+				<div id="failurePost" class="alert alert-danger" role="alert" style="visibility: hidden; position: relative; width: 100%">
+		    		<p id="default_post_reject"></p>
+			  	  	<p id="default_post_resolve"></p>
+		    	</div>
+				<div id="successPost" class="alert alert-success" role="alert" style="visibility: hidden; position: absolute; top:0; width: 100%">
+		    		<p id="default_post_success"></p>
+					<p id="default_post_cors_correct"></p>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		
+		
+		<div class="row no-margin" id="level3" style="visibility:hidden">
+    		<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<input type="button" class="btn btn-large" value="Preflight POST -> http://vulnerads.de/cors/demo" onclick="callVulneradsPreflight()" />
+	    		</div>
+			</div>
+			<div class="col-md-7">
+				<div id="failurePreflight" class="alert alert-danger" role="alert" style="visibility: hidden; position: relative; width: 100%">
+		    		<p id="preflight_post_reject"></p>
+		  	  	    <p id="preflight_post_resolve"></p>
+		    	</div>
+				<div id="successPreflight" class="alert alert-success" role="alert" style="visibility: hidden; position: absolute; top:0; width: 100%">
+		    		<p id="preflight_post_success"></p>
+					<p id="preflight_post_cors_correct"></p>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		
+		
+		<div class="row no-margin" id="level4" style="visibility:hidden">
+    		<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<input type="button" class="btn btn-large" value="Preflight DELETE -> http://vulnerads.de/cors/demo" onclick="callVulneradsDelete()" />
+	    		</div>
+			</div>
+			<div class="col-md-7">
+				<div id="failureDelete" class="alert alert-danger" role="alert" style="visibility: hidden; position: relative; width: 100%">
+		    		<p id="delete_reject"></p>
+			  	  	<p id="delete_resolve"></p>
+		    	</div>
+				<div id="successDelete" class="alert alert-success" role="alert" style="visibility: hidden; position: absolute; top:0; width: 100%">
+		    		<p id="delete_success"></p>
+					<p id="delete_cors_correct"></p>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+
+
+		<div class="row no-margin" id="win" style="visibility:hidden">
+    		<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div id="successWin" class="alert alert-success" role="alert" style="position: relative; width: 100%">
+		    		<h1 id="congrats"></h1>
+					<p id="finished"></p>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</form>
+	<script src="bootstrap.min.js"></script>
+</body>
+</html>
