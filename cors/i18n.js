@@ -15,8 +15,8 @@ var text = [
         de: "<b>Der GET Request wurde vom Server abgelehnt.</b>"
     }, {
         id: "get_resolve",
-        en: "For the request to be accepted, the server needs to allow the origin https://attacat.de:8666. To achieve this, uncomment the line <pre>CorsDemoFilter.java:15: response.setHeader(\"Access-Control-Allow-Origin\", \"https://attacat.de:8666\");</pre> and restart vulnerads.",
-        de: "Damit er angenommen wird muss der Server https://attacat.de:8666 als Anfragenden zulassen. Dazu die Zeile <pre>CorsDemoFilter.java:15: response.setHeader(\"Access-Control-Allow-Origin\", \"https://attacat.de:8666\");</pre> einkommentieren und vulnerads neu starten."
+        en: "For the request to be accepted, the server needs to allow the origin http://vulnerads-cors.de:8001. To achieve this, uncomment the line <pre>CorsDemoFilter.java:15: response.setHeader(\"Access-Control-Allow-Origin\", \"http://vulnerads-cors.de:8001\");</pre> and restart vulnerads.",
+        de: "Damit er angenommen wird muss der Server http://vulnerads-cors.de:8001 als Anfragenden zulassen. Dazu die Zeile <pre>CorsDemoFilter.java:15: response.setHeader(\"Access-Control-Allow-Origin\", \"http://vulnerads-cors.de:8001\");</pre> einkommentieren und vulnerads neu starten."
     }, {
         id: "get_success",
         en: "<b>The GET request has been accepted by the server.</b>",
@@ -33,8 +33,8 @@ var text = [
         de: "<b>Der Standard POST Request wurde vom Server abgelehnt.</b>"
     }, {
         id: "default_post_resolve",
-        en: "For the request to be accepted, the server needs to allow the origin https://attacat.de:8666. To achieve this, uncomment the line <pre>CorsDemoFilter.java:15: response.setHeader(\"Access-Control-Allow-Origin\", \"https://attacat.de:8666\");</pre> and restart vulnerads.",
-        de: "Damit er angenommen wird muss der Server https://attacat.de:8666 als Anfragenden zulassen. Dazu die Zeile <pre>CorsDemoFilter.java:15: response.setHeader(\"Access-Control-Allow-Origin\", \"https://attacat.de:8666\");</pre> einkommentieren und vulnerads neu starten."
+        en: "For the request to be accepted, the server needs to allow the origin http://vulnerads-cors.de:8001. To achieve this, uncomment the line <pre>CorsDemoFilter.java:15: response.setHeader(\"Access-Control-Allow-Origin\", \"http://vulnerads-cors.de:8001\");</pre> and restart vulnerads.",
+        de: "Damit er angenommen wird muss der Server http://vulnerads-cors.de:8001 als Anfragenden zulassen. Dazu die Zeile <pre>CorsDemoFilter.java:15: response.setHeader(\"Access-Control-Allow-Origin\", \"http://vulnerads-cors.de:8001\");</pre> einkommentieren und vulnerads neu starten."
     }, {
         id: "default_post_success",
         en: "<b>The default POST request has been accepted by the server.</b>",
@@ -52,8 +52,8 @@ var text = [
         de: "<b>Der Preflight POST Request wurde vom Server abgelehnt.</b>"
     }, {
         id: "preflight_post_resolve",
-        en: "For the request to be accepted, the server needs to allow the origin https://attacat.de:8666, as well as the header \"X-My-Own-Header\". To achieve this, additionally uncomment the line <pre>CorsDemoFilter.java:16: response.setHeader(\"Access-Control-Allow-Headers\", \"X-My-Own-Header\");</pre> and restart vulnerads.",
-        de: "Damit er angenommen wird muss der Server https://attacat.de:8666 als Anfragenden und den Header \"X-My-Own-Header\" zulassen. Dazu auch die Zeile <pre>CorsDemoFilter.java:16: response.setHeader(\"Access-Control-Allow-Headers\", \"X-My-Own-Header\");</pre> einkommentieren und neu kompilieren."
+        en: "For the request to be accepted, the server needs to allow the origin http://vulnerads-cors.de:8001, as well as the header \"X-My-Own-Header\". To achieve this, additionally uncomment the line <pre>CorsDemoFilter.java:16: response.setHeader(\"Access-Control-Allow-Headers\", \"X-My-Own-Header\");</pre> and restart vulnerads.",
+        de: "Damit er angenommen wird muss der Server http://vulnerads-cors.de:8001 als Anfragenden und den Header \"X-My-Own-Header\" zulassen. Dazu auch die Zeile <pre>CorsDemoFilter.java:16: response.setHeader(\"Access-Control-Allow-Headers\", \"X-My-Own-Header\");</pre> einkommentieren und neu kompilieren."
     }, {
         id: "preflight_post_success",
         en: "<b>The preflight POST request has been accepted by the server.</b>",
