@@ -1,0 +1,5 @@
+Admin kann alle Benutzer sehen und löschen unter /admin/users/list
+
+Löschurl ist /user/{id}/delete
+
+Diese mit einer HTTP Methode außer GET aufrufen, während man als beliebiger User angemeldet ist.
