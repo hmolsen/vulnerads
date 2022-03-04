@@ -13,6 +13,10 @@
         <h1><spring:message code="userdetail.title"/></h1>
         <form:form>
             <div class="form-group">
+                <spring:message code="userdetail.username" var="username"/>
+                <form:input path="username" class="form-control" placeholder="${username}" disabled="true"/>
+            </div>
+            <div class="form-group">
                 <spring:message code="userdetail.firstname" var="firstname"/>
                 <form:input path="firstname" class="form-control" placeholder="${firstname}" disabled="true"/>
             </div>
