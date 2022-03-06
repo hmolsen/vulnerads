@@ -6,7 +6,9 @@
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
       <excludeFolder url="file://$MODULE_DIR$/out" />
-      <excludeFolder url="file://$MODULE_DIR$/solutions" />
+      <excludeFolder url="file://$MODULE_DIR$/exercise_material" />
+      <excludeFolder url="file://$MODULE_DIR$/servers" />
+      <excludeFolder url="file://$MODULE_DIR$/setup" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
