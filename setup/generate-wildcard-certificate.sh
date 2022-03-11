@@ -20,7 +20,7 @@ openssl req -new -subj "$(echo -n "$SUBJ" | tr "\n" "/")" -key "$DOMAIN.key" -ou
 openssl x509 -req -days 3650 -in "$DOMAIN.csr" -signkey "$DOMAIN.key" -out "$DOMAIN.crt"
 rm "$DOMAIN.csr"
 
-echo ""
-echo "Next manual steps:"
-echo "- Use $DOMAIN.crt and $DOMAIN.key to configure Apache/nginx"
-echo "- Import $DOMAIN.crt into Chrome settings: chrome://settings/certificates > tab 'Authorities'"
+sudo mkdir -p /etc/apache2/ssl/
+sudo mv "$DOMAIN.crt" /etc/apache2/ssl/
+sudo mv "$DOMAIN.key" /etc/apache2/ssl/
+
