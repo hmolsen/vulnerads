@@ -1,0 +1,4 @@
+Die 3 XML-Dateien unter https://vulnerads.local/ad/import hochladen.
+1_get_overview.xml: Überblick über alle verfügbaren Endpunkte
+2_get_role.xml: Die Rolle der Amazon EC2 Instanz, in der vulnerads "gehostet" wird.
+3_get_secret.xml: Secret Token der Rolle ausstellen lassen
