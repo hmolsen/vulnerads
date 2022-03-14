@@ -4,4 +4,6 @@ sh generate-wildcard-certificate.sh cookielogger.local
 sh generate-wildcard-certificate.sh mycoolnewblog.local
 sh generate-wildcard-certificate.sh cors-test.local
 sh generate-wildcard-certificate.sh vulnerads.local
-
+mkdir -p ~/cookielogger
+touch ~/cookielogger/cookielog
+chmod o+w ~/cookielogger/cookielog
