@@ -16,18 +16,22 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -72,11 +76,16 @@ public class UserController {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public ModelAndView showEditProfileView() {
-        String username = userService.getPrincipal().getUsername();
-        User user = userRepository.findByUsername(username);
+    public ModelAndView showEditProfileView(@RequestParam(required = false) Long id) {
+        if((id != null) && !userService.getPrincipal().getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            throw new AccessDeniedException("Only Admins are allowed to change other users");
+        }
+        if(id == null)
+            id = userService.getPrincipal().getId();
+
+        User user = userRepository.findById(id).get();
         ModelAndView modelAndView = new ModelAndView("profile", "command", new UserResource(user));
-        addAuthorityString(username, modelAndView);
+        addAuthorityString(user.getUsername(), modelAndView);
         return modelAndView;
     }
 

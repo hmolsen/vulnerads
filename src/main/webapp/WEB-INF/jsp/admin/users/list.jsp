@@ -24,6 +24,7 @@
                             <th><spring:message code="list.place"/></th>
                             <th><spring:message code="list.phone"/></th>
                             <th><spring:message code="list.delete"/></th>
+                            <th><spring:message code="list.edit"/></th>
                             </thead>
                             <tbody>
 
@@ -44,6 +45,7 @@
                                                    ${principal.username == user.username ? 'disabled' : ''}
                                                    id="${user.id}"
                                                    rel="tooltip"><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                                    <td><p><button class="btn btn-danger btn-xs" id="edit-${user.id}" onClick="location.href='/profile?id=${user.id}'"><span class="glyphicon glyphicon-edit"></span></button></p></td>
                                 </tr>
                             </c:forEach>
 

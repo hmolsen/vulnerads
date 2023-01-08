@@ -6,7 +6,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="modules/head.jsp"/>
-<body class="user">
+
+<c:if test="${not empty param.id}">
+    <body class="admin">
+</c:if>
+<c:if test="${empty param.id}">
+    <body class="user">
+</c:if>
 <jsp:include page="modules/header.jsp"/>
 <c:if test="${success}">
     <div class="alert alert-success" role="alert">
