@@ -82,7 +82,7 @@ public class ClassifiedAdController {
             mav.addObject("ad", ad);
         } else {
             mav.setViewName("index");
-            mav.addObject("error", messageSource.getMessage("ad.controller.error.notexist=", null, LocaleContextHolder.getLocale()));
+            mav.addObject("error", messageSource.getMessage("ad.controller.error.notexist", null, LocaleContextHolder.getLocale()));
             mav.addObject("latestAds", classifiedAdService.fetchLatestAds(""));
         }
         return mav;
