@@ -49,7 +49,7 @@
                 </sec:authorize>
             </ul>
 
-            <form method="get" action="/ads" class="navbar-form" role="search" accept-charset="ISO-8859-1">
+            <form method="get" action="/ads" class="navbar-form" role="search">
                 <div class="form-group" id="search_form_group">
                     <div class="input-group" id="search_input_group">
                         <input class="form-control" name="s" placeholder="<spring:message code="header.searchbar.hint"/>" autocomplete="off"
