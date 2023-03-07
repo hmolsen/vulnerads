@@ -50,7 +50,5 @@ dependencies {
 
     implementation 'com.google.guava:guava:28.1-jre'
 
-    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.2.1.RELEASE'
-
 }
 
