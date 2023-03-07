@@ -1,5 +1,7 @@
 package de.cqrity.vulnerapp.config;
 
+import org.apache.tomcat.util.http.Rfc6265CookieProcessor;
+import org.apache.tomcat.util.http.SameSiteCookies;
 import org.apache.tomcat.util.scan.StandardJarScanner;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
@@ -41,6 +43,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public WebServerFactoryCustomizer<TomcatServletWebServerFactory> tomcatCustomizer() {
         return (tomcat) -> tomcat.addContextCustomizers((context) -> {
             context.setUseHttpOnly(false);
+            Rfc6265CookieProcessor cookieProcessor = new Rfc6265CookieProcessor();
+            cookieProcessor.setSameSiteCookies(SameSiteCookies.NONE.getValue());
+            context.setCookieProcessor(cookieProcessor);
             ((StandardJarScanner) context.getJarScanner()).setScanManifest(false);
         });
     }
