@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-25.0.2.10-hotspot\"; cd C:\\\\Users\\\\HannesMolsen\\\\Code\\\\vulnerads; .\\\\gradlew.bat bootRun)"
+    ]
+  }
+}

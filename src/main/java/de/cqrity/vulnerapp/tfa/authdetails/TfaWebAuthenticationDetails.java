@@ -3,7 +3,7 @@ package de.cqrity.vulnerapp.tfa.authdetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.util.StringUtils;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class TfaWebAuthenticationDetails extends WebAuthenticationDetails {
 

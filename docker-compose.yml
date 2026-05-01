@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: trainingsdb
+      POSTGRES_USER: training
+      POSTGRES_PASSWORD: training
+    ports:
+      - "5432:5432"

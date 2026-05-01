@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Size;
 
 public class ClassifiedAdResource {
 

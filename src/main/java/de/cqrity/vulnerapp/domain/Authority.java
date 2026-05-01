@@ -3,7 +3,7 @@ package de.cqrity.vulnerapp.domain;
 import com.google.common.base.MoreObjects;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Authority implements GrantedAuthority {

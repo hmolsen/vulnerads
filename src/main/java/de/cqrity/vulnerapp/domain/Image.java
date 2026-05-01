@@ -1,6 +1,6 @@
 package de.cqrity.vulnerapp.domain;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Image {

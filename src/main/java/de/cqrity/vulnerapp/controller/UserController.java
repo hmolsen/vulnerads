@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -141,7 +141,7 @@ public class UserController {
     public ModelAndView getUserList() {
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("users", userService.getUsers());
-        return new ModelAndView("/admin/users/list", modelMap);
+        return new ModelAndView("admin/users/list", modelMap);
     }
 
     @RequestMapping(value = "/profile/tfasecret.png", method = RequestMethod.GET)

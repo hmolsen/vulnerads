@@ -21,11 +21,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     public static final int THREE_DAYS_IN_SECONDS = 3 * 24 * 60 * 60;
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
-
     @Bean
     public InternalResourceViewResolver viewResolver () {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -44,7 +39,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return (tomcat) -> tomcat.addContextCustomizers((context) -> {
             context.setUseHttpOnly(false);
             Rfc6265CookieProcessor cookieProcessor = new Rfc6265CookieProcessor();
-            cookieProcessor.setSameSiteCookies(SameSiteCookies.NONE.getValue());
+            cookieProcessor.setSameSiteCookies(SameSiteCookies.UNSET.getValue());
             context.setCookieProcessor(cookieProcessor);
             ((StandardJarScanner) context.getJarScanner()).setScanManifest(false);
         });

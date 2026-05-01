@@ -21,14 +21,14 @@ public class AdminController {
 
     @RequestMapping(value = "/defaultphoto", method = RequestMethod.GET)
     public ModelAndView changeDefaultPhoto() {
-        ModelAndView mav = new ModelAndView("/admin/change_default_photo", "command", new ImageResource());
+        ModelAndView mav = new ModelAndView("admin/change_default_photo", "command", new ImageResource());
 
         return mav;
     }
 
     @RequestMapping(value = "/defaultphoto", method = RequestMethod.POST)
     public ModelAndView changeDefaultPhoto(@ModelAttribute("command")ImageResource request, BindingResult result) {
-        ModelAndView mav = new ModelAndView("/admin/change_default_photo");
+        ModelAndView mav = new ModelAndView("admin/change_default_photo");
 
         try {
             imageService.updateDefaultPhoto(request.getImage().getBytes());

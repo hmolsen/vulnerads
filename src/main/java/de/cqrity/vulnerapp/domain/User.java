@@ -4,9 +4,9 @@ import com.google.common.base.MoreObjects;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.Collection;
@@ -44,7 +44,7 @@ public class User implements UserDetails, Principal {
 
     private String town;
 
-    @OneToOne
+    @ManyToOne
     private Authority authority;
 
     @SuppressWarnings("unused")
