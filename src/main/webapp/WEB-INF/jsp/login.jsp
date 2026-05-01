@@ -19,11 +19,15 @@
 
             <div class="form-group">
                 <spring:message code="login.username" var="usrname"/>
-                <input type='text' class="form-control" name='username' placeholder="${usrname}">
+                <label>
+                    <input type='text' class="form-control" name='username' placeholder="${usrname}">
+                </label>
             </div>
             <div class="form-group">
                 <spring:message code="login.password" var="password"/>
-                <input type='password' class="form-control" name='password' placeholder="${password}"/>
+                <label>
+                    <input type='password' class="form-control" name='password' placeholder="${password}"/>
+                </label>
             </div>
             <!-- div class="form-group">
                 <input type='text' class="form-control" name='tfakey' placeholder="2FA Code"/>

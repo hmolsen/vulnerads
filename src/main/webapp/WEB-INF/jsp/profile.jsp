@@ -108,7 +108,7 @@
                         <spring:message code="profile.tfa.texttwo"/>
                     </div>
                     <spring:url value="/profile/tfasecret.png" var="tfaSecretUrl"/>
-                    <img class="center-block lazy" data-src-lazy="${tfaSecretUrl}"/>
+                    <img class="center-block lazy" data-src-lazy="${tfaSecretUrl}" alt="tfa secret"/>
 
                 </div>
                 <div class="modal-footer">
