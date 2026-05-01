@@ -54,7 +54,7 @@ public class ClassifiedAd {
 
     @XmlTransient
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdtimestamp = new Date();
+    private final Date createdtimestamp = new Date();
 
     @XmlTransient
     private String photofilename;

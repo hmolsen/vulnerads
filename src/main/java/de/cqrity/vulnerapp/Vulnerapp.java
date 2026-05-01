@@ -20,7 +20,7 @@ public class Vulnerapp {
         return factory.createMultipartConfig();
     }
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         SpringApplication.run(new Class[] { Vulnerapp.class, SecurityInitializer.class }, args);
     }
 }

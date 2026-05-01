@@ -10,7 +10,7 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 
 public class WhitelistHtmlSanitizerTag extends SimpleTagSupport{
-    private static PolicyFactory policy = new HtmlPolicyBuilder()
+    private static final PolicyFactory policy = new HtmlPolicyBuilder()
             .allowElements("br")
             .toFactory();
 

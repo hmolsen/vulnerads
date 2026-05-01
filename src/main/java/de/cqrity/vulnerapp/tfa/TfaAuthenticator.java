@@ -11,9 +11,9 @@ import java.security.NoSuchAlgorithmException;
 
 public class TfaAuthenticator {
 
-    private String decryptedTfaSecret;
+    private final String decryptedTfaSecret;
 
-    private int variance;
+    private final int variance;
 
     public TfaAuthenticator(DatabaseEncryptor databaseEncryptor, byte[] encryptedTfaSecret, int variance) {
         decryptedTfaSecret = databaseEncryptor.decrypt(encryptedTfaSecret);

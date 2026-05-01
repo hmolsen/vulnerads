@@ -10,9 +10,9 @@ import java.util.List;
 public interface ClassifiedAdRepository extends JpaRepository<ClassifiedAd, Long> {
 
     @Query("SELECT ad FROM ClassifiedAd ad WHERE LOWER(ad.owner.username) = LOWER(:username) ORDER BY ad.createdtimestamp DESC")
-    public List<ClassifiedAd> findAllByUsername(@Param("username") String username);
+    List<ClassifiedAd> findAllByUsername(@Param("username") String username);
 
-    public List<ClassifiedAd> findAllByOrderByCreatedtimestampDesc();
+    List<ClassifiedAd> findAllByOrderByCreatedtimestampDesc();
 
-    public ClassifiedAd findById(long id);
+    ClassifiedAd findById(long id);
 }
