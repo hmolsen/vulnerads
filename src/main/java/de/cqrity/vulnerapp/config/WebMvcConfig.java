@@ -13,6 +13,7 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import java.time.Duration;
 import java.util.Locale;
 
 @Configuration
@@ -47,12 +48,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Bean
     public LocaleResolver localeResolver() {
-        CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
-        cookieLocaleResolver.setCookieName("LOCALE");
-        cookieLocaleResolver.setCookieMaxAge(THREE_DAYS_IN_SECONDS);
-        Locale locale = new Locale( "de", "DE");
-        cookieLocaleResolver.setDefaultLocale(locale);
-        return cookieLocaleResolver;
+        CookieLocaleResolver resolver = new CookieLocaleResolver("LOCALE");
+        resolver.setCookieMaxAge(Duration.ofSeconds(THREE_DAYS_IN_SECONDS));
+        resolver.setDefaultLocale(Locale.of("de", "DE"));
+        return resolver;
     }
 
     @Bean
