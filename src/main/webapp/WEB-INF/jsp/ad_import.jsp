@@ -5,12 +5,16 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<spring:url value="/ad/import" var="adImportUrl"/>
+<spring:url value="/ads" var="adsUrl"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="modules/head.jsp" />
 <body class="user">
 	<jsp:include page="modules/header.jsp" />
-	<form:form action="/ad/import" method="post"
+	<form:form action="${adImportUrl}" method="post"
 		enctype="multipart/form-data">
 		<div class="container-fluid" id="body-container">
 			<div class="container container-pad" id="ad-listing">
@@ -35,7 +39,7 @@
 										<form:button class="btn btn-primary">
 											<span class="glyphicon glyphicon-check"></span> <spring:message code="ad.import.importad"/>                                     </form:button>
 										<form:button type="button" class="btn btn-danger"
-											onClick="location.href='/ads'">
+											onClick="location.href='${adsUrl}'">
 											<span class="glyphicon glyphicon-arrow-left"></span> <spring:message code="ad.import.discard"/>                                     </form:button>
 									</div>
 								</div>
@@ -49,4 +53,3 @@
 	<jsp:include page="modules/scripts.jsp" />
 </body>
 </html>
-

@@ -4,12 +4,15 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<spring:url value="/ad/create" var="adCreateUrl"/>
+<spring:url value="/ads" var="adsUrl"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="modules/head.jsp"/>
 <body class="user">
 <jsp:include page="modules/header.jsp"/>
-<form:form action="/ad/create" method="post" enctype="multipart/form-data">
+<form:form action="${adCreateUrl}" method="post" enctype="multipart/form-data">
     <div class="container-fluid" id="body-container">
         <div class="container container-pad" id="ad-listing">
 
@@ -59,7 +62,7 @@
                                     <form:button class="btn btn-primary">
                                         <span class="glyphicon glyphicon-check"></span> <spring:message code="ad.create.submitad"/>
                                     </form:button>
-                                    <form:button type="button" class="btn btn-danger" onClick="location.href='/ads'">
+                                    <form:button type="button" class="btn btn-danger" onClick="location.href='${adsUrl}'">
                                         <span class="glyphicon glyphicon-arrow-left"></span> <spring:message code="ad.create.discardad"/>
                                     </form:button>
                                 </div>

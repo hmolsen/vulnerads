@@ -107,7 +107,8 @@
                         <br/>
                         <spring:message code="profile.tfa.texttwo"/>
                     </div>
-                    <img class="center-block lazy" data-src-lazy="/profile/tfasecret.png"/>
+                    <spring:url value="/profile/tfasecret.png" var="tfaSecretUrl"/>
+                    <img class="center-block lazy" data-src-lazy="${tfaSecretUrl}"/>
 
                 </div>
                 <div class="modal-footer">
@@ -120,6 +121,6 @@
     </div>
 </div>
 <jsp:include page="modules/scripts.jsp"/>
-<script src="/resources/js/userprofile.js" type="application/javascript"></script>
+<script src="<spring:url value='/resources/js/userprofile.js'/>" type="application/javascript"></script>
 </body>
 </html>

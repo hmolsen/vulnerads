@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><spring:message code="index.title"/></a>
+            <a class="navbar-brand" href="<spring:url value='/'/>"><spring:message code="index.title"/></a>
         </div>
 
         <div class="navbar-collapse collapse" id="searchbar">
@@ -49,7 +49,7 @@
                 </sec:authorize>
             </ul>
 
-            <form method="get" action="/ads" class="navbar-form" role="search">
+            <form method="get" action="<spring:url value='/ads'/>" class="navbar-form" role="search">
                 <div class="form-group" id="search_form_group">
                     <div class="input-group" id="search_input_group">
                         <input class="form-control" name="s" placeholder="<spring:message code="header.searchbar.hint"/>" autocomplete="off"

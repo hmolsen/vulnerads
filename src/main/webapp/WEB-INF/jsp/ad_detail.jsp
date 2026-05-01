@@ -15,6 +15,9 @@
         <c:set var="adBackgroundColorClass" value="bgc-fff" />
     </c:otherwise>
 </c:choose>
+<spring:url value="/ad/{id}/edit" var="editUrl"><spring:param name="id" value="${ad.id}"/></spring:url>
+<spring:url value="/ad/{id}/delete" var="deleteUrl"><spring:param name="id" value="${ad.id}"/></spring:url>
+<spring:url value="/photo" var="photoUrl"><spring:param name="fn" value="${ad.id}/${ad.photofilename}"/></spring:url>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,10 +33,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}/edit'">
+                            <button type="button" class="btn btn-default" onClick="location.href='${editUrl}'">
                                 <span class="glyphicon glyphicon-pencil"></span> <spring:message code="ad.detail.edit"/>
                             </button>
-                            <button type="button" class="btn btn-default" onClick="location.href='/ad/${ad.id}/delete'">
+                            <button type="button" class="btn btn-default" onClick="location.href='${deleteUrl}'">
                                 <span class="glyphicon glyphicon-trash"></span> <spring:message code="ad.detail.delete"/>
                             </button>
                         </div>
@@ -72,7 +75,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <img class="full-image" alt="image" src="/photo?fn=${ad.id}/${ad.photofilename}">
+                        <img class="full-image" alt="image" src="${photoUrl}">
                      </div>
                 </div>
                 <div class="row">

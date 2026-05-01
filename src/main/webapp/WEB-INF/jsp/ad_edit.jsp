@@ -14,13 +14,16 @@
         <c:set var="adBackgroundColorClass" value="bgc-fff" />
     </c:otherwise>
 </c:choose>
+<spring:url value="/ad/{id}" var="adFormAction"><spring:param name="id" value="${ad.id}"/></spring:url>
+<spring:url value="/ad/{id}" var="adDetailUrl"><spring:param name="id" value="${ad.id}"/></spring:url>
+<spring:url value="/photo" var="photoUrl"><spring:param name="fn" value="${ad.id}/${ad.photofilename}"/></spring:url>
 
 <!DOCTYPE html>
 <html lang="de">
 <jsp:include page="modules/head.jsp"/>
 <body class="user">
 <jsp:include page="modules/header.jsp"/>
-<form:form action="/ad/${ad.id}" method="post" enctype="multipart/form-data">
+<form:form action="${adFormAction}" method="post" enctype="multipart/form-data">
 <div class="container-fluid" id="body-container">
 <div class="container container-pad" id="ad-listing">
 
@@ -54,7 +57,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <img class="full-image" alt="image" src="/photo?fn=${ad.id}/${ad.photofilename}">
+                        <img class="full-image" alt="image" src="${photoUrl}">
                         <spring:message code="ad.edit.image"/><input type="file" name="adphoto"><br />
                      </div>
                 </div>
@@ -72,7 +75,7 @@
                                 <form:button class="btn btn-primary">
                                     <span class="glyphicon glyphicon-check"></span> <spring:message code="ad.edit.save"/>
                                 </form:button>
-                                <form:button type="button" class="btn btn-danger" onClick="location.href='/ad/${ad.id}'">
+                                <form:button type="button" class="btn btn-danger" onClick="location.href='${adDetailUrl}'">
                                     <span class="glyphicon glyphicon-arrow-left"></span> <spring:message code="ad.edit.discard"/>
                                 </form:button>
                             </div>

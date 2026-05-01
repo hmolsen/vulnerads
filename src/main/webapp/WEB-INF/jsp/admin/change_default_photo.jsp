@@ -15,12 +15,13 @@
                 <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20">
                     <div class="row">
                         <div class="col-md-12">
-                            <img class="full-image" alt="image" src="/photo?fn=">
+                            <img class="full-image" alt="image" src="<spring:url value='/photo'/>">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form:form action="/admin/defaultphoto" method="post" enctype="multipart/form-data">
+                            <spring:url value="/admin/defaultphoto" var="defaultPhotoUrl"/>
+                            <form:form action="${defaultPhotoUrl}" method="post" enctype="multipart/form-data">
                                 <input type="file" name="image">
 
                                 <div class="pull-right btn-group">

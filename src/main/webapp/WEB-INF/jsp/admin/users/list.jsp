@@ -47,7 +47,8 @@
                                                    ${principal.username == user.username ? 'disabled' : ''}
                                                    id="${user.id}"
                                                    rel="tooltip"><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                                    <td><p><button class="btn btn-danger btn-xs" id="edit-${user.id}" onClick="location.href='/profile?id=${user.id}'"><span class="glyphicon glyphicon-edit"></span></button></p></td>
+                                    <spring:url value="/profile" var="editProfileUrl"><spring:param name="id" value="${user.id}"/></spring:url>
+                                    <td><p><button class="btn btn-danger btn-xs" id="edit-${user.id}" onClick="location.href='${editProfileUrl}'"><span class="glyphicon glyphicon-edit"></span></button></p></td>
                                 </tr>
                             </c:forEach>
 
@@ -84,6 +85,6 @@
     </div>
 </div>
 <jsp:include page="../../modules/scripts.jsp"/>
-<script src="/resources/js/userlist.js" type="application/javascript"></script>
+<script src="<spring:url value='/resources/js/userlist.js'/>" type="application/javascript"></script>
 </body>
 </html>

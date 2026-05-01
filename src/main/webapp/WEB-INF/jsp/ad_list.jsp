@@ -24,6 +24,9 @@
 <div class="row">
 <div class="col-sm-8 col-sm-offset-2">
     <c:forEach var="ad" items="${latestAds}">
+        <spring:url value="/ad/{id}" var="adDetailUrl"><spring:param name="id" value="${ad.id}"/></spring:url>
+        <spring:url value="/photo" var="adPhotoUrl"><spring:param name="fn" value="${ad.id}/${ad.photofilename}"/></spring:url>
+        <spring:url value="/userdetail" var="userDetailUrl"><spring:param name="id" value="${ad.owner.id}"/></spring:url>
 
         <c:set var="adBackgroundColorClass" value="bgc-fff" />
 
@@ -36,17 +39,16 @@
 
         <div class="brdr ${adBackgroundColorClass} pad-10 box-shad btm-mrg-20 ad-listing">
             <div class="media">
-                <a class="pull-left" href="/ad/${ad.id}" target="_parent">
-                    <img alt="image" class="img-responsive"
-                         src="/photo?fn=${ad.id}/${ad.photofilename}"></a>
+                <a class="pull-left" href="${adDetailUrl}" target="_parent">
+                    <img alt="image" class="img-responsive" src="${adPhotoUrl}"></a>
 
                 <div class="clearfix visible-sm"></div>
 
                 <div class="media-body fnt-smaller">
-                    <a href="/ad/${ad.id}" target="_parent"></a>
+                    <a href="${adDetailUrl}" target="_parent"></a>
 
                     <h4 class="media-heading">
-                        <a href="/ad/${ad.id}" target="_parent">${ad.title}
+                        <a href="${adDetailUrl}" target="_parent">${ad.title}
                             <small class="pull-right">
                                 <c:if test="${ad.isFromToday()}">
                                     <spring:message code="ad.today"/>,
@@ -67,11 +69,11 @@
                         <c:choose>
                             <c:when test="${(not empty ad.owner.firstname) and (not empty ad.owner.lastname)}">
                                 <li>
-                                    <a href="/userdetail?id=${ad.owner.id}">${ad.owner.firstname} ${ad.owner.lastname}</a>
+                                    <a href="${userDetailUrl}">${ad.owner.firstname} ${ad.owner.lastname}</a>
                                 </li>
                             </c:when>
                             <c:otherwise>
-                                <li><a href="/userdetail?id=${ad.owner.id}">${ad.owner.username}</a></li>
+                                <li><a href="${userDetailUrl}">${ad.owner.username}</a></li>
                             </c:otherwise>
                         </c:choose>
                         <c:if test="${(not empty ad.owner.zip) and (not empty ad.owner.town)}">
@@ -81,7 +83,7 @@
                     </ul>
 
                     <p class="hidden-xs"><s:sanitize untrustedHtml="${ad.getShortDescription()}"/></p>
-                    <a href="/ad/${ad.id}"><span class="fnt-smaller fnt-lighter fnt-arial">
+                    <a href="${adDetailUrl}"><span class="fnt-smaller fnt-lighter fnt-arial">
                         <spring:message code="ad.list.more"/>
                     </span></a>
                 </div>
