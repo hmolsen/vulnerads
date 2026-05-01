@@ -1,6 +1,6 @@
 package de.cqrity.vulnerapp.domain;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,11 +10,11 @@ public class ClassifiedAdResource {
 
     private long id;
 
-    @NotEmpty
+    @NotBlank
     @Size(max = 100)
     private String title;
 
-    @NotEmpty
+    @NotBlank
     @Size(max = 4000)
     private String description;
 
