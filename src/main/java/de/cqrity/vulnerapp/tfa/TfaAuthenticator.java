@@ -24,7 +24,7 @@ public class TfaAuthenticator {
         long timeIndex = System.currentTimeMillis() / 1000 / 30;
         byte[] secretBytes = new Base32().decode(decryptedTfaSecret);
         for (int i = -variance; i <= variance; i++) {
-            long calculatedCode = 0;
+            long calculatedCode;
             try {
                 calculatedCode = getCode(secretBytes, timeIndex + i);
             } catch (NoSuchAlgorithmException | InvalidKeyException e) {
@@ -43,8 +43,7 @@ public class TfaAuthenticator {
         ByteBuffer buffer = ByteBuffer.allocate(8);
         buffer.putLong(timeIndex);
         byte[] timeBytes = buffer.array();
-        Mac mac = null;
-        mac = Mac.getInstance("HmacSHA1");
+        Mac mac = Mac.getInstance("HmacSHA1");
         mac.init(signKey);
         byte[] hash = mac.doFinal(timeBytes);
         int offset = hash[19] & 0xf;

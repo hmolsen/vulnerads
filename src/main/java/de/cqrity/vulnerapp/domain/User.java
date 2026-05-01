@@ -8,7 +8,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import java.security.Principal;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -40,7 +39,7 @@ public class User implements UserDetails, Principal {
     private String phonenumber;
 
     @Pattern(regexp = "\\d*")
-    @Size(min = 0, max = 5)
+    @Size(max = 5)
     private String zip;
 
     private String town;
