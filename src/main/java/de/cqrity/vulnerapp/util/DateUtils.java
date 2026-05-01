@@ -195,11 +195,9 @@ public class DateUtils {
         return c.getTime();
     }
 
-    /** Determines whether or not a date has any time values (hour, minute,
-     * seconds or millisecondsReturns the given date with the time values cleared. */
-
     /**
-     * Determines whether or not a date has any time values.
+     * Determines whether or not a date has any time values (hour, minute,
+     * seconds or millisecondsReturns the given date with the time values cleared.
      * @param date The date.
      * @return true iff the date is not null and any of the date's hour, minute,
      * seconds or millisecond values are greater than zero.

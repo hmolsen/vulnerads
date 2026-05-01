@@ -55,7 +55,7 @@ public class ClassifiedAdResource {
     public void setDescription(String description) {
         String stringed = null;
         if (description != null) {
-             stringed = description.replaceAll("<br />", "\n");
+             stringed = description.replace("<br />", "\n");
         }
         this.description = stringed;
     }

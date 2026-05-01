@@ -18,20 +18,17 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -77,7 +74,7 @@ public class UserController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView showEditProfileView(@RequestParam(required = false) Long id) {
-        if((id != null) && !userService.getPrincipal().getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+        if((id != null) && userService.getPrincipal().getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ADMIN"))) {
             throw new AccessDeniedException("Only Admins are allowed to change other users");
         }
         if(id == null)

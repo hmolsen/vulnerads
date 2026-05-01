@@ -31,7 +31,7 @@ public class DatabaseMigrator {
             String bcryptPassword = new BCryptPasswordEncoder().encode(md5Password);
             user.setPassword(bcryptPassword);
             userRepository.save(user);
-            log.info("Migrating user password " + md5Password + " to " + bcryptPassword);
+            log.info("Migrating user password {} to {}", md5Password, bcryptPassword);
         }
 
     }

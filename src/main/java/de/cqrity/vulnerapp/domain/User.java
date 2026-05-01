@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Size;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table(name = "usr")
@@ -86,7 +87,7 @@ public class User implements UserDetails, Principal {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(authority);
+        return Collections.singletonList(authority);
     }
 
     public String getPassword() {
@@ -119,26 +120,6 @@ public class User implements UserDetails, Principal {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 
     @Override
