@@ -34,6 +34,7 @@ public class WebMvcSecurityConfig {
                 .requestMatchers("/photo").permitAll()
                 .requestMatchers("/register").anonymous()
                 .requestMatchers("/resources/**").permitAll()
+                .requestMatchers("/.well-known/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/admin/users/list").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/admin/defaultphoto").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/admin/defaultphoto").hasAuthority("ADMIN")
