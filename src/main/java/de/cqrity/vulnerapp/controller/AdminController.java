@@ -21,9 +21,7 @@ public class AdminController {
 
     @RequestMapping(value = "/defaultphoto", method = RequestMethod.GET)
     public ModelAndView changeDefaultPhoto() {
-        ModelAndView mav = new ModelAndView("admin/change_default_photo", "command", new ImageResource());
-
-        return mav;
+        return new ModelAndView("admin/change_default_photo", "command", new ImageResource());
     }
 
     @RequestMapping(value = "/defaultphoto", method = RequestMethod.POST)
