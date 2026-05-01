@@ -60,7 +60,7 @@ public class ClassifiedAd {
     private String photofilename;
 
     @SuppressWarnings("unused")
-    ClassifiedAd() { }
+    protected ClassifiedAd() { }
 
     public ClassifiedAd(User owner, String title, String description, int price, Date creationDate) {
         this.owner = owner;

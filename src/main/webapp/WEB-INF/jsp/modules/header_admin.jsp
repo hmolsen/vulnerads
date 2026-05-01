@@ -17,7 +17,7 @@
             <li class="divider"></li>
             <li><a href="/profile"><spring:message code="header.admin.profile.edit"/></a></li>
             <li class="divider"></li>
-            <li><a href="/admin/users/list"><spring:message code="header.admin.user.edit"/></li>
+            <li><a href="/admin/users/list"><spring:message code="header.admin.user.edit"/></a></li>
             <li><a href="/admin/defaultphoto"><spring:message code="header.admin.picture.edit"/></a></li>
         </ul>
     </li>

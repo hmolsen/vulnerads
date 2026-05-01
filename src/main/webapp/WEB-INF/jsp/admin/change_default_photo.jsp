@@ -15,7 +15,7 @@
                 <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20">
                     <div class="row">
                         <div class="col-md-12">
-                            <img class="full-image" alt="image" src="/photo?fn="></a>
+                            <img class="full-image" alt="image" src="/photo?fn=">
                         </div>
                     </div>
                     <div class="row">

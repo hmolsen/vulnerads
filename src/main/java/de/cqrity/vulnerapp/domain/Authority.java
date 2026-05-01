@@ -15,12 +15,7 @@ public class Authority implements GrantedAuthority {
 
     private String authority;
 
-    Authority() {
-    }
-
-    public Authority(String authority) {
-        this.authority = authority;
-    }
+    protected Authority() { }
 
     public long getId() {
         return id;
@@ -29,10 +24,6 @@ public class Authority implements GrantedAuthority {
     @Override
     public String getAuthority() {
         return authority;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
     }
 
     @Override

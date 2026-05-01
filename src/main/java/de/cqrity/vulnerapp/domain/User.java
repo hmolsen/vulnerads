@@ -48,8 +48,7 @@ public class User implements UserDetails, Principal {
     private Authority authority;
 
     @SuppressWarnings("unused")
-    User() {
-    }
+    protected User() { }
 
     public User(String username, String password, Authority authority) {
         this.username = username;

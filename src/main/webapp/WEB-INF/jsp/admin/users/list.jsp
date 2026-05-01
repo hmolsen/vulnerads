@@ -17,14 +17,16 @@
                     <div class="table-responsive">
                         <table id="mytable" class="table table-bordred table-striped">
                             <thead>
-                            <th><spring:message code="list.username"/></th>
-                            <th><spring:message code="list.firstname"/></th>
-                            <th><spring:message code="list.surname"/></th>
-                            <th><spring:message code="list.postcode"/></th>
-                            <th><spring:message code="list.place"/></th>
-                            <th><spring:message code="list.phone"/></th>
-                            <th><spring:message code="list.delete"/></th>
-                            <th><spring:message code="list.edit"/></th>
+                                <tr>
+                                    <th><spring:message code="list.username"/></th>
+                                    <th><spring:message code="list.firstname"/></th>
+                                    <th><spring:message code="list.surname"/></th>
+                                    <th><spring:message code="list.postcode"/></th>
+                                    <th><spring:message code="list.place"/></th>
+                                    <th><spring:message code="list.phone"/></th>
+                                    <th><spring:message code="list.delete"/></th>
+                                    <th><spring:message code="list.edit"/></th>
+                                </tr>
                             </thead>
                             <tbody>
 
