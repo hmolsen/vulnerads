@@ -16,6 +16,12 @@ repositories {
     mavenCentral()
 }
 
+// Gradle 8.14.4's bytecode scanner cannot read JDK 25 class files (major version 69),
+// so main-class auto-detection fails. Declaring it explicitly avoids the scan.
+springBoot {
+    mainClass = 'de.cqrity.vulnerapp.Vulnerapp'
+}
+
 configurations {
     developmentOnly
     runtimeClasspath {
