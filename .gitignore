@@ -13,3 +13,9 @@ out/*
 .settings/
 .classpath
 bin/
+
+### Portable PostgreSQL (local dev DB)
+pgsql/
+pgdata/
+pg.log
+bootrun.log
