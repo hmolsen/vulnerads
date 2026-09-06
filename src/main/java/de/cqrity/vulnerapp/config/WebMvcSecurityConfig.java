@@ -15,7 +15,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -50,7 +50,7 @@ public class WebMvcSecurityConfig {
                 .permitAll()
         );
         http.logout(logout -> logout
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutRequestMatcher(PathPatternRequestMatcher.withDefaults().matcher("/logout"))
                 .logoutSuccessUrl("/login")
                 .permitAll()
         );
@@ -66,8 +66,7 @@ public class WebMvcSecurityConfig {
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new TfaAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
+        DaoAuthenticationProvider authenticationProvider = new TfaAuthenticationProvider(userDetailsService);
         authenticationProvider.setPasswordEncoder(new Md5PasswordEncoder());
         return authenticationProvider;
     }

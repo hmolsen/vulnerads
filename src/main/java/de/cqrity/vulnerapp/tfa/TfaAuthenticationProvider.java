@@ -8,8 +8,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 public class TfaAuthenticationProvider extends DaoAuthenticationProvider {
+
+    public TfaAuthenticationProvider(UserDetailsService userDetailsService) {
+        super(userDetailsService);
+    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

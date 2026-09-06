@@ -5,12 +5,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class MD5BCryptPasswordEncoder extends BCryptPasswordEncoder {
     @Override
-    public String encode(CharSequence rawPassword) {
-        return super.encode(DigestUtils.md5Hex(rawPassword.toString()));
+    protected String encodeNonNullPassword(String rawPassword) {
+        return super.encodeNonNullPassword(DigestUtils.md5Hex(rawPassword));
     }
 
     @Override
-    public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        return super.matches(DigestUtils.md5Hex(rawPassword.toString()), encodedPassword);
+    protected boolean matchesNonNull(String rawPassword, String encodedPassword) {
+        return super.matchesNonNull(DigestUtils.md5Hex(rawPassword), encodedPassword);
     }
 }
