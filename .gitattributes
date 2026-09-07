@@ -1,0 +1,11 @@
+# Normalise text files, and pin LF where it matters.
+* text=auto
+
+# Shell scripts run on the Linux training VM. CRLF endings break the shebang
+# with "bad interpreter: /usr/bin/env bash^M", so force LF regardless of the
+# committer's core.autocrlf setting.
+*.sh    text eol=lf
+gradlew text eol=lf
+
+# PowerShell helper is Windows-only.
+*.ps1   text eol=crlf
