@@ -20,11 +20,11 @@ docker-compose up -d          # start PostgreSQL
 ./gradlew clean
 ```
 
-**Prerequisites**: JDK 25 (set in `gradle.properties`). No test suite exists — this is a training application.
+**Prerequisites**: JDK 17 or newer (the toolchain in `build.gradle` targets 17 so the training VM's stock JDK works; do not set `org.gradle.java.home`). No test suite exists — this is a training application.
 
 ## Architecture
 
-**Stack**: Spring Boot 3.4.4 · Jakarta EE 9+ · JSP views · PostgreSQL 17 · Gradle
+**Stack**: Spring Boot 4.1.1 · Jakarta EE 9+ · JSP views · PostgreSQL 17 · Gradle 9.7.1
 
 **Request flow**: HTTP → Controller → Service → Repository (JPA + raw JDBC) → Entity → JSP view
 

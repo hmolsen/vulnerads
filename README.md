@@ -6,7 +6,7 @@ A deliberately vulnerable classified ads web application for security training. 
 
 ## Prerequisites
 
-- JDK 25
+- JDK 17 or newer
 - Docker (for PostgreSQL) or a local PostgreSQL 17 installation
 - Gradle (wrapper included)
 

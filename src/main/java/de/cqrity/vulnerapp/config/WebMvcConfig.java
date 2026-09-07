@@ -50,7 +50,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public LocaleResolver localeResolver() {
         CookieLocaleResolver resolver = new CookieLocaleResolver("LOCALE");
         resolver.setCookieMaxAge(Duration.ofSeconds(THREE_DAYS_IN_SECONDS));
-        resolver.setDefaultLocale(Locale.of("de", "DE"));
+        resolver.setDefaultLocale(new Locale("de", "DE"));
         return resolver;
     }
 
