@@ -112,3 +112,48 @@ h4.media-heading > a > small {
 .full-image {
     width: 100%;
 }
+
+/* TranslAIte button, sits inline with the Description heading on the ad detail page */
+.translaite-heading {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.translaite-heading > span {
+    margin-right: 12px;
+}
+
+.btn-translaite {
+    background-image: linear-gradient(135deg, #6f5bd6 0%, #a855c9 55%, #e0598b 100%);
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    padding: 5px 14px;
+    border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(111, 91, 214, 0.35);
+    transition: filter 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-translaite:hover,
+.btn-translaite:focus,
+.btn-translaite:active {
+    color: #fff;
+    filter: brightness(1.1);
+    box-shadow: 0 3px 10px rgba(111, 91, 214, 0.45);
+}
+
+.btn-translaite[disabled] {
+    opacity: 0.6;
+    filter: none;
+}
+
+.translaite-icon {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+    margin-right: 6px;
+    vertical-align: -2px;
+}

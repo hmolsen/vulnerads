@@ -19,3 +19,6 @@ pgsql/
 pgdata/
 pg.log
 bootrun.log
+
+### Local secrets (fal.ai translation feature) - never commit
+src/main/resources/local.properties

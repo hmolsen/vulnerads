@@ -1,0 +1,9 @@
+# Copy this file to local.properties and paste your keyvault token below.
+# local.properties is gitignored - the token must never be committed.
+#
+# The application uses this token ONLY to fetch the fal.ai API key at runtime:
+#   curl -fsS -H "Authorization: Bearer <token>" \
+#        "https://cqrity.de/keyvault/api.php?key=fal.ai&format=raw"
+#
+# The fal.ai key itself is never written to disk.
+translation.keyvault-token=

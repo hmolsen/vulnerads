@@ -55,6 +55,7 @@ docker-compose up -d          # start PostgreSQL
 | XXE | `ClassifiedAdService.java` — JAXB unmarshaller without XXE protection |
 | XSS | `ClassifiedAd.java` — raw HTML in description field |
 | CSRF/CSP/CORS | `WebMvcSecurityConfig.java` / `WebMvcConfig.java` — protections disabled |
+| LLM prompt injection | `TranslationService.java` — ad title/description concatenated into the LLM prompt |
 
 When proposing fixes, check the corresponding directory in `/solutions/` first to see the intended remediation approach.
 

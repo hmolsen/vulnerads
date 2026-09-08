@@ -1,6 +1,6 @@
 # Vulnerads
 
-A deliberately vulnerable classified ads web application for security training. It demonstrates common vulnerabilities including SQL injection, weak password hashing, command injection, XSS, XXE, and CSRF/CSP misconfigurations. Fixed versions for each category are in the `solutions/` directory.
+A deliberately vulnerable classified ads web application for security training. It demonstrates common vulnerabilities including SQL injection, weak password hashing, command injection, XSS, XXE, CSRF/CSP misconfigurations, and LLM prompt injection. Fixed versions for each category are in the `solutions/` directory.
 
 > **Warning:** Do not deploy this application in a production environment or expose it to the internet.
 
@@ -47,7 +47,28 @@ Copy-Item -Recurse assets\vulnerapp_photos "$env:USERPROFILE\vulnerapp_photos"
 
 The application reads and writes uploaded photos from `~/vulnerapp_photos/`. Without this directory the sample ads will show broken images.
 
-### 3. Run
+### 3. Ad translation (optional)
+
+The ad detail page shows a "Translate to English" button when the interface language
+is English (`?lang=en`). It sends the ad title and description to an LLM through
+fal.ai, and is the basis of the prompt injection exercise.
+
+Copy the template and paste your keyvault token:
+
+```bash
+cp src/main/resources/local.properties.example src/main/resources/local.properties
+```
+
+```properties
+translation.keyvault-token=<your keyvault token>
+```
+
+`local.properties` is gitignored - never commit the token. The application uses it only
+to fetch the fal.ai API key at runtime, so that key is never written to disk. Without a
+token the application still starts and every other exercise works; only the translate
+button fails, with a message telling you what to do.
+
+### 4. Run
 
 ```bash
 ./gradlew bootRun

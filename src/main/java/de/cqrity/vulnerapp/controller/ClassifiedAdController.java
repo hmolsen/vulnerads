@@ -7,6 +7,8 @@ import de.cqrity.vulnerapp.exception.NotFound;
 import de.cqrity.vulnerapp.repository.ClassifiedAdRepository;
 import de.cqrity.vulnerapp.repository.UserRepository;
 import de.cqrity.vulnerapp.service.ClassifiedAdService;
+import de.cqrity.vulnerapp.domain.TranslatedAd;
+import de.cqrity.vulnerapp.service.TranslationService;
 import de.cqrity.vulnerapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,9 @@ public class ClassifiedAdController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    TranslationService translationService;
 
     @RequestMapping(value = "/ads", method = RequestMethod.GET)
     public ModelAndView showFilteredAds(@RequestParam(value = "s", required = false, defaultValue = "") String s) {
@@ -86,6 +91,16 @@ public class ClassifiedAdController {
             mav.addObject("latestAds", classifiedAdService.fetchLatestAds(""));
         }
         return mav;
+    }
+
+    @PostMapping(value = "/ad/{id}/translate")
+    @ResponseBody
+    public TranslatedAd translateAd(@PathVariable long id) {
+        ClassifiedAd ad = classifiedAdRepository.findById(id);
+        if (ad == null) {
+            throw new NotFound(messageSource.getMessage("ad.controller.error.notexist", null, LocaleContextHolder.getLocale()));
+        }
+        return translationService.translate(ad.getTitle(), ad.getDescription());
     }
 
     @RequestMapping(value = "/ad/{id}", method = RequestMethod.POST)
