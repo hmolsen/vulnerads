@@ -42,13 +42,7 @@ public class TranslationService {
     }
 
     public TranslatedAd translate(String title, String description) {
-        //////  <SNIP> Prompt injection
-        // The title and description are written straight into the prompt. Both are
-        // attacker controlled - anybody can place an ad - and nothing separates the
-        // instructions above from the ad content below, so text inside an ad is read
-        // by the model as if it were an instruction (OWASP LLM01).
         String prompt = "TITLE: " + title + "\nDESCRIPTION: " + description;
-        //////  <SNAP>
 
         FalRequest request = new FalRequest(properties.getFalaiModel(), prompt, SYSTEM_PROMPT, MAX_TOKENS);
 
