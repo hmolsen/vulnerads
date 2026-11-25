@@ -9,9 +9,11 @@
 #   ./instances.sh reset <n>      restart instance n with a fresh database (URL stays the same)
 #
 # Settings (environment variables):
-#   COUNT=5                  number of instances
-#   BASE_PORT=8080           instance n listens on BASE_PORT+n (8081..8085)
+#   COUNT=12                 number of instances
+#   BASE_PORT=8080           instance n listens on BASE_PORT+n (8081..8092)
 #   HEAP=256m                max Java heap per instance
+#   POOL_SIZE=4              DB connections per instance (PostgreSQL allows 100 in total)
+#   TOMCAT_THREADS=40        max request threads per instance (default 200 wastes memory)
 #   ENABLE_TRANSLATION=0     1 = keep the fal.ai translation feature (costs money per request!)
 #   CLOUDFLARED=~/cloudflared
 #   JAVA=java                JDK 17+
@@ -19,9 +21,11 @@
 
 set -euo pipefail
 
-COUNT=${COUNT:-5}
+COUNT=${COUNT:-12}
 BASE_PORT=${BASE_PORT:-8080}
 HEAP=${HEAP:-256m}
+POOL_SIZE=${POOL_SIZE:-4}
+TOMCAT_THREADS=${TOMCAT_THREADS:-40}
 ENABLE_TRANSLATION=${ENABLE_TRANSLATION:-0}
 CLOUDFLARED=${CLOUDFLARED:-$HOME/cloudflared}
 JAVA=${JAVA:-java}
@@ -97,6 +101,9 @@ start_app() {
         -jar "$JAR" \
         --server.port="$port" \
         --spring.datasource.url="jdbc:postgresql://$DB_HOST/$(db_of "$n")" \
+        --spring.datasource.hikari.maximum-pool-size="$POOL_SIZE" \
+        --spring.datasource.hikari.minimum-idle=1 \
+        --server.tomcat.threads.max="$TOMCAT_THREADS" \
         "${extra[@]}" \
         >"$dir/app.log" 2>&1 & echo $! >"$dir/app.pid")
 }
@@ -156,12 +163,18 @@ cmd_start() {
     "$JAVA" -version >/dev/null 2>&1 || { warn "java not found ($JAVA)"; exit 1; }
     psql_admin "SELECT 1" >/dev/null || { warn "cannot connect to PostgreSQL as $DB_USER"; exit 1; }
     [[ $ENABLE_TRANSLATION == 1 ]] && warn "translation ENABLED - every scan request to /ad/*/translate costs money"
+    local max_conn
+    max_conn=$(psql_admin "SHOW max_connections")
+    if (( COUNT * POOL_SIZE + 10 > max_conn )); then
+        warn "$COUNT instances x $POOL_SIZE connections exceeds PostgreSQL max_connections=$max_conn - lower POOL_SIZE"
+        exit 1
+    fi
 
     build
     mkdir -p "$STATE_DIR"
 
-    # Start the apps one after another: starting 5 Spring Boot apps at once on
-    # 4 cores just makes all of them slow.
+    # Start the apps one after another: starting many Spring Boot apps at once
+    # on 4 cores just makes all of them slow.
     for n in $(seq "$COUNT"); do
         if is_running "$(dir_of "$n")/app.pid"; then warn "instance $n already running"; continue; fi
         log "Starting instance $n on port $(port_of "$n")"
@@ -184,10 +197,11 @@ cmd_start() {
 }
 
 cmd_stop() {
-    for n in $(seq "$COUNT"); do
-        local dir; dir=$(dir_of "$n")
+    # Stop every instance that exists, even if COUNT was lowered since start.
+    local dir
+    for dir in "$STATE_DIR"/i*; do
         [[ -d $dir ]] || continue
-        log "Stopping instance $n"
+        log "Stopping instance ${dir##*/i}"
         stop_pidfile "$dir/tunnel.pid"
         stop_pidfile "$dir/app.pid"
         rm -f "$dir/url"
